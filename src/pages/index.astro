@@ -1,0 +1,23 @@
+---
+import Header from "../components/Header.client.jsx";
+import HomeSection from "../components/HomeSection.jsx";
+import MenuSection from "../components/MenuSection.jsx";
+import AboutSection from "../components/AboutSection.jsx";
+import HoursSection from "../components/HoursSection.jsx";
+import ContactSection from "../components/ContactSection.jsx";
+---
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>La Teglia</title>
+  </head>
+  <body>
+    <Header client:load />
+    <HomeSection id="home-section" />
+    <MenuSection id="menu-section" />
+    <AboutSection id="about-section" />
+    <HoursSection id="hours-section" />
+    <ContactSection id="contact-section" />
+  </body>
+</html>

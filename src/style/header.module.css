@@ -1,0 +1,80 @@
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #F5F1E7;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  font-family: 'Merriweather', serif;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.logo {
+  color: #B04030;
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+.hamburgerButton {
+  background: none;
+  border: none;
+  color: #B04030;
+  cursor: pointer;
+  padding: 15px;
+  z-index: 1100;
+  box-sizing: content-box;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menuNav {
+  position: absolute;
+  top: 70px;
+  right: 30px;
+  background-color: #F5F1E7;
+  border: 1px solid #D2691E;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+  padding: 25px 30px;
+  font-family: 'Open Sans', sans-serif;
+  min-width: 250px;
+  z-index: 1050;
+  box-sizing: border-box;
+}
+
+.menuList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menuItem {
+  margin: 18px 0;
+  color: #5C3A21;
+  font-weight: 900;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: 15px 20px;
+  }
+
+  .logo {
+    font-size: 1.8rem;
+  }
+
+  .hamburgerButton {
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+  }
+}
