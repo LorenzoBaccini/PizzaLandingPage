@@ -4,7 +4,6 @@ import styles from '../style/header.module.css';
 const menuItems = [
   { label: 'Home', targetId: 'home-section' },
   { label: 'Menù', targetId: 'menu-section' },
-  { label: 'Chi Siamo', targetId: 'about-section' },
   { label: 'Orari', targetId: 'hours-section' },
   { label: 'Contatti', targetId: 'contact-section' },
 ];
@@ -37,7 +36,7 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
-      <div className={styles.logo}>La Teglia</div>
+      <div className={styles.logo}>LA TEGLIA</div>
       <button
         ref={buttonRef}
         aria-label="Toggle menu"
@@ -45,9 +44,9 @@ export default function Header() {
         className={styles.hamburgerButton}
       >
         <svg width="32" height="32" viewBox="0 0 24 24" fill="#B04030" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect y="4" width="24" height="4" />
-          <rect y="10" width="24" height="4" />
-          <rect y="16" width="24" height="4" />
+          <rect y="4" width="24" height="3" />
+          <rect y="10" width="24" height="3" />
+          <rect y="16" width="24" height="3" />
         </svg>
       </button>
       {open && (

@@ -5,14 +5,10 @@ export default function HomeSection({ id }) {
   return (
     <section id={id} className={styles.homeSection}>
       <img 
-        src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=80"
-        alt="Kebab appetitoso"
+        src="src\assets\pizze.jpg"
+        alt="pizze appetitose"
         className={styles.coverImage}
       />
-      <h1 className={styles.title}>Benvenuti a La Teglia</h1>
-      <p className={styles.description}>
-        Scopri il sapore autentico dei nostri kebab, preparati con ingredienti freschi e tanta passione.
-      </p>
       <button 
         className={styles.ctaButton}
         onClick={() => {
@@ -22,6 +18,9 @@ export default function HomeSection({ id }) {
       >
         Scopri il menù
       </button>
+      <p className={styles.description}>
+        Scopri La nostra deliziosa pizza in teglia, preparate con ingredienti freschi
+      </p>  
     </section>
   );
 }

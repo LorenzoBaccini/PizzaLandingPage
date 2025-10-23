@@ -1,64 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from '../style/ContactSection.module.css';
 
 export default function ContactSection({ id }) {
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
-  const [status, setStatus] = useState('');
-
-  const handleChange = (e) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) {
-      setStatus('Per favore compila tutti i campi obbligatori.');
-      return;
-    }
-    // Simula invio form
-    setStatus('Invio in corso...');
-    setTimeout(() => {
-      setStatus('Messaggio inviato con successo! Grazie.');
-      setFormData({ name: '', email: '', phone: '', message: '' });
-    }, 1500);
-  };
-
   return (
     <section id={id} className={styles.contactSection}>
       <h2 className={styles.title}>Contatti</h2>
-      <form onSubmit={handleSubmit}>
-        <div className={styles.formGroup}>
-          <label className={styles.label} htmlFor="name">Nome *</label>
-          <input type="text" id="name" name="name" className={styles.input} required value={formData.name} onChange={handleChange} />
-        </div>
-        <div className={styles.formGroup}>
-          <label className={styles.label} htmlFor="email">Email *</label>
-          <input type="email" id="email" name="email" className={styles.input} required value={formData.email} onChange={handleChange} />
-        </div>
-        <div className={styles.formGroup}>
-          <label className={styles.label} htmlFor="phone">Numero di telefono</label>
-          <input type="tel" id="phone" name="phone" className={styles.input} placeholder="+39 123 456 7890" value={formData.phone} onChange={handleChange} />
-        </div>
-        <div className={styles.formGroup}>
-          <label className={styles.label} htmlFor="message">Messaggio *</label>
-          <textarea id="message" name="message" className={styles.textarea} required value={formData.message} onChange={handleChange} />
-        </div>
-        <button type="submit" className={styles.submitButton}>Invia</button>
-      </form>
-      {status && <p style={{marginTop: '15px', color: '#D2691E', fontWeight: '700'}}>{status}</p>}
-
       <div className={styles.contactInfo}>
         <div className={styles.phone}>
-          Numero di telefono: <a href="tel:+391234567890">+39 123 456 7890</a>
+          Numero di telefono: <br /><a href="tel:0362 197 2430" style={{ color: '#B04030', textDecoration: 'none' }}>0362 197 2430</a>
         </div>
         <div className={styles.address}>
-          Indirizzo: Via Roma 10, Milano
+          Indirizzo: <br /> Via Monterosa 132, Desio (MB)
         </div>
-        <div className={styles.socialIcons}>
-          <a href="#" aria-label="Facebook" title="Facebook" target="_blank" rel="noopener noreferrer">📘</a>
-          <a href="#" aria-label="Instagram" title="Instagram" target="_blank" rel="noopener noreferrer">📸</a>
-          <a href="#" aria-label="Twitter" title="Twitter" target="_blank" rel="noopener noreferrer">🐦</a>
-        </div>
+      </div>
+      <div className={styles.mapContainer}>
+        <iframe
+          title="Mappa La Teglia"
+          width="100%"
+          height="100%"
+          frameBorder="0"
+          style={{ border: 0 }}
+          referrerPolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2790.5807345505305!2d9.19151667914968!3d45.6190688363988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786bc2e13d7d0fd%3A0x97d1f73a87c27be4!2sLa%20Teglia!5e0!3m2!1sit!2sit!4v1760802077903!5m2!1sit!2sit"
+          allowFullScreen
+          loading="lazy"
+        />
       </div>
     </section>
   );

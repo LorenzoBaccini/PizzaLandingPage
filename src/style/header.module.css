@@ -1,14 +1,11 @@
 .header {
-  position: fixed;
-  top: 0;
   width: 100%;
-  background-color: #F5F1E7;
+  background-color: var(--color-background-primary);
   padding: 20px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-  font-family: 'Merriweather', serif;
   z-index: 1000;
   box-sizing: border-box;
 }
@@ -16,7 +13,7 @@
 .logo {
   color: #B04030;
   font-size: 2.5rem;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .hamburgerButton {
@@ -42,9 +39,8 @@
   border: 1px solid #D2691E;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.25);
-  padding: 25px 30px;
-  font-family: 'Open Sans', sans-serif;
-  min-width: 250px;
+  padding: 15px 20px;
+  min-width: 150px;
   z-index: 1050;
   box-sizing: border-box;
 }
@@ -60,12 +56,12 @@
   color: #5C3A21;
   font-weight: 900;
   cursor: pointer;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 @media (max-width: 600px) {
   .header {
-    padding: 15px 20px;
+    padding: 5px 20px;
   }
 
   .logo {

@@ -6,9 +6,10 @@ export default function HoursSection({ id }) {
     <section id={id} className={styles.hoursSection}>
       <h2 className={styles.title}>Orari</h2>
       <ul className={styles.hoursList}>
-        <li>Lunedì - Venerdì: 11:30 - 23:00</li>
-        <li>Sabato: 12:00 - 24:00</li>
-        <li>Domenica: Chiuso</li>
+        <li>Sempre aperti</li>
+        <li>Tutti i giorni</li>
+        <li>11:00 alle 15:00</li>
+        <li>17:30 alle 00:00</li>
       </ul>
     </section>
   );

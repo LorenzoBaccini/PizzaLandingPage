@@ -1,0 +1,580 @@
+{
+    "pizze": [
+        {
+            "nome": "ANGELO",
+            "ingredienti": "Pomodoro, mozzarella di bufala, melanzane fritte",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 9.0,
+                "1/2 Teglia": 18.0,
+                "Famiglia o Teglia intera": 33.0
+            }
+        },
+        {
+            "nome": "BARSENIA",
+            "ingredienti": "Pomodoro, mozzarella, zola, salame piccante, porcini",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 9.5,
+                "1/2 Teglia": 19.0,
+                "Famiglia o Teglia intera": 35.0
+            }
+        },
+        {
+            "nome": "BIANCA",
+            "ingredienti": "Mozzarella",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 5.5,
+                "1/2 Teglia": 11.0,
+                "Famiglia o Teglia intera": 20.0
+            }
+        },
+        {
+            "nome": "BISMARCK",
+            "ingredienti": "Pomodoro, mozzarella, prosciutto cotto, uovo",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 7.0,
+                "1/2 Teglia": 14.0,
+                "Famiglia o Teglia intera": 25.0
+            }
+        },
+        {
+            "nome": "BRACCIO DI FERRO",
+            "ingredienti": "Pomodoro, mozzarella, ricotta, spinaci",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 7.5,
+                "1/2 Teglia": 15.0,
+                "Famiglia o Teglia intera": 27.0
+            }
+        },
+        {
+            "nome": "BRESAOLA",
+            "ingredienti": "Pomodoro, mozzarella, bresaola",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 9.0,
+                "1/2 Teglia": 18.0,
+                "Famiglia o Teglia intera": 33.0
+            }
+        },
+        {
+            "nome": "CALABRESE",
+            "ingredienti": "Pomodoro, mozzarella, salame piccante",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 7.5,
+                "1/2 Teglia": 15.0,
+                "Famiglia o Teglia intera": 27.0
+            }
+        },
+        {
+            "nome": "CAPRICCIOSA",
+            "ingredienti": "pomodoro, mozzarella, prosciutto cotto, funghi, carciofi, olive, origano",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 9.0,
+                "1/2 Teglia": 18.0,
+                "Famiglia o Teglia intera": 33.0
+            }
+        },
+        {
+            "nome": "CARBONARA",
+            "ingredienti": "Pomodoro, mozzarella, pancetta, uovo, grana",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 8.5,
+                "1/2 Teglia": 17.0,
+                "Famiglia o Teglia intera": 31.0
+            }
+        },
+        {
+            "nome": "CHRISTIAN",
+            "ingredienti": "Pomodoro, mozzarella di bufala, porcini, bresaola",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 10.0,
+                "1/2 Teglia": 20.0,
+                "Famiglia o Teglia intera": 37.0
+            }
+        },
+        {
+            "nome": "COCKTAIL",
+            "ingredienti": "Pomodoro, mozzarella, gamberetti, rucola",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 9.0,
+                "1/2 Teglia": 18.0,
+                "Famiglia o Teglia intera": 33.0
+            }
+        },
+        {
+            "nome": "COTTO",
+            "ingredienti": "Pomodoro, mozzarella, prosciutto cotto",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 6.5,
+                "1/2 Teglia": 13.0,
+                "Famiglia o Teglia intera": 23.0
+            }
+        },
+        {
+            "nome": "COTTO E FUNGHI",
+            "ingredienti": "Pomodoro, mozzarella, prosciutto cotto, funghi",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 7.5,
+                "1/2 Teglia": 15.0,
+                "Famiglia o Teglia intera": 27.0
+            }
+        },
+        {
+            "nome": "CRUDO",
+            "ingredienti": "Pomodoro, mozzarella, prosciutto crudo",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 8.0,
+                "1/2 Teglia": 16.0,
+                "Famiglia o Teglia intera": 29.0
+            }
+        },
+        {
+            "nome": "ESTATE",
+            "ingredienti": "pomodoro, mozzarella, prosciutto crudo, rucola, pomodorini, grana",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 9.0,
+                "1/2 Teglia": 18.0,
+                "Famiglia o Teglia intera": 33.0
+            }
+        },
+        {
+            "nome": "FANTASTICA",
+            "ingredienti": "Pomodoro, mozzarella, tonno, peperoni, salame piccante",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 9.0,
+                "1/2 Teglia": 18.0,
+                "Famiglia o Teglia intera": 33.0
+            }
+        },
+        {
+            "nome": "FOCACCIA LISCIA",
+            "ingredienti": "Olio, origano",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 4.0,
+                "1/2 Teglia": 8.0,
+                "Famiglia o Teglia intera": 14.0
+            }
+        },
+        {
+            "nome": "FUMÉ",
+            "ingredienti": "Pomodoro, mozzarella, scamorza, pancetta, speck",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 9.0,
+                "1/2 Teglia": 18.0,
+                "Famiglia o Teglia intera": 33.0
+            }
+        },
+        {
+            "nome": "FUNGHI",
+            "ingredienti": "Pomodoro, mozzarella, funghi",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 7.0,
+                "1/2 Teglia": 14.0,
+                "Famiglia o Teglia intera": 25.0
+            }
+        },
+        {
+            "nome": "GIOIA",
+            "ingredienti": "Pomodoro, mozzarella di bufala, prosciutto crudo",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 9.5,
+                "1/2 Teglia": 19.0,
+                "Famiglia o Teglia intera": 35.0
+            }
+        },
+        {
+            "nome": "GOLOSA",
+            "ingredienti": "Pomodoro, mozzarella, porcini, speck",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 9.0,
+                "1/2 Teglia": 18.0,
+                "Famiglia o Teglia intera": 33.0
+            }
+        },
+        {
+            "nome": "ITALIA",
+            "ingredienti": "Pomodoro, mozzarella, bresaola, rucola, grana",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 9.5,
+                "1/2 Teglia": 19.0,
+                "Famiglia o Teglia intera": 35.0
+            }
+        },
+        {
+            "nome": "KERO",
+            "ingredienti": "Mozzarella di bufala, salsiccia, porcini",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 9.5,
+                "1/2 Teglia": 19.0,
+                "Famiglia o Teglia intera": 35.0
+            }
+        },
+        {
+            "nome": "LEO",
+            "ingredienti": "Mozzarella, burrata, pomodorini, prosciutto cotto",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 9.5,
+                "1/2 Teglia": 19.0,
+                "Famiglia o Teglia intera": 35.0
+            }
+        },
+        {
+            "nome": "MAIVEN",
+            "ingredienti": "Pomodoro, mozzarella, 'nduja, asparagi, pancetta",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 8.5,
+                "1/2 Teglia": 17.0,
+                "Famiglia o Teglia intera": 31.0
+            }
+        },
+        {
+            "nome": "MARGHERITA",
+            "ingredienti": "Pomodoro, mozzarella",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 5.5,
+                "1/2 Teglia": 11.0,
+                "Famiglia o Teglia intera": 20.0
+            }
+        },
+        {
+            "nome": "MARE E MONTI",
+            "ingredienti": "Pomodoro, mozzarella, gamberetti, salmone, porcini",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 10.0,
+                "1/2 Teglia": 20.0,
+                "Famiglia o Teglia intera": 37.0
+            }
+        },
+        {
+            "nome": "MARINARA",
+            "ingredienti": "Pomodoro, aglio, olio, origano",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 4.0,
+                "1/2 Teglia": 8.0,
+                "Famiglia o Teglia intera": 14.0
+            }
+        },
+        {
+            "nome": "MEZZALUNA",
+            "ingredienti": "Metà: Pomodoro, mozzarella, prosciutto cotto; Metà: Pomodoro, mozzarella, salame piccante, funghi, olive",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 9.5,
+                "1/2 Teglia": 19.0,
+                "Famiglia o Teglia intera": 35.0
+            }
+        },
+        {
+            "nome": "NAPOLI",
+            "ingredienti": "Pomodoro, mozzarella, acciughe, origano",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 6.5,
+                "1/2 Teglia": 13.0,
+                "Famiglia o Teglia intera": 23.0
+            }
+        },
+        {
+            "nome": "'NDUJA E ZOLA",
+            "ingredienti": "Pomodoro, mozzarella, 'nduja, zola",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 8.0,
+                "1/2 Teglia": 16.0,
+                "Famiglia o Teglia intera": 29.0
+            }
+        },
+        {
+            "nome": "OLIVE",
+            "ingredienti": "Pomodoro, mozzarella, olive nere",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 6.5,
+                "1/2 Teglia": 13.0,
+                "Famiglia o Teglia intera": 23.0
+            }
+        },
+        {
+            "nome": "PANNA E SALMONE",
+            "ingredienti": "Pomodoro, mozzarella, panna, salmone",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 8.5,
+                "1/2 Teglia": 17.0,
+                "Famiglia o Teglia intera": 31.0
+            }
+        },
+        {
+            "nome": "PARMIGIANA",
+            "ingredienti": "Pomodoro, mozzarella, melanzane, grana",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 7.0,
+                "1/2 Teglia": 14.0,
+                "Famiglia o Teglia intera": 25.0
+            }
+        },
+        {
+            "nome": "PATATINA",
+            "ingredienti": "Pomodoro, mozzarella, patatine",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 6.5,
+                "1/2 Teglia": 13.0,
+                "Famiglia o Teglia intera": 23.0
+            }
+        },
+        {
+            "nome": "PIZZA KEBAB",
+            "ingredienti": "Pomodoro, mozzarella, kebab, insalata, pomodoro fresco, cipolla, salsa bianca, salsa piccante",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 10.0,
+                "1/2 Teglia": 20.0,
+                "Famiglia o Teglia intera": 37.0
+            }
+        },
+        {
+            "nome": "PIZZA KEBAB 2",
+            "ingredienti": "Pomodoro, mozzarella, kebab, patatine, salsa bianca, salsa piccante",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 10.0,
+                "1/2 Teglia": 20.0,
+                "Famiglia o Teglia intera": 37.0
+            }
+        },
+        {
+            "nome": "PIZZA KEBAB SPECIALE",
+            "ingredienti": "Pomodoro, mozzarella, kebab, 'nduja, cipolla, funghi, melanzane",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 12.0,
+                "1/2 Teglia": 24.0,
+                "Famiglia o Teglia intera": 45.0
+            }
+        },
+        {
+            "nome": "PRIMAVERA",
+            "ingredienti": "Pomodoro, mozzarella, rucola, pomodorini",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 7.5,
+                "1/2 Teglia": 15.0,
+                "Famiglia o Teglia intera": 27.0
+            }
+        },
+        {
+            "nome": "PUGLIESE",
+            "ingredienti": "Pomodoro, mozzarella, cipolla rossa",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 6.5,
+                "1/2 Teglia": 13.0,
+                "Famiglia o Teglia intera": 23.0
+            }
+        },
+        {
+            "nome": "QUATTRO FORMAGGI",
+            "ingredienti": "Mozzarella, zola, scamorza, grana",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 8.0,
+                "1/2 Teglia": 16.0,
+                "Famiglia o Teglia intera": 29.0
+            }
+        },
+        {
+            "nome": "QUATTRO STAGIONI",
+            "ingredienti": "Pomodoro, mozzarella, prosciutto cotto, funghi, carciofi, olive",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 8.5,
+                "1/2 Teglia": 17.0,
+                "Famiglia o Teglia intera": 31.0
+            }
+        },
+        {
+            "nome": "ROMANA",
+            "ingredienti": "Pomodoro, mozzarella, acciughe, olive, capperi, origano",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 8.0,
+                "1/2 Teglia": 16.0,
+                "Famiglia o Teglia intera": 29.0
+            }
+        },
+        {
+            "nome": "RUCOLA",
+            "ingredienti": "Pomodoro, mozzarella, rucola",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 6.5,
+                "1/2 Teglia": 13.0,
+                "Famiglia o Teglia intera": 23.0
+            }
+        },
+        {
+            "nome": "SALAME DOLCE",
+            "ingredienti": "Pomodoro, mozzarella, salame dolce",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 7.0,
+                "1/2 Teglia": 14.0,
+                "Famiglia o Teglia intera": 25.0
+            }
+        },
+        {
+            "nome": "SALSICCIA E FRIARIELLI",
+            "ingredienti": "Pomodoro, mozzarella, salsiccia, friarielli",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 8.0,
+                "1/2 Teglia": 16.0,
+                "Famiglia o Teglia intera": 29.0
+            }
+        },
+        {
+            "nome": "SALSICCIA E PATATINE",
+            "ingredienti": "Pomodoro, mozzarella, salsiccia, patatine",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 8.5,
+                "1/2 Teglia": 17.0,
+                "Famiglia o Teglia intera": 31.0
+            }
+        },
+        {
+            "nome": "SAPORI DI MARE",
+            "ingredienti": "Pomodoro, mozzarella, frutti di mare",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 9.0,
+                "1/2 Teglia": 18.0,
+                "Famiglia o Teglia intera": 33.0
+            }
+        },
+        {
+            "nome": "SAPORITA",
+            "ingredienti": "Pomodoro, mozzarella, prosciutto cotto, salame piccante, zola",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 9.0,
+                "1/2 Teglia": 18.0,
+                "Famiglia o Teglia intera": 33.0
+            }
+        },
+        {
+            "nome": "SCAMORZA E SPECK",
+            "ingredienti": "Pomodoro, mozzarella, scamorza, speck",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 9.0,
+                "1/2 Teglia": 18.0,
+                "Famiglia o Teglia intera": 33.0
+            }
+        },
+        {
+            "nome": "SOLE",
+            "ingredienti": "Pomodoro, mozzarella, bresaola, porcini, brie",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 10.0,
+                "1/2 Teglia": 20.0,
+                "Famiglia o Teglia intera": 37.0
+            }
+        },
+        {
+            "nome": "TONNO E CIPOLLA",
+            "ingredienti": "Pomodoro, mozzarella, tonno, cipolla rossa",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 8.0,
+                "1/2 Teglia": 16.0,
+                "Famiglia o Teglia intera": 29.0
+            }
+        },
+        {
+            "nome": "TRE COLORI",
+            "ingredienti": "Pomodoro, mozzarella, ricotta, spinaci, pomodorini",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 7.5,
+                "1/2 Teglia": 15.0,
+                "Famiglia o Teglia intera": 27.0
+            }
+        },
+        {
+            "nome": "TRIS",
+            "ingredienti": "Pomodoro, mozzarella, prosciutto cotto, salsiccia, wurstel",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 8.5,
+                "1/2 Teglia": 17.0,
+                "Famiglia o Teglia intera": 31.0
+            }
+        },
+        {
+            "nome": "VEGANA",
+            "ingredienti": "Pomodoro, patatine fritte, falafel",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 9.0,
+                "1/2 Teglia": 18.0,
+                "Famiglia o Teglia intera": 33.0
+            }
+        },
+        {
+            "nome": "VEGETARIANA",
+            "ingredienti": "Pomodoro, mozzarella, melanzane, zucchine, peperoni, origano",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 8.0,
+                "1/2 Teglia": 16.0,
+                "Famiglia o Teglia intera": 29.0
+            }
+        },
+        {
+            "nome": "WURSTEL",
+            "ingredienti": "Pomodoro, mozzarella, wurstel",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 6.5,
+                "1/2 Teglia": 13.0,
+                "Famiglia o Teglia intera": 23.0
+            }
+        },
+        {
+            "nome": "WURSTEL E CRAUTI",
+            "ingredienti": "Pomodoro, mozzarella, wurstel, crauti",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 7.5,
+                "1/2 Teglia": 15.0,
+                "Famiglia o Teglia intera": 27.0
+            }
+        },
+        {
+            "nome": "WURSTEL E PATATINE",
+            "ingredienti": "Pomodoro, mozzarella, wurstel, patatine",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 8.0,
+                "1/2 Teglia": 16.0,
+                "Famiglia o Teglia intera": 29.0
+            }
+        },
+        {
+            "nome": "ZOLA BIANCA",
+            "ingredienti": "Mozzarella, zola",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 7.0,
+                "1/2 Teglia": 14.0,
+                "Famiglia o Teglia intera": 25.0
+            }
+        },
+        {
+            "nome": "ZOLA NOCI",
+            "ingredienti": "Mozzarella, zola, noci",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 8.0,
+                "1/2 Teglia": 16.0,
+                "Famiglia o Teglia intera": 29.0
+            }
+        },
+        {
+            "nome": "2014",
+            "ingredienti": "Mozzarella, prosciutto cotto, panna, mais",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 9.0,
+                "1/2 Teglia": 18.0,
+                "Famiglia o Teglia intera": 33.0
+            }
+        },
+        {
+            "nome": "2015",
+            "ingredienti": "Formaggi misti, scamorza, salame piccante",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 10.0,
+                "1/2 Teglia": 20.0,
+                "Famiglia o Teglia intera": 35.0
+            }
+        },
+        {
+            "nome": "2022",
+            "ingredienti": "Pomodoro, mozzarella, gamberetti, panna, mais",
+            "prezzi": {
+                "Rotonda o 1/4 di Teglia": 8.5,
+                "1/2 Teglia": 17.0,
+                "Famiglia o Teglia intera": 31.0
+            }
+        }
+    ]
+}
