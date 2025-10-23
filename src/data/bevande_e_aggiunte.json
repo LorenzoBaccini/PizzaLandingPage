@@ -1,0 +1,49 @@
+{
+  "bevande_e_aggiunte": [
+    {
+      "nome": "Acqua minerale",
+      "quantità": "0,5 lt",
+      "prezzo": 1.00
+    },
+    {
+      "nome": "Bibite in lattina",
+      "quantità": "0,33 lt (Coca Cola, Fanta, Sprite, thè limone/pesca)",
+      "prezzo": 2.00
+    },
+    {
+      "nome": "Bibita in bottiglia",
+      "quantità": "1,5 lt",
+      "prezzo": 3.50
+    },
+    {
+      "nome": "Birra in bottiglia",
+      "quantità": "0,33 lt (Ceres, Super Tennents)",
+      "prezzo": 3.50
+    },
+    {
+      "nome": "Birra in bottiglia",
+      "quantità": "0,66 lt",
+      "prezzo": 5.00
+    },
+    {
+      "nome": "Vino",
+      "quantità": "0,75 lt (bianco / rosso / rosato)",
+      "prezzo": 6.00
+    },
+    {
+      "nome": "Ingredienti aggiunti",
+      "quantità": "",
+      "prezzo": "da 1.00 a 3.00"
+    },
+    {
+      "nome": "Impasto integrale",
+      "quantità": "",
+      "prezzo": 1.00
+    },
+    {
+      "nome": "Mozzarella senza lattosio",
+      "quantità": "",
+      "prezzo": 1.50
+    }
+  ]
+}

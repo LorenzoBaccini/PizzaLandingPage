@@ -1,0 +1,24 @@
+{
+  "dolci": [
+    {
+      "nome": "Calzone Nutella",
+      "ingredienti": "",
+      "prezzo": 6.00
+    },
+    {
+      "nome": "Focaccia Nutella",
+      "ingredienti": "",
+      "prezzo": 6.00
+    },
+    {
+      "nome": "Piadina Nutella",
+      "ingredienti": "",
+      "prezzo": 4.50
+    },
+    {
+      "nome": "Baklava (4pz)",
+      "ingredienti": "Sfoglia con ripieno di noci, mandorle, miele e pistacchio",
+      "prezzo": 4.00
+    }
+  ]
+}

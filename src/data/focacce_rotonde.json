@@ -1,0 +1,29 @@
+{
+  "focacce_rotonde": [
+    {
+      "nome": "LISCIA",
+      "ingredienti": "Olio, sale, origano",
+      "prezzo": 4.00
+    },
+    {
+      "nome": "TRIS",
+      "ingredienti": "Mozzarella di bufala, rucola, pomodorini",
+      "prezzo": 7.50
+    },
+    {
+      "nome": "ITALIA",
+      "ingredienti": "Bresaola, rucola, grana",
+      "prezzo": 7.50
+    },
+    {
+      "nome": "FRESCA",
+      "ingredienti": "Prosciutto crudo, rucola, pomodorini, grana",
+      "prezzo": 7.50
+    },
+    {
+      "nome": "AL CRUDO O SPECK",
+      "ingredienti": "",
+      "prezzo": 6.00
+    }
+  ]
+}

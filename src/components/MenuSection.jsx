@@ -2,6 +2,13 @@ import React, { useState, useMemo, useEffect } from 'react';
 import styles from '../style/MenuSection.module.css';
 import { pizze } from '../data/pizze.json';
 import { calzoni } from '../data/calzoni.json';
+import { focacce_rotonde } from '../data/focacce_rotonde.json';
+import { insalatone_con_pane } from '../data/insalatone_con_pane.json';
+import { gastronomia_e_specialita_friggitoria } from '../data/gastronomia_e_specialita_friggitoria.json';
+import { doner_kebab } from '../data/doner_kebab.json';
+import { panini_e_piadine } from '../data/panini_e_piadine.json';
+import { dolci } from '../data/dolci.json';
+import { bevande_e_aggiunte } from '../data/bevande_e_aggiunte.json';
 
 export default function MenuSection({ id }) {
   const sezioni = [
@@ -17,15 +24,15 @@ export default function MenuSection({ id }) {
   ];
 
   const contenuti = {
-    Pizze: pizze,
-    Calzoni: calzoni,
-    'Focacce Rotonde': [],
-    'Insalatone con Pane': [],
-    Gastronomia: [],
-    'Doner Kebab': [],
-    'Panini e Piadine': [],
-    Dolci: [],
-    'Bevande e Aggiunte': [],
+    'Pizze': pizze,
+    'Calzoni': calzoni,
+    'Focacce Rotonde': focacce_rotonde,
+    'Insalatone': insalatone_con_pane,
+    'Gastronomia': gastronomia_e_specialita_friggitoria,
+    'Doner Kebab': doner_kebab,
+    'Panini e Piadine': panini_e_piadine,
+    'Dolci': dolci,
+    'Bevande e Aggiunte': bevande_e_aggiunte,
   };
 
   const [sezioneAttiva, setSezioneAttiva] = useState(sezioni[0]);

@@ -1,0 +1,46 @@
+{
+  "gastronomia_e_specialita_friggitoria": [
+    {
+      "nome": "Patatine fritte",
+      "prezzo_piccolo": 3.00,
+      "prezzo_medio": 4.00,
+      "prezzo_grande": 5.00
+    },
+    {
+      "nome": "Crocchette di patate",
+      "prezzo": 5.00
+    },
+    {
+      "nome": "Piatto cotoletta",
+      "prezzo": 7.00
+    },
+    {
+      "nome": "Alette di pollo",
+      "prezzo": 5.00
+    },
+    {
+      "nome": "Panzerotto al forno",
+      "prezzo": 3.50
+    },
+    {
+      "nome": "Olive ascolane",
+      "prezzo": 5.00
+    },
+    {
+      "nome": "Mini arancini",
+      "prezzo": 5.00
+    },
+    {
+      "nome": "Bocconcini di pollo",
+      "prezzo": 5.00
+    },
+    {
+      "nome": "Anelli di cipolla",
+      "prezzo": 5.00
+    },
+    {
+      "nome": "Chele di granchio",
+      "prezzo": 5.00
+    }
+  ]
+}
