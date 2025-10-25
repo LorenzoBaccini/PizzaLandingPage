@@ -1,0 +1,67 @@
+.orderBadge {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.orderBadge:hover {
+  transform: scale(1.05);
+}
+
+.orderBadgeButton {
+  background: #B04030;
+  color: #FFF8F0;
+  border: none;
+  border-radius: 50px;
+  padding: 16px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  box-shadow: 0 4px 20px rgba(176, 64, 48, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.orderBadgeButton:hover {
+  background: #8B2F25;
+}
+
+.badgeCounter {
+  background: #FFF8F0;
+  color: #B04030;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.badgeCounter.animate {
+  animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+@media (max-width: 768px) {
+  .orderBadge {
+    bottom: 16px;
+    right: 16px;
+  }
+}
+
+@media (min-width: 769px) {
+  .orderBadgeButton {
+    padding: 18px 32px;
+  }
+}

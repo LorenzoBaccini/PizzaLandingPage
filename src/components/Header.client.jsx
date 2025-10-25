@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import styles from '../style/header.module.css';
 
 const menuItems = [
@@ -10,64 +10,66 @@ const menuItems = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const menuRef = useRef(null);
-  const buttonRef = useRef(null);
 
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (
-        menuRef.current && !menuRef.current.contains(event.target) &&
-        buttonRef.current && !buttonRef.current.contains(event.target)
-      ) {
-        setOpen(false);
-      }
+  const handleScroll = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+      setOpen(false);
     }
-
-    if (open) {
-      document.addEventListener('click', handleClickOutside);
-    } else {
-      document.removeEventListener('click', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, [open]);
+  };
 
   return (
     <header className={styles.header}>
-      <div className={styles.logo}>LA TEGLIA</div>
+      <div className={styles.logo}>{['L', 'A'].map((char, i) => (
+        <span
+          key={'LA-' + i}
+          style={{
+            color: ['#EE5A00', '#B43104'][i], // arancione e rosso mattone
+            display: 'inline-block',
+            transition: 'color 0.3s ease',
+          }}
+        >
+          {char}
+        </span>
+      ))}
+        <span> </span>
+        {'TEGLIA'.split('').map((char, i) => (
+          <span
+            key={'TEGLIA-' + i}
+            style={{
+              color: ['#facd17ff', '#5b7a1bff', '#B43104', '#d6ae0cff', '#34912A', '#EE5A00'][i], // giallo, verde basilico, rosso, giallo, verde, arancio
+              display: 'inline-block',
+              transition: 'color 0.3s ease',
+            }}
+          >
+            {char}
+          </span>
+        ))}</div>
+
       <button
-        ref={buttonRef}
-        aria-label="Toggle menu"
+        className={`${styles.hamburgerButton} ${open ? styles.active : ''}`}
         onClick={() => setOpen(!open)}
-        className={styles.hamburgerButton}
+        aria-label="Toggle menu"
       >
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="#B04030" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect y="4" width="24" height="3" />
-          <rect y="10" width="24" height="3" />
-          <rect y="16" width="24" height="3" />
-        </svg>
+        <span className={styles.bar}></span>
+        <span className={styles.bar}></span>
+        <span className={styles.bar}></span>
       </button>
-      {open && (
-        <nav ref={menuRef} className={styles.menuNav}>
-          <ul className={styles.menuList}>
-            {menuItems.map(({ label, targetId }) => (
-              <li
-                key={label}
-                className={styles.menuItem}
-                onClick={() => {
-                  const el = document.getElementById(targetId);
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                  setOpen(false);
-                }}
-              >
-                {label}
-              </li>
-            ))}
-          </ul>
-        </nav>
-      )}
+
+      <nav className={`${styles.menuNav} ${open ? styles.open : ''}`}>
+        <ul className={styles.menuList}>
+          {menuItems.map(({ label, targetId }) => (
+            <li
+              key={label}
+              className={styles.menuItem}
+              onClick={() => handleScroll(targetId)}
+            >
+              {label}
+            </li>
+          ))}
+        </ul>
+      </nav>
     </header>
   );
 }

@@ -2,9 +2,11 @@
   "gastronomia_e_specialita_friggitoria": [
     {
       "nome": "Patatine fritte",
-      "prezzo_piccolo": 3.00,
-      "prezzo_medio": 4.00,
-      "prezzo_grande": 5.00
+      "prezzi": {
+        "piccole": 3.00,
+        "medie": 4.00,
+        "grandi": 5.00
+      }
     },
     {
       "nome": "Crocchette di patate",

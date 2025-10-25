@@ -4,6 +4,7 @@ import HomeSection from "../components/HomeSection.jsx";
 import MenuSection from "../components/MenuSection.jsx";
 import HoursSection from "../components/HoursSection.jsx";
 import ContactSection from "../components/ContactSection.jsx";
+import OrderManager from "../components/OrderManager.client.jsx";
 import styles from "../style/generic.module.css";
 import "../style/colorVariable.css";
 ---
@@ -26,5 +27,6 @@ import "../style/colorVariable.css";
     <MenuSection client:load id="menu-section" />
     <HoursSection client:load id="hours-section" />
     <ContactSection client:load id="contact-section" />
+    <OrderManager client:load />
   </body>
 </html>

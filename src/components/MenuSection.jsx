@@ -11,6 +11,7 @@ import { dolci } from '../data/dolci.json';
 import { bevande_e_aggiunte } from '../data/bevande_e_aggiunte.json';
 
 export default function MenuSection({ id }) {
+  const isBrowser = typeof window !== 'undefined';
   const sezioni = [
     'Pizze',
     'Calzoni',
@@ -38,11 +39,31 @@ export default function MenuSection({ id }) {
   const [sezioneAttiva, setSezioneAttiva] = useState(sezioni[0]);
   const [searchInput, setSearchInput] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
+  const [quantities, setQuantities] = useState({});
+  const [selectedFormats, setSelectedFormats] = useState({}); // Formato selezionato per ogni prodotto
 
   useEffect(() => {
     const handler = setTimeout(() => setSearchTerm(searchInput.trim()), 500);
     return () => clearTimeout(handler);
   }, [searchInput]);
+
+  useEffect(() => {
+    if (!isBrowser) return;
+
+    const interval = setInterval(() => {
+      if (window.orderManager) {
+        const newQuantities = {};
+        itemsSelezionati.forEach(item => {
+          const baseId = generateProductBaseId(item);
+          // Somma tutte le quantità di tutti i formati
+          const totalQty = getTotalQuantityAllFormats(item);
+          newQuantities[baseId] = totalQty;
+        });
+        setQuantities(newQuantities);
+      }
+    }, 100);
+    return () => clearInterval(interval);
+  }, [sezioneAttiva, searchTerm, isBrowser]);
 
   const itemsRaw = contenuti[sezioneAttiva] || [];
 
@@ -56,21 +77,153 @@ export default function MenuSection({ id }) {
     );
   }, [itemsRaw, searchTerm]);
 
+  // Genera ID base (senza formato)
+  const generateProductBaseId = (item) => {
+    return `${sezioneAttiva.toLowerCase().replace(/\s+/g, '_')}_${item.nome.toLowerCase().replace(/\s+/g, '_')}`;
+  };
+
+  // Genera ID completo (con formato se presente)
+  const generateProductId = (item, formato = null) => {
+    const baseId = generateProductBaseId(item);
+    if (formato) {
+      return `${baseId}_${formato.toLowerCase().replace(/\s+/g, '_')}`;
+    }
+    return baseId;
+  };
+
+  // Verifica se un prodotto ha formati multipli
+  const hasMultipleFormats = (item) => {
+    return item.prezzi && typeof item.prezzi === 'object' && Object.keys(item.prezzi).length > 1;
+  };
+
+  // Ottiene i formati disponibili per un prodotto
+  const getAvailableFormats = (item) => {
+    if (!item.prezzi) return [];
+    return Object.keys(item.prezzi);
+  };
+
+  // Ottiene il formato selezionato o il primo disponibile
+  const getSelectedFormat = (item) => {
+    const baseId = generateProductBaseId(item);
+    if (selectedFormats[baseId]) {
+      return selectedFormats[baseId];
+    }
+    const formats = getAvailableFormats(item);
+    return formats.length > 0 ? formats[0] : null;
+  };
+
+  // Imposta il formato selezionato
+  const setSelectedFormat = (item, formato) => {
+    const baseId = generateProductBaseId(item);
+    setSelectedFormats(prev => ({
+      ...prev,
+      [baseId]: formato
+    }));
+  };
+
+  // Ottiene il prezzo in base al formato selezionato
+  const getPrice = (item, formato = null) => {
+    if (item.prezzo) return parseFloat(item.prezzo);
+    if (item.prezzi) {
+      if (formato && item.prezzi[formato]) {
+        return parseFloat(item.prezzi[formato]);
+      }
+      const selectedFormat = getSelectedFormat(item);
+      if (selectedFormat && item.prezzi[selectedFormat]) {
+        return parseFloat(item.prezzi[selectedFormat]);
+      }
+      const firstPrice = Object.values(item.prezzi)[0];
+      return parseFloat(firstPrice);
+    }
+    return 0;
+  };
+
+  // Ottiene la quantità totale di tutti i formati di un prodotto
+  const getTotalQuantityAllFormats = (item) => {
+    if (!window.orderManager) return 0;
+
+    if (hasMultipleFormats(item)) {
+      const formats = getAvailableFormats(item);
+      return formats.reduce((total, formato) => {
+        const id = generateProductId(item, formato);
+        return total + window.orderManager.getItemQuantity(id);
+      }, 0);
+    } else {
+      const id = generateProductId(item);
+      return window.orderManager.getItemQuantity(id);
+    }
+  };
+
+  // Ottiene la quantità per il formato correntemente selezionato
+  const getCurrentFormatQuantity = (item) => {
+    if (!isBrowser || !window.orderManager) return 0;
+
+    if (hasMultipleFormats(item)) {
+      const formato = getSelectedFormat(item);
+      const id = generateProductId(item, formato);
+      return window.orderManager.getItemQuantity(id);
+    } else {
+      const id = generateProductId(item);
+      return window.orderManager.getItemQuantity(id);
+    }
+  };
+
+  // Gestione aggiunta al carrello
+  const handleAddToOrder = (item) => {
+    if (!window.orderManager) {
+      console.error('OrderManager not initialized');
+      return;
+    }
+
+    const formato = hasMultipleFormats(item) ? getSelectedFormat(item) : null;
+    const productId = generateProductId(item, formato);
+    const price = getPrice(item, formato);
+
+    let productName = item.nome;
+    if (formato) {
+      productName = `${item.nome} (${formato})`;
+    }
+
+    const product = {
+      id: productId,
+      nome: productName,
+      prezzo: price
+    };
+
+    window.orderManager.addItem(product, 1);
+  };
+
+  // Gestione aumento quantità
+  const handleIncreaseQuantity = (item) => {
+    if (!window.orderManager) return;
+
+    const formato = hasMultipleFormats(item) ? getSelectedFormat(item) : null;
+    const id = generateProductId(item, formato);
+    const currentQty = window.orderManager.getItemQuantity(id);
+    window.orderManager.updateQuantity(id, currentQty + 1);
+  };
+
+  // Gestione diminuzione quantità
+  const handleDecreaseQuantity = (item) => {
+    if (!isBrowser || !window.orderManager) return;
+
+    const formato = hasMultipleFormats(item) ? getSelectedFormat(item) : null;
+    const id = generateProductId(item, formato);
+    const currentQty = window.orderManager.getItemQuantity(id);
+    if (currentQty > 0) {
+      window.orderManager.updateQuantity(id, currentQty - 1);
+    }
+  };
+
   return (
-    <section id={id} className={styles.menuSection} aria-label="Menù completo">
+    <section className={styles.menuSection} id={id}>
       <h2 className={styles.title}>IL NOSTRO MENU</h2>
 
-      <nav
-        className={styles.filterContainer}
-        role="tablist"
-        aria-label="Sezioni del menù"
-      >
+      <div className={styles.filterContainer}>
         {sezioni.map((sez) => (
           <button
             key={sez}
-            id={`tab-${sez}`}
-            className={`${styles.filterButton} ${sezioneAttiva === sez ? styles.activeFilter : ''
-              }`}
+            className={`${styles.filterButton} ${sezioneAttiva === sez ? styles.activeFilter : ''}`}
             onClick={() => setSezioneAttiva(sez)}
             aria-selected={sezioneAttiva === sez}
             role="tab"
@@ -79,55 +232,116 @@ export default function MenuSection({ id }) {
             {sez}
           </button>
         ))}
-      </nav>
+      </div>
 
       {sezioneAttiva === "Pizze" && (
         <div className={styles.searchContainer}>
-          <label htmlFor="searchInput" className={styles.searchLabel}>
+          <label className={styles.searchLabel} htmlFor="searchPizza">
             Cerca pizze e ingredienti:
           </label>
           <input
-            id="searchInput"
             type="text"
+            id="searchPizza"
             className={styles.searchInput}
-            placeholder="Scrivi per cercare una pizza..."
+            placeholder="Es. margherita, funghi..."
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
             aria-describedby="searchHelp"
             autoComplete="off"
           />
-        </div>)}
+        </div>
+      )}
 
-      <ul
-        className={styles.pizzaList}
-        role="tabpanel"
-        aria-labelledby={`tab-${sezioneAttiva}`}
-        key={sezioneAttiva}
-      >
-        {itemsSelezionati.length > 0 ? (
-          itemsSelezionati.map(({ nome, ingredienti, prezzi, prezzo }) => (
-            <li key={nome} className={styles.pizzaCard}>
-              <h4 className={styles.pizzaNome}>{nome}</h4>
-              {ingredienti && <p className={styles.ingredienti}>{ingredienti}</p>}
-              {prezzi ? (
-                <div className={styles.prezzoBottomRight} aria-label={`Prezzi - ${nome}`}>
-                  {Object.entries(prezzi).map(([chiave, valore]) => (
-                    <div key={chiave}>
-                      <strong>{chiave}</strong>: <em>{valore}€</em>
+      {itemsSelezionati.length > 0 ? (
+        <ul className={styles.pizzaList}>
+          {itemsSelezionati.map((item, index) => {
+            const baseId = generateProductBaseId(item);
+            const totalQuantity = quantities[baseId] || 0;
+            const currentFormatQuantity = getCurrentFormatQuantity(item);
+            const hasFormats = hasMultipleFormats(item);
+            const formats = getAvailableFormats(item);
+            const selectedFormat = getSelectedFormat(item);
+
+            return (
+              <li key={`${baseId}_${index}`} className={styles.pizzaCard}>
+                <h3 className={styles.pizzaNome}>
+                  {item.nome}{item.quantita && ` - ${item.quantita}`}
+                  {totalQuantity > 0 && (
+                    <span className={styles.totalBadge}> ({totalQuantity})</span>
+                  )}
+                </h3>
+                {item.ingredienti && (
+                  <p className={styles.ingredienti}>{item.ingredienti}</p>
+                )}
+                <div className={styles.prezzoBottomRight}>
+                  {/* Selezione formato se presente */}
+                  {hasFormats && formats.length > 0 && (
+                    <div className={styles.formatSelector}>
+                      <label className={styles.formatLabel}>Formato:</label>
+                      <div className={styles.formatButtons}>
+                        {formats.map((formato) => (
+                          <button
+                            key={formato}
+                            className={`${styles.formatButton} ${selectedFormat === formato ? styles.formatButtonActive : ''}`}
+                            onClick={() => setSelectedFormat(item, formato)}
+                            type="button"
+                          >
+                            {formato}
+                            <span className={styles.formatPrice}>€{item.prezzi[formato].toFixed(2)}</span>
+                          </button>
+                        ))}
+                      </div>
                     </div>
-                  ))}
+                  )}
+
+                  {/* Prezzo per prodotti senza formati */}
+                  {!hasFormats && item.prezzo && (
+                    <div>
+                      <strong>Prezzo</strong> <em>{item.prezzo}€</em>
+                    </div>
+                  )}
+
+                  {/* Controlli ordine */}
+                  <div className={styles.orderControls}>
+                    <div className={styles.quantitySelector}>
+                      <button
+                        onClick={() => handleDecreaseQuantity(item)}
+                        disabled={currentFormatQuantity === 0}
+                        aria-label="Diminuisci quantità"
+                        className={styles.quantityBtn}
+                      >
+                        −
+                      </button>
+                      <span className={styles.quantity}>{currentFormatQuantity}</span>
+                      <button
+                        onClick={() => handleIncreaseQuantity(item)}
+                        disabled={currentFormatQuantity >= 20}
+                        aria-label="Aumenta quantità"
+                        className={styles.quantityBtn}
+                      >
+                        +
+                      </button>
+                    </div>
+                    <button
+                      className={styles.btnAddToOrder}
+                      onClick={() => handleAddToOrder(item)}
+                    >
+                      Aggiungi
+                      {hasFormats && selectedFormat && (
+                        <span className={styles.btnFormatHint}> {selectedFormat.split(' ')[0]}</span>
+                      )}
+                    </button>
+                  </div>
                 </div>
-              ) : (
-                <div className={styles.prezzoBottomRight} aria-label={`Prezzo - ${nome}`}>
-                  <strong>Prezzo</strong> <em>{prezzo ?? 'n.d.'}€</em>
-                </div>
-              )}
-            </li>
-          ))
-        ) : (
-          <p className={styles.noContent}>Contenuto in aggiornamento...</p>
-        )}
-      </ul>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <p style={{ textAlign: 'center', padding: '40px', color: '#5C3A21' }}>
+          Contenuto in aggiornamento...
+        </p>
+      )}
     </section>
   );
 }
