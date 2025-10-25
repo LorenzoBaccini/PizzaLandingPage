@@ -401,13 +401,13 @@
   }
   
   .formatButton {
-    padding: 8px 12px;
-    font-size: 0.85rem;
+    padding: 4px 10px;
+    font-size: 0.75rem;
   }
   
   .formatPrice {
-    font-size: 0.9rem;
-    padding: 3px 8px;
+    font-size: 0.75rem;
+    padding: 2px 7px;
   }
   
   .totalBadge {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styles from '../style/OrderPanel.module.css';
 
 const CONFIG = {
@@ -14,6 +14,26 @@ export default function OrderPanel({ isOpen, onClose, items, onUpdateQuantity, o
   const [toastType, setToastType] = useState('');
   const [showConfirm, setShowConfirm] = useState(false);
 
+  const wasOpen = useRef(false);
+
+  useEffect(() => {
+    if (isOpen && !wasOpen.current) {
+      window.history.pushState({ mioOrdineOpen: true }, '');
+      wasOpen.current = true;
+
+      const onPopState = (e) => {
+        if (wasOpen.current) {
+          onClose();
+        }
+      };
+      window.addEventListener('popstate', onPopState);
+
+      return () => {
+        window.removeEventListener('popstate', onPopState);
+        wasOpen.current = false;
+      };
+    }
+  }, [isOpen, onClose]);
   const handleShowConfirm = () => setShowConfirm(true);
 
   useEffect(() => {
@@ -80,17 +100,36 @@ export default function OrderPanel({ isOpen, onClose, items, onUpdateQuantity, o
 
   const handleCopyToClipboard = () => {
     const text = formatOrderText();
-    navigator.clipboard.writeText(text).then(() => {
-      toast('📋 Lista copiata negli appunti!', 'success');
-    }).catch(() => {
-      const textarea = document.createElement('textarea');
-      textarea.value = text;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
-      toast('📋 Lista copiata negli appunti!', 'success');
-    });
+
+    // Prova moderna (funziona su HTTPS e gestori recenti)
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text)
+        .then(() => {
+          toast('📋 Lista copiata negli appunti!', 'success');
+        })
+        .catch(() => {
+          fallbackCopy();
+        });
+    } else {
+      fallbackCopy();
+    }
+
+    function fallbackCopy() {
+      try {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'absolute';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        toast('📋 Lista copiata negli appunti!', 'success');
+      } catch {
+        toast('Copia non supportata su questo dispositivo', 'error');
+      }
+    }
   };
 
   const handleConfirmClear = () => {
@@ -175,6 +214,13 @@ export default function OrderPanel({ isOpen, onClose, items, onUpdateQuantity, o
                 <div className={styles.orderTotalRow}>
                   <span>Totale:</span>
                   <span className={styles.orderTotalAmount}>€{calculateTotal().toFixed(2)}</span>
+                  <div className={styles.orderDeliveryInfo}>
+                    <span>Consegna (da aggiungere al totale):</span>
+                    <br />
+                    <span>A Desio: <span className={styles.orderDeliveryAmount}>€1,00</span></span>
+                    <br />
+                    <span>Fuori Desio: <span className={styles.orderDeliveryAmount}>€2,00</span></span>
+                  </div>
                 </div>
               </div>
 

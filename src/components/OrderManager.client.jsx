@@ -97,7 +97,7 @@ export default function OrderManager() {
       
       <OrderPanel
         isOpen={isPanelOpen}
-        onClose={() => setIsPanelOpen(false)}
+        onClose={() => setIsPanelOpen(false) }
         items={items}
         onUpdateQuantity={handleUpdateQuantity}
         onRemoveItem={handleRemoveItem}

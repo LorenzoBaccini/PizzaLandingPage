@@ -212,16 +212,19 @@
 }
 
 .orderTotalRow {
+  flex-wrap: wrap;
   display: flex;
   justify-content: space-between;
   font-size: 1.3rem;
   font-weight: bold;
   color: #5C3A21;
+  flex: 1 1 48%; 
 }
 
 .orderTotalAmount {
   color: #B04030;
   font-size: 1.5rem;
+  flex: 1 1 48%; 
 }
 
 .orderActions {
@@ -236,7 +239,7 @@
   color: #FFF8F0;
   border: none;
   border-radius: 8px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -378,6 +381,16 @@
 
 /* Responsive migliorie */
 @media (max-width: 650px) {
-  .confirmModal { padding: 18px 12px 12px 12px; }
+  .confirmModal { padding: 20px; }
   .confirmModalActions { gap: 14px; }
+}
+
+.orderDeliveryInfo {
+  flex-basis: 100%;
+  font-size: 1rem;
+}
+
+.orderDeliveryAmount {
+  color: #B04030;
+  font-weight: bold;
 }

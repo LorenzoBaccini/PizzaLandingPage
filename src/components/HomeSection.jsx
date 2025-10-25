@@ -22,9 +22,9 @@ export default function HomeSection({ id }) {
         interval={4000}
         useKeyboardArrows={true}
         stopOnHover={true}
-        swipeable={true}
+        swipeable={false}
         dynamicHeight={false}
-        emulateTouch={true}
+        emulateTouch={false}
         statusFormatter={() => ``}
       >
         {images.map((src, index) => (
