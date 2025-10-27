@@ -4,6 +4,7 @@ import react from '@astrojs/react';
 import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
+  base: '/PizzaLandingPage/',
   integrations: [react()],
   vite: {
     plugins: [

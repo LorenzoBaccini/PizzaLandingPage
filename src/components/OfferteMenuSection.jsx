@@ -24,6 +24,10 @@ export default function OfferteMenuSection({ id }) {
         const id = `offerta_${item.nome.toLowerCase().replace(/\s+/g, "_")}`;
         const orderItem = { id: id, nome: item.nome, prezzo: item.prezzo };
         window.orderManager.addItem(orderItem, 1);
+        setQuantities(prev => ({
+            ...prev,
+            [id]: (prev[id] || 0) + 1
+        }));
     };
 
     const handleIncreaseQuantity = (item) => {

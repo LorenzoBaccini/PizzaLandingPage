@@ -9,6 +9,7 @@ import { doner_kebab } from '../data/doner_kebab.json';
 import { panini_e_piadine } from '../data/panini_e_piadine.json';
 import { dolci } from '../data/dolci.json';
 import { bevande_e_aggiunte } from '../data/bevande_e_aggiunte.json';
+import { offerte_menu } from '../data/offerte_menu.json';
 import { allergeniIcons } from "../data/allergeniIcons.js";
 import allergeniData from "../data/allergeni.json"; // per nomi tooltip
 
@@ -17,6 +18,7 @@ export default function MenuSection({ id }) {
   const isBrowser = typeof window !== 'undefined';
   const sezioni = [
     'Pizze',
+    'Menu',
     'Calzoni',
     'Focacce Rotonde',
     'Insalatone',
@@ -29,6 +31,7 @@ export default function MenuSection({ id }) {
 
   const contenuti = {
     'Pizze': pizze,
+    'Menu': offerte_menu,
     'Calzoni': calzoni,
     'Focacce Rotonde': focacce_rotonde,
     'Insalatone': insalatone_con_pane,
