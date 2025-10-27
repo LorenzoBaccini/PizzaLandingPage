@@ -3,22 +3,26 @@
     {
       "nome": "Calzone Nutella",
       "ingredienti": "",
-      "prezzo": 6.00
+      "prezzo": 6.00,
+      "allergeni": [1, 7, 8 , 6]
     },
     {
       "nome": "Focaccia Nutella",
       "ingredienti": "",
-      "prezzo": 6.00
+      "prezzo": 6.00,
+      "allergeni": [1, 7, 8 , 6]
     },
     {
       "nome": "Piadina Nutella",
       "ingredienti": "",
-      "prezzo": 4.50
+      "prezzo": 4.50,
+      "allergeni": [1, 7, 8 , 6]
     },
     {
       "nome": "Baklava (4pz)",
       "ingredienti": "Sfoglia con ripieno di noci, mandorle, miele e pistacchio",
-      "prezzo": 4.00
+      "prezzo": 4.00,
+      "allergeni": [1, 7, 8]
     }
   ]
 }

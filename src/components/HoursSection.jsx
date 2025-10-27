@@ -7,9 +7,10 @@ export default function HoursSection({ id }) {
       <h2 className={styles.title}>Orari</h2>
       <ul className={styles.hoursList}>
         <li>Sempre aperti</li>
-        <li>Tutti i giorni</li>
+        <li>Tutti i giorni anche i festivi</li>
         <li>11:00 alle 15:00</li>
         <li>17:30 alle 00:00</li>
+        <li>Chiuso Domenica mattina</li>
       </ul>
     </section>
   );

@@ -10,39 +10,48 @@
     },
     {
       "nome": "Crocchette di patate",
-      "prezzo": 5.00
+      "prezzo": 5.00,
+      "allergeni": [1, 7]
     },
     {
       "nome": "Piatto cotoletta",
-      "prezzo": 7.00
+      "prezzo": 7.00,
+      "allergeni": [1, 7, 3]
     },
     {
       "nome": "Alette di pollo",
-      "prezzo": 5.00
+      "prezzo": 5.00,
+      "allergeni": [1, 7, 3]
     },
     {
       "nome": "Panzerotto al forno",
-      "prezzo": 3.50
+      "prezzo": 3.50,
+      "allergeni": [1, 7]
     },
     {
       "nome": "Olive ascolane",
-      "prezzo": 5.00
+      "prezzo": 5.00,
+      "allergeni": [1, 7, 8, 9]
     },
     {
       "nome": "Mini arancini",
-      "prezzo": 5.00
+      "prezzo": 5.00,
+      "allergeni": [1, 7, 8, 9]
     },
     {
       "nome": "Bocconcini di pollo",
-      "prezzo": 5.00
+      "prezzo": 5.00,
+      "allergeni": [1, 7, 3]
     },
     {
       "nome": "Anelli di cipolla",
-      "prezzo": 5.00
+      "prezzo": 5.00,
+      "allergeni": [1, 3]
     },
     {
       "nome": "Chele di granchio",
-      "prezzo": 5.00
+      "prezzo": 5.00,
+      "allergeni": [1, 2, 3]
     }
   ]
 }

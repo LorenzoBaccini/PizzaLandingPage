@@ -3,57 +3,68 @@
     {
       "nome": "Americano 1",
       "ingredienti": "Würstel, patatine, maionese",
-      "prezzo": 5.50
+      "prezzo": 5.50,
+      "allergeni": [1, 7, 3]
     },
     {
       "nome": "Americano 2",
       "ingredienti": "Würstel, crauti, senape",
-      "prezzo": 5.50
+      "prezzo": 5.50,
+      "allergeni": [1, 10]
     },
     {
       "nome": "Caprese",
       "ingredienti": "Pomodoro fresco, mozzarella, olio, origano",
-      "prezzo": 5.50
+      "prezzo": 5.50,
+      "allergeni": [1, 7]
     },
     {
       "nome": "Cotoletta di pollo",
       "ingredienti": "Cotoletta, insalata, pomodoro fresco, salsa rosa",
-      "prezzo": 5.50
+      "prezzo": 5.50,
+      "allergeni": [1, 7, 3]
     },
     {
       "nome": "Cotto",
       "ingredienti": "Prosciutto cotto, insalata, pomodoro fresco, mozzarella, maionese",
-      "prezzo": 5.50
+      "prezzo": 5.50,
+      "allergeni": [1, 7, 3]
     },
     {
       "nome": "Crudo",
       "ingredienti": "Prosciutto crudo, insalata, mozzarella, salsa rosa",
-      "prezzo": 5.50
+      "prezzo": 5.50,
+      "allergeni": [1, 7, 3]
     },
     {
       "nome": "Falafel",
       "ingredienti": "Polpette di verdura, insalata, pomodoro fresco, cipolla, salsa bianca, salsa piccante",
-      "prezzo": 5.50
+      "prezzo": 5.50,
+      "allergeni": [1, 7]
     },
     {
       "nome": "Italiano",
       "ingredienti": "Bresaola, rucola, grana",
-      "prezzo": 6.50
+      "prezzo": 6.50,
+      "allergeni": [1, 7] 
     },
     {
       "nome": "Salamella",
       "ingredienti": "Salamella, cipolla, peperoni, maionese",
-      "prezzo": 5.50
+      "prezzo": 5.50,
+      "allergeni": [1, 7, 3]
     },
     {
       "nome": "Speck e brie",
       "ingredienti": "Speck, brie, rucola",
-      "prezzo": 5.50
+      "prezzo": 5.50,
+      "allergeni": [1, 7]
     },
     {
       "nome": "Tonno",
       "ingredienti": "Tonno, pomodoro fresco, rucola, cipolla rossa",
-      "prezzo": 5.50
+      "prezzo": 5.50,
+      "allergeni": [1, 4]
     }
   ]
 }

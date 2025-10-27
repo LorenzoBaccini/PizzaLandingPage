@@ -8,6 +8,7 @@ export default function ContactSection({ id }) {
       <div className={styles.contactInfo}>
         <div className={styles.phone}>
           Numero di telefono: <br /><a href="tel:0362 197 2430" style={{ color: '#B04030', textDecoration: 'none' }}>0362 197 2430</a>
+          <br /><a href="tel:3464052750" style={{ color: '#B04030', textDecoration: 'none' }}>3464052750</a>
         </div>
         <div className={styles.address}>
           Indirizzo: <br /> Via Monterosa 132, Desio (MB)

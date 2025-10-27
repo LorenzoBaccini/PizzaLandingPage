@@ -1,0 +1,44 @@
+{
+  "offerte_menu": [
+    {
+      "nome": "PANINO KEBAB O PANINO A SCELTA",
+      "ingredienti": "Panino, patatine e bibita 33cl",
+      "prezzo": 9.00
+    },
+    {
+      "nome": "PIADINA KEBAB O PIADINA A SCELTA",
+      "ingredienti": "Piadina, patatine e bibita 33cl",
+      "prezzo": 9.50
+    },
+    {
+      "nome": "SUPER KEBAB",
+      "ingredienti": "Panino super kebab, patatine e bibita 33cl",
+      "prezzo": 12.00
+    },
+    {
+      "nome": "PIATTO KEBAB",
+      "ingredienti": "Piatto kebab, patatine e bibita 33cl",
+      "prezzo": 11.00
+    },
+    {
+      "nome": "MARGHERITA",
+      "ingredienti": "Pizza margherita, patatine e bibita 33cl",
+      "prezzo": 9.00
+    },
+    {
+      "nome": "TRANCIO MARGHERITA",
+      "ingredienti": "Trancio margherita, patatine e bibita 33cl",
+      "prezzo": 9.00
+    },
+    {
+      "nome": "PANINO CON BIRRA",
+      "ingredienti": "Panino, patatine e birra 33cl",
+      "prezzo": 10.00
+    },
+    {
+      "nome": "PIATTO COTOLETTA",
+      "ingredienti": "Piatto cotoletta, patatine e bibita 33cl",
+      "prezzo": 10.00
+    }
+  ]
+}

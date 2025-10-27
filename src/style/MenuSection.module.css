@@ -415,3 +415,125 @@
     font-size: 0.8rem;
   }
 }
+
+.searchWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.searchInput {
+  flex: 1;
+  width: 100%;
+  font-size: 16px;
+  padding: 10px 40px 10px 14px; /* spazio per X a destra */
+  border: 2px solid #b04030;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #5c3a21;
+  font-family: "Open Sans", sans-serif;
+  transition: all 0.25s ease;
+}
+
+.searchInput:focus {
+  border-color: #d2691e;
+  box-shadow: 0 0 6px rgba(210, 105, 30, 0.5);
+  outline: none;
+}
+
+.clearButton {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #b04030;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 1;
+  transition: all 0.2s ease;
+}
+
+.clearButton:hover {
+  color: #8b2f25;
+  transform: translateY(-50%) scale(1.15);
+}
+
+.searchContainer {
+  position: sticky;
+  top: 62px;
+  z-index: 10;
+  background-color: #f5f1e7;
+  padding: 15px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid #b04030;
+  max-width: 480px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.allergeniContainer {
+  flex-wrap: wrap;
+  display: flex;
+  gap: 6px;
+}
+
+.allergeneIcon svg {
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  fill: #b04030;
+  transition: transform 0.2s ease, fill 0.2s ease;
+}
+
+.allergeneIcon:hover svg {
+  transform: scale(1.15);
+  fill: #8b2f25;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px; /* o quello che usi */
+}
+
+.pizzaNome {
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: #b04030;
+  margin: 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.allergeniContainer {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.allergeneIcon svg {
+  width: 20px;
+  height: 20px;
+  fill: #b04030;
+  transition: transform 0.2s ease, fill 0.2s ease;
+  cursor: help;
+}
+
+.allergeneIcon:hover svg {
+  transform: scale(1.15);
+  fill: #8b2f25;
+}

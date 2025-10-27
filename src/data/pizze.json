@@ -7,7 +7,8 @@
                 "Rotonda o 1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
                 "Famiglia o Teglia intera": 33.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "BARSENIA",
@@ -16,7 +17,8 @@
                 "Rotonda o 1/4 di Teglia": 9.5,
                 "1/2 Teglia": 19.0,
                 "Famiglia o Teglia intera": 35.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "BIANCA",
@@ -25,7 +27,8 @@
                 "Rotonda o 1/4 di Teglia": 5.5,
                 "1/2 Teglia": 11.0,
                 "Famiglia o Teglia intera": 20.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "BISMARCK",
@@ -34,7 +37,8 @@
                 "Rotonda o 1/4 di Teglia": 7.0,
                 "1/2 Teglia": 14.0,
                 "Famiglia o Teglia intera": 25.0
-            }
+            },
+            "allergeni": [1, 7, 3]
         },
         {
             "nome": "BRACCIO DI FERRO",
@@ -43,7 +47,8 @@
                 "Rotonda o 1/4 di Teglia": 7.5,
                 "1/2 Teglia": 15.0,
                 "Famiglia o Teglia intera": 27.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "BRESAOLA",
@@ -52,7 +57,8 @@
                 "Rotonda o 1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
                 "Famiglia o Teglia intera": 33.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "CALABRESE",
@@ -61,7 +67,8 @@
                 "Rotonda o 1/4 di Teglia": 7.5,
                 "1/2 Teglia": 15.0,
                 "Famiglia o Teglia intera": 27.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "CAPRICCIOSA",
@@ -70,7 +77,8 @@
                 "Rotonda o 1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
                 "Famiglia o Teglia intera": 33.0
-            }
+            },
+            "allergeni": [1, 4, 7]
         },
         {
             "nome": "CARBONARA",
@@ -79,7 +87,8 @@
                 "Rotonda o 1/4 di Teglia": 8.5,
                 "1/2 Teglia": 17.0,
                 "Famiglia o Teglia intera": 31.0
-            }
+            },
+            "allergeni": [1, 7, 3]
         },
         {
             "nome": "CHRISTIAN",
@@ -88,7 +97,8 @@
                 "Rotonda o 1/4 di Teglia": 10.0,
                 "1/2 Teglia": 20.0,
                 "Famiglia o Teglia intera": 37.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "COCKTAIL",
@@ -97,7 +107,8 @@
                 "Rotonda o 1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
                 "Famiglia o Teglia intera": 33.0
-            }
+            },
+            "allergeni": [1, 2, 7]
         },
         {
             "nome": "COTTO",
@@ -106,7 +117,8 @@
                 "Rotonda o 1/4 di Teglia": 6.5,
                 "1/2 Teglia": 13.0,
                 "Famiglia o Teglia intera": 23.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "COTTO E FUNGHI",
@@ -115,7 +127,8 @@
                 "Rotonda o 1/4 di Teglia": 7.5,
                 "1/2 Teglia": 15.0,
                 "Famiglia o Teglia intera": 27.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "CRUDO",
@@ -124,7 +137,8 @@
                 "Rotonda o 1/4 di Teglia": 8.0,
                 "1/2 Teglia": 16.0,
                 "Famiglia o Teglia intera": 29.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "ESTATE",
@@ -133,7 +147,8 @@
                 "Rotonda o 1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
                 "Famiglia o Teglia intera": 33.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "FANTASTICA",
@@ -142,7 +157,8 @@
                 "Rotonda o 1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
                 "Famiglia o Teglia intera": 33.0
-            }
+            },
+            "allergeni": [1, 4, 7]
         },
         {
             "nome": "FOCACCIA LISCIA",
@@ -151,7 +167,8 @@
                 "Rotonda o 1/4 di Teglia": 4.0,
                 "1/2 Teglia": 8.0,
                 "Famiglia o Teglia intera": 14.0
-            }
+            },
+            "allergeni": [1]
         },
         {
             "nome": "FUMÉ",
@@ -160,7 +177,8 @@
                 "Rotonda o 1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
                 "Famiglia o Teglia intera": 33.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "FUNGHI",
@@ -169,7 +187,8 @@
                 "Rotonda o 1/4 di Teglia": 7.0,
                 "1/2 Teglia": 14.0,
                 "Famiglia o Teglia intera": 25.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "GIOIA",
@@ -178,7 +197,8 @@
                 "Rotonda o 1/4 di Teglia": 9.5,
                 "1/2 Teglia": 19.0,
                 "Famiglia o Teglia intera": 35.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "GOLOSA",
@@ -187,7 +207,8 @@
                 "Rotonda o 1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
                 "Famiglia o Teglia intera": 33.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "ITALIA",
@@ -196,7 +217,8 @@
                 "Rotonda o 1/4 di Teglia": 9.5,
                 "1/2 Teglia": 19.0,
                 "Famiglia o Teglia intera": 35.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "KERO",
@@ -205,7 +227,8 @@
                 "Rotonda o 1/4 di Teglia": 9.5,
                 "1/2 Teglia": 19.0,
                 "Famiglia o Teglia intera": 35.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "LEO",
@@ -214,7 +237,8 @@
                 "Rotonda o 1/4 di Teglia": 9.5,
                 "1/2 Teglia": 19.0,
                 "Famiglia o Teglia intera": 35.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "MAIVEN",
@@ -223,7 +247,8 @@
                 "Rotonda o 1/4 di Teglia": 8.5,
                 "1/2 Teglia": 17.0,
                 "Famiglia o Teglia intera": 31.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "MARGHERITA",
@@ -232,7 +257,8 @@
                 "Rotonda o 1/4 di Teglia": 5.5,
                 "1/2 Teglia": 11.0,
                 "Famiglia o Teglia intera": 20.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "MARE E MONTI",
@@ -241,7 +267,8 @@
                 "Rotonda o 1/4 di Teglia": 10.0,
                 "1/2 Teglia": 20.0,
                 "Famiglia o Teglia intera": 37.0
-            }
+            },
+            "allergeni": [1, 7, 2, 4]
         },
         {
             "nome": "MARINARA",
@@ -250,7 +277,8 @@
                 "Rotonda o 1/4 di Teglia": 4.0,
                 "1/2 Teglia": 8.0,
                 "Famiglia o Teglia intera": 14.0
-            }
+            },
+            "allergeni": [1]
         },
         {
             "nome": "MEZZALUNA",
@@ -259,7 +287,8 @@
                 "Rotonda o 1/4 di Teglia": 9.5,
                 "1/2 Teglia": 19.0,
                 "Famiglia o Teglia intera": 35.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "NAPOLI",
@@ -268,7 +297,8 @@
                 "Rotonda o 1/4 di Teglia": 6.5,
                 "1/2 Teglia": 13.0,
                 "Famiglia o Teglia intera": 23.0
-            }
+            },
+            "allergeni": [1, 4, 7]
         },
         {
             "nome": "'NDUJA E ZOLA",
@@ -277,7 +307,8 @@
                 "Rotonda o 1/4 di Teglia": 8.0,
                 "1/2 Teglia": 16.0,
                 "Famiglia o Teglia intera": 29.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "OLIVE",
@@ -286,7 +317,8 @@
                 "Rotonda o 1/4 di Teglia": 6.5,
                 "1/2 Teglia": 13.0,
                 "Famiglia o Teglia intera": 23.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "PANNA E SALMONE",
@@ -295,7 +327,8 @@
                 "Rotonda o 1/4 di Teglia": 8.5,
                 "1/2 Teglia": 17.0,
                 "Famiglia o Teglia intera": 31.0
-            }
+            },
+            "allergeni": [1, 7, 4]
         },
         {
             "nome": "PARMIGIANA",
@@ -304,7 +337,8 @@
                 "Rotonda o 1/4 di Teglia": 7.0,
                 "1/2 Teglia": 14.0,
                 "Famiglia o Teglia intera": 25.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "PATATINA",
@@ -313,7 +347,8 @@
                 "Rotonda o 1/4 di Teglia": 6.5,
                 "1/2 Teglia": 13.0,
                 "Famiglia o Teglia intera": 23.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "PIZZA KEBAB",
@@ -322,7 +357,8 @@
                 "Rotonda o 1/4 di Teglia": 10.0,
                 "1/2 Teglia": 20.0,
                 "Famiglia o Teglia intera": 37.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "PIZZA KEBAB 2",
@@ -331,7 +367,8 @@
                 "Rotonda o 1/4 di Teglia": 10.0,
                 "1/2 Teglia": 20.0,
                 "Famiglia o Teglia intera": 37.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "PIZZA KEBAB SPECIALE",
@@ -340,7 +377,8 @@
                 "Rotonda o 1/4 di Teglia": 12.0,
                 "1/2 Teglia": 24.0,
                 "Famiglia o Teglia intera": 45.0
-            }
+            },
+            "allergeni": [1, 7, 3]
         },
         {
             "nome": "PRIMAVERA",
@@ -349,7 +387,8 @@
                 "Rotonda o 1/4 di Teglia": 7.5,
                 "1/2 Teglia": 15.0,
                 "Famiglia o Teglia intera": 27.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "PUGLIESE",
@@ -358,7 +397,8 @@
                 "Rotonda o 1/4 di Teglia": 6.5,
                 "1/2 Teglia": 13.0,
                 "Famiglia o Teglia intera": 23.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "QUATTRO FORMAGGI",
@@ -367,7 +407,8 @@
                 "Rotonda o 1/4 di Teglia": 8.0,
                 "1/2 Teglia": 16.0,
                 "Famiglia o Teglia intera": 29.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "QUATTRO STAGIONI",
@@ -376,7 +417,8 @@
                 "Rotonda o 1/4 di Teglia": 8.5,
                 "1/2 Teglia": 17.0,
                 "Famiglia o Teglia intera": 31.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "ROMANA",
@@ -385,7 +427,8 @@
                 "Rotonda o 1/4 di Teglia": 8.0,
                 "1/2 Teglia": 16.0,
                 "Famiglia o Teglia intera": 29.0
-            }
+            },
+            "allergeni": [1, 7, 4]
         },
         {
             "nome": "RUCOLA",
@@ -394,7 +437,8 @@
                 "Rotonda o 1/4 di Teglia": 6.5,
                 "1/2 Teglia": 13.0,
                 "Famiglia o Teglia intera": 23.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "SALAME DOLCE",
@@ -403,7 +447,8 @@
                 "Rotonda o 1/4 di Teglia": 7.0,
                 "1/2 Teglia": 14.0,
                 "Famiglia o Teglia intera": 25.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "SALSICCIA E FRIARIELLI",
@@ -412,7 +457,8 @@
                 "Rotonda o 1/4 di Teglia": 8.0,
                 "1/2 Teglia": 16.0,
                 "Famiglia o Teglia intera": 29.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "SALSICCIA E PATATINE",
@@ -421,16 +467,18 @@
                 "Rotonda o 1/4 di Teglia": 8.5,
                 "1/2 Teglia": 17.0,
                 "Famiglia o Teglia intera": 31.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
-            "nome": "SAPORI DI MARE",
+            "nome": "SAPORE DI MARE",
             "ingredienti": "Pomodoro, mozzarella, frutti di mare",
             "prezzi": {
                 "Rotonda o 1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
                 "Famiglia o Teglia intera": 33.0
-            }
+            },
+            "allergeni": [1, 7, 4, 2, 14]
         },
         {
             "nome": "SAPORITA",
@@ -439,7 +487,8 @@
                 "Rotonda o 1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
                 "Famiglia o Teglia intera": 33.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "SCAMORZA E SPECK",
@@ -448,7 +497,8 @@
                 "Rotonda o 1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
                 "Famiglia o Teglia intera": 33.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "SOLE",
@@ -457,7 +507,8 @@
                 "Rotonda o 1/4 di Teglia": 10.0,
                 "1/2 Teglia": 20.0,
                 "Famiglia o Teglia intera": 37.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "TONNO E CIPOLLA",
@@ -466,7 +517,8 @@
                 "Rotonda o 1/4 di Teglia": 8.0,
                 "1/2 Teglia": 16.0,
                 "Famiglia o Teglia intera": 29.0
-            }
+            },
+            "allergeni": [1, 7, 4]
         },
         {
             "nome": "TRE COLORI",
@@ -475,7 +527,8 @@
                 "Rotonda o 1/4 di Teglia": 7.5,
                 "1/2 Teglia": 15.0,
                 "Famiglia o Teglia intera": 27.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "TRIS",
@@ -484,7 +537,8 @@
                 "Rotonda o 1/4 di Teglia": 8.5,
                 "1/2 Teglia": 17.0,
                 "Famiglia o Teglia intera": 31.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "VEGANA",
@@ -493,7 +547,8 @@
                 "Rotonda o 1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
                 "Famiglia o Teglia intera": 33.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "VEGETARIANA",
@@ -502,7 +557,8 @@
                 "Rotonda o 1/4 di Teglia": 8.0,
                 "1/2 Teglia": 16.0,
                 "Famiglia o Teglia intera": 29.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "WURSTEL",
@@ -511,7 +567,8 @@
                 "Rotonda o 1/4 di Teglia": 6.5,
                 "1/2 Teglia": 13.0,
                 "Famiglia o Teglia intera": 23.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "WURSTEL E CRAUTI",
@@ -520,7 +577,8 @@
                 "Rotonda o 1/4 di Teglia": 7.5,
                 "1/2 Teglia": 15.0,
                 "Famiglia o Teglia intera": 27.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "WURSTEL E PATATINE",
@@ -529,7 +587,8 @@
                 "Rotonda o 1/4 di Teglia": 8.0,
                 "1/2 Teglia": 16.0,
                 "Famiglia o Teglia intera": 29.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "ZOLA BIANCA",
@@ -538,7 +597,8 @@
                 "Rotonda o 1/4 di Teglia": 7.0,
                 "1/2 Teglia": 14.0,
                 "Famiglia o Teglia intera": 25.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "ZOLA NOCI",
@@ -547,7 +607,8 @@
                 "Rotonda o 1/4 di Teglia": 8.0,
                 "1/2 Teglia": 16.0,
                 "Famiglia o Teglia intera": 29.0
-            }
+            },
+            "allergeni": [1, 7, 8]
         },
         {
             "nome": "2014",
@@ -556,7 +617,8 @@
                 "Rotonda o 1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
                 "Famiglia o Teglia intera": 33.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "2015",
@@ -565,7 +627,8 @@
                 "Rotonda o 1/4 di Teglia": 10.0,
                 "1/2 Teglia": 20.0,
                 "Famiglia o Teglia intera": 35.0
-            }
+            },
+            "allergeni": [1, 7]
         },
         {
             "nome": "2022",
@@ -574,7 +637,8 @@
                 "Rotonda o 1/4 di Teglia": 8.5,
                 "1/2 Teglia": 17.0,
                 "Famiglia o Teglia intera": 31.0
-            }
+            },
+            "allergeni": [1, 7, 2]
         }
     ]
 }

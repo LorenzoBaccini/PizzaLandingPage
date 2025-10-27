@@ -9,6 +9,9 @@ import { doner_kebab } from '../data/doner_kebab.json';
 import { panini_e_piadine } from '../data/panini_e_piadine.json';
 import { dolci } from '../data/dolci.json';
 import { bevande_e_aggiunte } from '../data/bevande_e_aggiunte.json';
+import { allergeniIcons } from "../data/allergeniIcons.js";
+import allergeniData from "../data/allergeni.json"; // per nomi tooltip
+
 
 export default function MenuSection({ id }) {
   const isBrowser = typeof window !== 'undefined';
@@ -41,6 +44,10 @@ export default function MenuSection({ id }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [quantities, setQuantities] = useState({});
   const [selectedFormats, setSelectedFormats] = useState({}); // Formato selezionato per ogni prodotto
+
+  useEffect(() => {
+    setSearchInput('');
+  }, [sezioneAttiva]);
 
   useEffect(() => {
     const handler = setTimeout(() => setSearchTerm(searchInput.trim()), 500);
@@ -200,7 +207,25 @@ export default function MenuSection({ id }) {
     const formato = hasMultipleFormats(item) ? getSelectedFormat(item) : null;
     const id = generateProductId(item, formato);
     const currentQty = window.orderManager.getItemQuantity(id);
-    window.orderManager.updateQuantity(id, currentQty + 1);
+
+    // Se il prodotto non è ancora nel carrello, aggiungilo
+    if (currentQty === 0) {
+      const price = getPrice(item, formato);
+      let productName = item.nome;
+      if (formato) productName = `${item.nome} (${formato})`;
+
+      const product = {
+        id: id,
+        nome: productName,
+        prezzo: price
+      };
+
+      // aggiunge il prodotto per la prima volta
+      window.orderManager.addItem(product, 1);
+    } else {
+      // altrimenti aggiorna semplicemente la quantità
+      window.orderManager.updateQuantity(id, currentQty + 1);
+    }
   };
 
   // Gestione diminuzione quantità
@@ -236,19 +261,30 @@ export default function MenuSection({ id }) {
 
       {sezioneAttiva === "Pizze" && (
         <div className={styles.searchContainer}>
-          <label className={styles.searchLabel} htmlFor="searchPizza">
+          <label htmlFor="searchPizze" className={styles.searchLabel}>
             Cerca pizze e ingredienti:
           </label>
-          <input
-            type="text"
-            id="searchPizza"
-            className={styles.searchInput}
-            placeholder="Es. margherita, funghi..."
-            value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
-            aria-describedby="searchHelp"
-            autoComplete="off"
-          />
+          <div className={styles.searchWrapper}>
+            <input
+              id="searchPizze"
+              type="text"
+              placeholder="Cerca pizze e ingredienti"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              autoComplete="off"
+              className={styles.searchInput}
+            />
+            {searchInput && (
+              <button
+                type="button"
+                className={styles.clearButton}
+                onClick={() => setSearchInput("")}
+                aria-label="Pulisci campo"
+              >
+                ×
+              </button>
+            )}
+          </div>
         </div>
       )}
 
@@ -264,17 +300,38 @@ export default function MenuSection({ id }) {
 
             return (
               <li key={`${baseId}_${index}`} className={styles.pizzaCard}>
-                <h3 className={styles.pizzaNome}>
-                  {item.nome}{item.quantita && ` - ${item.quantita}`}
-                  {totalQuantity > 0 && (
-                    <span className={styles.totalBadge}> ({totalQuantity})</span>
-                  )}
-                </h3>
+                <div className={styles.cardHeader}>
+                  <h3 className={styles.pizzaNome}>
+                    {item.nome}
+                    {item.quantita && ` - ${item.quantita}`}
+                    {totalQuantity > 0 && (
+                      <span className={styles.totalBadge}> ({totalQuantity})</span>
+                    )}
+                  </h3>
+                  <div className={styles.allergeniContainer}>
+                    {item.allergeni?.map((id) => {
+                      const Icon = allergeniIcons[id];
+                      const allergeneInfo = allergeniData.allergeni.find((a) => a.id === id);
+                      return (
+                        Icon && (
+                          <span
+                            className={styles.allergeneIcon}
+                            key={id}
+                            title={allergeneInfo?.nome || "Allergene"}
+                          >
+                            <Icon />
+                          </span>
+                        )
+                      );
+                    })}
+                  </div>
+                </div>
+
                 {item.ingredienti && (
                   <p className={styles.ingredienti}>{item.ingredienti}</p>
                 )}
+
                 <div className={styles.prezzoBottomRight}>
-                  {/* Selezione formato se presente */}
                   {hasFormats && formats.length > 0 && (
                     <div className={styles.formatSelector}>
                       <label className={styles.formatLabel}>Formato:</label>
@@ -282,26 +339,27 @@ export default function MenuSection({ id }) {
                         {formats.map((formato) => (
                           <button
                             key={formato}
-                            className={`${styles.formatButton} ${selectedFormat === formato ? styles.formatButtonActive : ''}`}
+                            className={`${styles.formatButton} ${selectedFormat === formato ? styles.formatButtonActive : ""
+                              }`}
                             onClick={() => setSelectedFormat(item, formato)}
                             type="button"
                           >
                             {formato}
-                            <span className={styles.formatPrice}>€{item.prezzi[formato].toFixed(2)}</span>
+                            <span className={styles.formatPrice}>
+                              €{item.prezzi[formato].toFixed(2)}
+                            </span>
                           </button>
                         ))}
                       </div>
                     </div>
                   )}
 
-                  {/* Prezzo per prodotti senza formati */}
                   {!hasFormats && item.prezzo && (
                     <div>
                       <strong>Prezzo</strong> <em>{item.prezzo}€</em>
                     </div>
                   )}
 
-                  {/* Controlli ordine */}
                   <div className={styles.orderControls}>
                     <div className={styles.quantitySelector}>
                       <button
@@ -328,7 +386,10 @@ export default function MenuSection({ id }) {
                     >
                       Aggiungi
                       {hasFormats && selectedFormat && (
-                        <span className={styles.btnFormatHint}> {selectedFormat.split(' ')[0]}</span>
+                        <span className={styles.btnFormatHint}>
+                          {" "}
+                          {selectedFormat.split(" ")[0]}
+                        </span>
                       )}
                     </button>
                   </div>

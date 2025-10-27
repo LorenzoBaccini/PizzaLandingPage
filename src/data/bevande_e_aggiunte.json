@@ -17,13 +17,21 @@
     },
     {
       "nome": "Birra in bottiglia piccola",
+      "quantita": "0,33 lt",
+      "prezzo": 2.50,
+      "allergeni": [1]
+    },
+    {
+      "nome": "Birra in bottiglia piccola",
       "quantita": "0,33 lt (Ceres, Super Tennents)",
-      "prezzo": 3.50
+      "prezzo": 3.50,
+      "allergeni": [1]
     },
     {
       "nome": "Birra in bottiglia grande",
       "quantita": "0,66 lt",
-      "prezzo": 5.00
+      "prezzo": 5.00,
+      "allergeni": [1]
     },
     {
       "nome": "Vino",

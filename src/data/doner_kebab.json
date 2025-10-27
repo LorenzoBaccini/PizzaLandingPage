@@ -3,37 +3,44 @@
     {
       "nome": "Panino kebab 1",
       "ingredienti": "Kebab, insalata, pomodoro fresco, cipolla, salsa bianca, salsa piccante",
-      "prezzo": 5.50
+      "prezzo": 5.50,
+      "allergeni": [1, 7]
     },
     {
       "nome": "Panino kebab 2",
       "ingredienti": "Kebab, patatine, salsa bianca, salsa piccante",
-      "prezzo": 5.50
+      "prezzo": 5.50,
+      "allergeni": [1, 7]
     },
     {
       "nome": "Piadina kebab",
       "ingredienti": "Kebab, insalata, pomodoro fresco, cipolla, salsa bianca, salsa piccante",
-      "prezzo": 6.00
+      "prezzo": 6.00,
+      "allergeni": [1, 7] 
     },
     {
       "nome": "Panino kebab super",
       "ingredienti": "Kebab, patatine, insalata, pomodoro fresco, cipolla, salsa bianca, salsa piccante",
-      "prezzo": 7.00
+      "prezzo": 7.00,
+      "allergeni": [1, 7]
     },
     {
       "nome": "Piadina kebab speciale",
       "ingredienti": "Kebab, melanzane, zucchine, salsa bianca, salsa piccante",
-      "prezzo": 8.00
+      "prezzo": 8.00,
+      "allergeni": [1, 7] 
     },
     {
       "nome": "Piadina kebab la Teglia",
       "ingredienti": "Kebab, scamorza, funghi, salsa bianca, salsa piccante",
-      "prezzo": 8.00
+      "prezzo": 8.00,
+      "allergeni": [1, 7] 
     },
     {
       "nome": "Vaschetta kebab + pane",
       "ingredienti": "Kebab, patatine, salsa bianca, salsa piccante",
-      "prezzo": 6.00
+      "prezzo": 6.00,
+      "allergeni": [1, 7]   
     },
     {
       "nome": "Vaschetta solo kebab",
@@ -43,12 +50,14 @@
     {
       "nome": "Focaccia kebab",
       "ingredienti": "Kebab, insalata, pomodoro fresco, cipolla, salsa bianca, salsa piccante",
-      "prezzo": 7.00
+      "prezzo": 7.00,
+      "allergeni": [1, 7]
     },
     {
       "nome": "Calzone kebab",
       "ingredienti": "Pomodoro, mozzarella, kebab, cipolla, salsa bianca, salsa piccante",
-      "prezzo": 10.00
+      "prezzo": 10.00,
+      "allergeni": [1, 7]
     }
   ]
 }

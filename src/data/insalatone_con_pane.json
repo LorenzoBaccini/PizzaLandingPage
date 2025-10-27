@@ -3,22 +3,26 @@
     {
       "nome": "INSALATA MISTA",
       "ingredienti": "Insalata verde, insalata rossa, rucola e pomodoro fresco",
-      "prezzo": 5.0
+      "prezzo": 5.0,
+      "allergeni": [1]
     },
     {
       "nome": "BIANCANEVE",
       "ingredienti": "Insalata verde e rossa, pomodoro fresco, mais dolce, tonno e olive nere",
-      "prezzo": 7.0
+      "prezzo": 7.0,
+      "allergeni": [1, 4]
     },
     {
       "nome": "AI SALUMI",
       "ingredienti": "Insalata verde e rossa, pomodoro fresco, mozzarella fresca e scelta tra prosciutto crudo o bresaola",
-      "prezzo": 7.0
+      "prezzo": 7.0,
+      "allergeni": [1, 7] 
     },
     {
       "nome": "CAPRESE",
       "ingredienti": "Bresaola, rucola, scaglie di grana e mozzarella di bufala",
-      "prezzo": 6.5
+      "prezzo": 6.5,
+      "allergeni": [1, 7]
     }
   ]
 }

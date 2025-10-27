@@ -1,0 +1,76 @@
+{
+  "titolo": "Elenco Allergeni (Reg. UE 1169/2011)",
+  "descrizione": "Gli allergeni sono indicati sul menù con il numero di riferimento o sul registro allergeni. Le produzioni interne hanno carattere artigianale: non è quindi possibile garantire la totale assenza di tracce di allergeni nei prodotti finiti, anche quando non previsti in ricetta. Il personale è a disposizione per ulteriori informazioni.",
+  "allergeni": [
+    {
+      "id": 1,
+      "nome": "Cereali contenenti glutine",
+      "dettaglio": "Grano, segale, orzo, avena, farro, kamut o i loro ceppi ibridati e prodotti derivati"
+    },
+    {
+      "id": 2,
+      "nome": "Crostacei",
+      "dettaglio": "Crostacei e prodotti derivati"
+    },
+    {
+      "id": 3,
+      "nome": "Uova",
+      "dettaglio": "Uova e prodotti derivati"
+    },
+    {
+      "id": 4,
+      "nome": "Pesce",
+      "dettaglio": "Pesce e prodotti derivati, esclusa gelatina o colla di pesce usata come chiarificante nella birra e nel vino"
+    },
+    {
+      "id": 5,
+      "nome": "Arachidi",
+      "dettaglio": "Arachidi e prodotti derivati"
+    },
+    {
+      "id": 6,
+      "nome": "Soia",
+      "dettaglio": "Soia e prodotti derivati"
+    },
+    {
+      "id": 7,
+      "nome": "Latte",
+      "dettaglio": "Latte e prodotti derivati, incluso lattosio"
+    },
+    {
+      "id": 8,
+      "nome": "Frutta a guscio",
+      "dettaglio": "Mandorle, nocciole, noci, anacardi, noci di pecan, noci del Brasile, pistacchi, noci del Queensland (macadamia) e derivati"
+    },
+    {
+      "id": 9,
+      "nome": "Sedano",
+      "dettaglio": "Sedano e prodotti derivati"
+    },
+    {
+      "id": 10,
+      "nome": "Senape",
+      "dettaglio": "Senape e prodotti derivati"
+    },
+    {
+      "id": 11,
+      "nome": "Semi di sesamo",
+      "dettaglio": "Semi di sesamo e prodotti derivati"
+    },
+    {
+      "id": 12,
+      "nome": "Anidride solforosa e solfiti",
+      "dettaglio": "In concentrazioni superiori a 10 mg/kg o 10 mg/l espressi come SO₂"
+    },
+    {
+      "id": 13,
+      "nome": "Lupini",
+      "dettaglio": "Lupini e prodotti derivati"
+    },
+    {
+      "id": 14,
+      "nome": "Molluschi",
+      "dettaglio": "Molluschi e prodotti derivati"
+    }
+  ]
+}
