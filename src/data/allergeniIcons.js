@@ -1,19 +1,19 @@
 // src/data/allergeniIcons.js
 
-import IconGlutine  from "../assets/icons/glutine.svg?react";
-import IconCrostacei  from "../assets/icons/crostacei.svg?react";
-import IconUova  from "../assets/icons/uova.svg?react";
-import IconPesce  from "../assets/icons/pesce.svg?react";
-import IconArachidi  from "../assets/icons/arachidi.svg?react";
-import IconSoia  from "../assets/icons/soia.svg?react";
-import IconLatte  from "../assets/icons/latte.svg?react";
-import IconFruttaGuscio  from "../assets/icons/fruttaguscio.svg?react";
-import IconSedano  from "../assets/icons/sedano.svg?react";
-import IconSenape  from "../assets/icons/senape.svg?react";
-import IconSesamo  from "../assets/icons/sesamo.svg?react";
-import IconSolfiti  from "../assets/icons/solfiti.svg?react";
-import IconLupini  from "../assets/icons/lupini.svg?react";
-import IconMolluschi  from "../assets/icons/molluschi.svg?react";
+import IconGlutine  from "../icons/glutine.svg?react";
+import IconCrostacei  from "../icons/crostacei.svg?react";
+import IconUova  from "../icons/uova.svg?react";
+import IconPesce  from "../icons/pesce.svg?react";
+import IconArachidi  from "../icons/arachidi.svg?react";
+import IconSoia  from "../icons/soia.svg?react";
+import IconLatte  from "../icons/latte.svg?react";
+import IconFruttaGuscio  from "../icons/fruttaguscio.svg?react";
+import IconSedano  from "../icons/sedano.svg?react";
+import IconSenape  from "../icons/senape.svg?react";
+import IconSesamo  from "../icons/sesamo.svg?react";
+import IconSolfiti  from "../icons/solfiti.svg?react";
+import IconLupini  from "../icons/lupini.svg?react";
+import IconMolluschi  from "../icons/molluschi.svg?react";
 
 export const allergeniIcons = {
   1: IconGlutine,

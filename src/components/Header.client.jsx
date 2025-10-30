@@ -3,7 +3,6 @@ import styles from '../style/header.module.css';
 
 const menuItems = [
   { label: 'Home', targetId: 'home-section' },
-  { label: 'Offerte', targetId: 'offerte' },
   { label: 'Menù', targetId: 'menu-section' },
   { label: 'Orari', targetId: 'hours-section' },
   { label: 'Contatti', targetId: 'contact-section' },

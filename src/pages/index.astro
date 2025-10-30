@@ -1,11 +1,10 @@
 ---
 import Header from "../components/Header.client.jsx";
-import HomeSection from "../components/HomeSection.jsx";
-import MenuSection from "../components/MenuSection.jsx";
-import HoursSection from "../components/HoursSection.jsx";
-import ContactSection from "../components/ContactSection.jsx";
+import HomeSection from "../components/HomeSection.client.jsx";
+import MenuSection from "../components/MenuSection.client.jsx";
+import HoursSection from "../components/HoursSection.client.jsx";
+import ContactSection from "../components/ContactSection.client.jsx";
 import OrderManager from "../components/OrderManager.client.jsx";
-import OfferteMenuSection from "../components/OfferteMenuSection.jsx";
 import styles from "../style/generic.module.css";
 import "../style/colorVariable.css";
 ---
@@ -25,7 +24,6 @@ import "../style/colorVariable.css";
   <body class={styles.body}>
     <Header client:load />
     <HomeSection client:load id="home-section" />
-    <!-- <OfferteMenuSection client:load id="offerte"/> -->
     <MenuSection client:load id="menu-section" />
     <HoursSection client:load id="hours-section" />
     <ContactSection client:load id="contact-section" />

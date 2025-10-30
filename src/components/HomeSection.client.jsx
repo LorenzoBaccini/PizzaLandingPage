@@ -5,9 +5,9 @@ import styles from '../style/HomeSection.module.css';
 
 export default function HomeSection({ id }) {
   const images = [
-    '/PizzaLandingPage/src/assets/pizza.png',
-    '/PizzaLandingPage/src/assets/piadinaKebab.jpg',
-    '/PizzaLandingPage/src/assets/pizze.jpg',
+    '/PizzaLandingPage/assets/pizza.png',
+    '/PizzaLandingPage/assets/piadinaKebab.jpg',
+    '/PizzaLandingPage/assets/pizze.jpg',
   ];
 
   return (
