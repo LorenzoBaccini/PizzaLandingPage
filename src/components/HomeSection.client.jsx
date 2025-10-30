@@ -37,6 +37,9 @@ export default function HomeSection({ id }) {
           </div>
         ))}
       </Carousel>
+      <p className={styles.description}>
+        Scopri La nostra deliziosa pizza in teglia, preparate con ingredienti freschi
+      </p>
       <button
         className={styles.ctaButton}
         onClick={() => {
@@ -46,8 +49,11 @@ export default function HomeSection({ id }) {
       >
         Scopri il menù
       </button>
-      <p className={styles.description}>
-        Scopri La nostra deliziosa pizza in teglia, preparate con ingredienti freschi
+      <p className={styles.description} style={{ marginBottom: '0', fontSize: '0.9rem' }}>
+        Pagamento anche con Satispay e carte di credito, anche a domicilio!
+      </p>
+      <p className={styles.description} style={{ marginTop: '0', fontSize: '0.9rem' }}>
+        Consegna effettuata al citofono e non al piano
       </p>
     </section>
   );

@@ -66,6 +66,7 @@ export default function OrderPanel({ isOpen, onClose, items, onUpdateQuantity, o
       text += `${item.quantita}x ${item.nome} - €${(price * item.quantita).toFixed(2)}\n`;
     });
     text += `\nTotale: €${calculateTotal().toFixed(2)}`;
+    text += `\nRicorda la consegna:\n- A Desio: €1,00\n- Fuori Desio: €2,00`;
     if (note.trim()) {
       text += `\n\nNote: ${note}`;
     }
