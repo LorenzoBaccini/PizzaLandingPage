@@ -2,8 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import styles from '../style/OrderPanel.module.css';
 
 const CONFIG = {
-  phoneNumber: '+39 333 123 4567',      // ← MODIFICA CON IL TUO NUMERO
-  whatsappNumber: '393331234567',       // ← MODIFICA (formato senza + e spazi)
+  phoneNumber: '0362 197 2430',
+  whatsappNumber: '393338007658',
   maxQuantityPerItem: 20,
   toastDuration: 3000
 };
