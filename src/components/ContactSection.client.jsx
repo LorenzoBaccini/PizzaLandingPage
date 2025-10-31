@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState } from "react";
 import styles from '../style/ContactSection.module.css';
+import allergeniData from "../data/allergeni.json";
+import { allergeniIcons } from "../data/allergeniIcons.js";
 
 export default function ContactSection({ id }) {
+
+  const [showAllergens, setShowAllergens] = useState(false);
+
   return (
     <section id={id} className={styles.contactSection}>
       <h2 className={styles.title}>Contatti</h2>
@@ -27,6 +32,33 @@ export default function ContactSection({ id }) {
           loading="lazy"
         />
       </div>
+      <h2 className={styles.title} style={{ fontSize: '1rem', marginBottom: '0px' }}>{allergeniData.titolo}</h2>
+      <p>{allergeniData.descrizione}</p>
+
+      <button
+        className={styles.btnToggleLegend}
+        onClick={() => setShowAllergens(!showAllergens)}
+        aria-expanded={showAllergens}
+        aria-controls="allergenLegend"
+      >
+        {showAllergens ? "Nascondi Legenda Allergeni" : "Mostra Legenda Allergeni"}
+      </button>
+
+      {showAllergens && (
+        <div id="allergenLegend" className={styles.allergenLegend}>
+          {allergeniData.allergeni.map(({ id, nome, dettaglio }) => {
+            const IconComponent = allergeniIcons[id] || null;
+            return (
+              <div key={id} className={styles.allergenItem}>
+                {IconComponent && <IconComponent className={styles.allergenIcon} />}
+                <span className={styles.allergenName}>
+                  {nome} - {dettaglio}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </section>
   );
 }

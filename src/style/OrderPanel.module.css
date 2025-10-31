@@ -394,3 +394,90 @@
   color: #B04030;
   font-weight: bold;
 }
+
+/* Modale Condivisione WhatsApp */
+.ant-modal {
+  border-radius: 12px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.ant-modal-content {
+  padding: 20px 24px 24px 24px;
+  background-color: #fff8f0;
+}
+
+.ant-modal-title {
+  color: #5c3a21;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.ant-modal-footer {
+  border-top: none;
+  padding: 12px 24px;
+}
+
+.ant-btn-primary {
+  background-color: #b04030;
+  border-color: #b04030;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.ant-btn-primary:hover {
+  background-color: #8b2f25;
+  border-color: #8b2f25;
+  transform: scale(1.02);
+}
+
+/* Switch container */
+.ant-switch {
+  margin-left: 8px;
+}
+
+/* Input fields styling */
+.ant-input {
+  border-radius: 8px;
+  border: 2px solid #d2691e;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: #5c3a21;
+}
+
+.ant-input:focus,
+.ant-input-focused {
+  border-color: #b04030;
+  box-shadow: 0 0 8px rgba(176, 64, 48, 0.3);
+  outline: none;
+}
+
+/* AutoComplete dropdown style */
+.ant-select-dropdown {
+  border-radius: 8px;
+}
+
+/* TimePicker styling */
+.ant-picker {
+  width: 100%;
+  border-radius: 8px;
+  border: 2px solid #d2691e;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.ant-picker-focused,
+.ant-picker:hover {
+  border-color: #b04030;
+  box-shadow: 0 0 8px rgba(176, 64, 48, 0.3);
+}
+
+/* Informative note inside modal */
+.ant-modal-body p {
+  font-style: italic;
+  font-size: 0.85rem;
+  color: #5c3a21;
+  margin-top: 1rem;
+  line-height: 1.3;
+}

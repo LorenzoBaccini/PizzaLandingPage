@@ -32,3 +32,52 @@
   margin-top: 20px;
   border: 1px solid #B04030;
 }
+
+.btnToggleLegend {
+  background-color: #b04030;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  margin: 20px 0 60px 0px;
+  transition: background-color 0.3s ease;
+}
+
+.btnToggleLegend:hover,
+.btnToggleLegend:focus {
+  background-color: #8b2f25;
+  outline: none;
+}
+
+.allergenLegend {
+  max-height: 280px;
+  overflow-y: auto;
+  background-color: white;
+  border-radius: 8px;
+  padding: 12px 16px;
+  box-shadow: 0 0 10px rgba(176, 64, 48, 0.2);
+}
+
+.allergenItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  border-bottom: #5C3A21 1px solid;
+  padding-bottom: 6px;
+}
+
+.allergenIcon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  fill: #b04030;
+  flex-shrink: 0;
+}
+
+.allergenName {
+  font-size: 0.9rem;
+  text-align: start;
+}

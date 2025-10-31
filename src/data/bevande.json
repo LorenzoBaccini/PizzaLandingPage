@@ -1,5 +1,5 @@
 {
-  "bevande_e_aggiunte": [
+  "bevande": [
     {
       "nome": "Acqua minerale",
       "quantita": "0,5 lt",
@@ -37,21 +37,6 @@
       "nome": "Vino",
       "quantita": "0,75 lt (bianco / rosso / rosato)",
       "prezzo": 6.00
-    },
-    {
-      "nome": "Ingredienti aggiunti",
-      "quantita": "",
-      "prezzo": "da 1.00 a 3.00"
-    },
-    {
-      "nome": "Impasto integrale",
-      "quantita": "",
-      "prezzo": 1.00
-    },
-    {
-      "nome": "Mozzarella senza lattosio",
-      "quantita": "",
-      "prezzo": 1.50
     }
   ]
 }

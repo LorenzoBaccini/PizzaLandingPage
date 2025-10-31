@@ -8,7 +8,7 @@ import { gastronomia_e_specialita_friggitoria } from '../data/gastronomia_e_spec
 import { doner_kebab } from '../data/doner_kebab.json';
 import { panini_e_piadine } from '../data/panini_e_piadine.json';
 import { dolci } from '../data/dolci.json';
-import { bevande_e_aggiunte } from '../data/bevande_e_aggiunte.json';
+import { bevande } from '../data/bevande.json';
 import { offerte_menu } from '../data/offerte_menu.json';
 import { allergeniIcons } from "../data/allergeniIcons.js";
 import allergeniData from "../data/allergeni.json"; // per nomi tooltip
@@ -39,7 +39,7 @@ export default function MenuSection({ id }) {
     'Doner Kebab': doner_kebab,
     'Panini e Piadine': panini_e_piadine,
     'Dolci': dolci,
-    'Bevande e Aggiunte': bevande_e_aggiunte,
+    'Bevande e Aggiunte': bevande,
   };
 
   const [sezioneAttiva, setSezioneAttiva] = useState(sezioni[0]);
