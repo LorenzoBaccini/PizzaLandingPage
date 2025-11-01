@@ -4,9 +4,11 @@
             "nome": "ANGELO",
             "ingredienti": "Pomodoro, mozzarella di bufala, melanzane fritte",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 9.0,
+                "Rotonda": 9.0,
+                "1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
-                "Famiglia o Teglia intera": 33.0
+                "Teglia intera": 33.0,
+                "Famiglia":  33.0
             },
             "allergeni": [1, 7]
         },
@@ -14,9 +16,11 @@
             "nome": "BARSENIA",
             "ingredienti": "Pomodoro, mozzarella, zola, salame piccante, porcini",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 9.5,
+                "Rotonda": 9.5,
+                "1/4 di Teglia": 9.5,
                 "1/2 Teglia": 19.0,
-                "Famiglia o Teglia intera": 35.0
+                "Teglia intera": 35.0,
+                "Famiglia":  35.0
             },
             "allergeni": [1, 7]
         },
@@ -24,9 +28,11 @@
             "nome": "BIANCA",
             "ingredienti": "Mozzarella",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 5.5,
+                "Rotonda": 5.5,
+                "1/4 di Teglia": 5.5,
                 "1/2 Teglia": 11.0,
-                "Famiglia o Teglia intera": 20.0
+                "Teglia intera": 20.0,
+                "Famiglia":  20.0
             },
             "allergeni": [1, 7]
         },
@@ -34,9 +40,11 @@
             "nome": "BISMARCK",
             "ingredienti": "Pomodoro, mozzarella, prosciutto cotto, uovo",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 7.0,
+                "Rotonda": 7.0,
+                "1/4 di Teglia": 7.0,
                 "1/2 Teglia": 14.0,
-                "Famiglia o Teglia intera": 25.0
+                "Teglia intera": 25.0,
+                "Famiglia":  25.0
             },
             "allergeni": [1, 7, 3]
         },
@@ -44,9 +52,11 @@
             "nome": "BRACCIO DI FERRO",
             "ingredienti": "Pomodoro, mozzarella, ricotta, spinaci",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 7.5,
+                "Rotonda": 7.5,
+                "1/4 di Teglia": 7.5,
                 "1/2 Teglia": 15.0,
-                "Famiglia o Teglia intera": 27.0
+                "Teglia intera": 27.0,
+                "Famiglia":  27.0
             },
             "allergeni": [1, 7]
         },
@@ -54,9 +64,11 @@
             "nome": "BRESAOLA",
             "ingredienti": "Pomodoro, mozzarella, bresaola",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 9.0,
+                "Rotonda": 9.0,
+                "1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
-                "Famiglia o Teglia intera": 33.0
+                "Teglia intera": 33.0,
+                "Famiglia":  33.0
             },
             "allergeni": [1, 7]
         },
@@ -64,9 +76,11 @@
             "nome": "CALABRESE",
             "ingredienti": "Pomodoro, mozzarella, salame piccante",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 7.5,
+                "Rotonda": 7.5,
+                "1/4 di Teglia": 7.5,
                 "1/2 Teglia": 15.0,
-                "Famiglia o Teglia intera": 27.0
+                "Teglia intera": 27.0,
+                "Famiglia":  27.0
             },
             "allergeni": [1, 7]
         },
@@ -74,9 +88,11 @@
             "nome": "CAPRICCIOSA",
             "ingredienti": "pomodoro, mozzarella, prosciutto cotto, funghi, carciofi, olive, origano",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 9.0,
+                "Rotonda": 9.0,
+                "1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
-                "Famiglia o Teglia intera": 33.0
+                "Teglia intera": 33.0,
+                "Famiglia":  33.0
             },
             "allergeni": [1, 4, 7]
         },
@@ -84,9 +100,11 @@
             "nome": "CARBONARA",
             "ingredienti": "Pomodoro, mozzarella, pancetta, uovo, grana",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 8.5,
+                "Rotonda": 8.5,
+                "1/4 di Teglia": 8.5,
                 "1/2 Teglia": 17.0,
-                "Famiglia o Teglia intera": 31.0
+                "Teglia intera": 31.0,
+                "Famiglia":  31.0
             },
             "allergeni": [1, 7, 3]
         },
@@ -94,9 +112,11 @@
             "nome": "CHRISTIAN",
             "ingredienti": "Pomodoro, mozzarella di bufala, porcini, bresaola",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 10.0,
+                "Rotonda": 10.0,
+                "1/4 di Teglia": 10.0,
                 "1/2 Teglia": 20.0,
-                "Famiglia o Teglia intera": 37.0
+                "Teglia intera": 37.0,
+                "Famiglia":  37.0
             },
             "allergeni": [1, 7]
         },
@@ -104,9 +124,11 @@
             "nome": "COCKTAIL",
             "ingredienti": "Pomodoro, mozzarella, gamberetti, rucola",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 9.0,
+                "Rotonda": 9.0,
+                "1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
-                "Famiglia o Teglia intera": 33.0
+                "Teglia intera": 33.0,
+                "Famiglia":  33.0
             },
             "allergeni": [1, 2, 7]
         },
@@ -114,9 +136,11 @@
             "nome": "COTTO",
             "ingredienti": "Pomodoro, mozzarella, prosciutto cotto",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 6.5,
+                "Rotonda": 6.5,
+                "1/4 di Teglia": 6.5,
                 "1/2 Teglia": 13.0,
-                "Famiglia o Teglia intera": 23.0
+                "Teglia intera": 23.0,
+                "Famiglia":  23.0
             },
             "allergeni": [1, 7]
         },
@@ -124,9 +148,11 @@
             "nome": "COTTO E FUNGHI",
             "ingredienti": "Pomodoro, mozzarella, prosciutto cotto, funghi",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 7.5,
+                "Rotonda": 7.5,
+                "1/4 di Teglia": 7.5,
                 "1/2 Teglia": 15.0,
-                "Famiglia o Teglia intera": 27.0
+                "Teglia intera": 27.0,
+                "Famiglia":  27.0
             },
             "allergeni": [1, 7]
         },
@@ -134,9 +160,11 @@
             "nome": "CRUDO",
             "ingredienti": "Pomodoro, mozzarella, prosciutto crudo",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 8.0,
+                "Rotonda": 8.0,
+                "1/4 di Teglia": 8.0,
                 "1/2 Teglia": 16.0,
-                "Famiglia o Teglia intera": 29.0
+                "Teglia intera": 29.0,
+                "Famiglia":  29.0
             },
             "allergeni": [1, 7]
         },
@@ -144,9 +172,11 @@
             "nome": "ESTATE",
             "ingredienti": "pomodoro, mozzarella, prosciutto crudo, rucola, pomodorini, grana",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 9.0,
+                "Rotonda": 9.0,
+                "1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
-                "Famiglia o Teglia intera": 33.0
+                "Teglia intera": 33.0,
+                "Famiglia":  33.0
             },
             "allergeni": [1, 7]
         },
@@ -154,9 +184,11 @@
             "nome": "FANTASTICA",
             "ingredienti": "Pomodoro, mozzarella, tonno, peperoni, salame piccante",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 9.0,
+                "Rotonda": 9.0,
+                "1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
-                "Famiglia o Teglia intera": 33.0
+                "Teglia intera": 33.0,
+                "Famiglia":  33.0
             },
             "allergeni": [1, 4, 7]
         },
@@ -164,9 +196,11 @@
             "nome": "FOCACCIA LISCIA",
             "ingredienti": "Olio, origano",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 4.0,
+                "Rotonda": 4.0,
+                "1/4 di Teglia": 4.0,
                 "1/2 Teglia": 8.0,
-                "Famiglia o Teglia intera": 14.0
+                "Teglia intera": 14.0,
+                "Famiglia":  14.0
             },
             "allergeni": [1]
         },
@@ -174,9 +208,11 @@
             "nome": "FUMÉ",
             "ingredienti": "Pomodoro, mozzarella, scamorza, pancetta, speck",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 9.0,
+                "Rotonda": 9.0,
+                "1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
-                "Famiglia o Teglia intera": 33.0
+                "Teglia intera": 33.0,
+                "Famiglia":  33.0
             },
             "allergeni": [1, 7]
         },
@@ -184,9 +220,11 @@
             "nome": "FUNGHI",
             "ingredienti": "Pomodoro, mozzarella, funghi",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 7.0,
+                "Rotonda": 7.0,
+                "1/4 di Teglia": 7.0,
                 "1/2 Teglia": 14.0,
-                "Famiglia o Teglia intera": 25.0
+                "Teglia intera": 25.0,
+                "Famiglia":  25.0
             },
             "allergeni": [1, 7]
         },
@@ -194,9 +232,11 @@
             "nome": "GIOIA",
             "ingredienti": "Pomodoro, mozzarella di bufala, prosciutto crudo",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 9.5,
+                "Rotonda": 9.5,
+                "1/4 di Teglia": 9.5,
                 "1/2 Teglia": 19.0,
-                "Famiglia o Teglia intera": 35.0
+                "Teglia intera": 35.0,
+                "Famiglia":  35.0
             },
             "allergeni": [1, 7]
         },
@@ -204,9 +244,11 @@
             "nome": "GOLOSA",
             "ingredienti": "Pomodoro, mozzarella, porcini, speck",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 9.0,
+                "Rotonda": 9.0,
+                "1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
-                "Famiglia o Teglia intera": 33.0
+                "Teglia intera": 33.0,
+                "Famiglia":  33.0
             },
             "allergeni": [1, 7]
         },
@@ -214,9 +256,11 @@
             "nome": "ITALIA",
             "ingredienti": "Pomodoro, mozzarella, bresaola, rucola, grana",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 9.5,
+                "Rotonda": 9.5,
+                "1/4 di Teglia": 9.5,
                 "1/2 Teglia": 19.0,
-                "Famiglia o Teglia intera": 35.0
+                "Teglia intera": 35.0,
+                "Famiglia":  35.0
             },
             "allergeni": [1, 7]
         },
@@ -224,9 +268,11 @@
             "nome": "KERO",
             "ingredienti": "Mozzarella di bufala, salsiccia, porcini",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 9.5,
+                "Rotonda": 9.5,
+                "1/4 di Teglia": 9.5,
                 "1/2 Teglia": 19.0,
-                "Famiglia o Teglia intera": 35.0
+                "Teglia intera": 35.0,
+                "Famiglia":  35.0
             },
             "allergeni": [1, 7]
         },
@@ -234,9 +280,11 @@
             "nome": "LEO",
             "ingredienti": "Mozzarella, burrata, pomodorini, prosciutto cotto",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 9.5,
+                "Rotonda": 9.5,
+                "1/4 di Teglia": 9.5,
                 "1/2 Teglia": 19.0,
-                "Famiglia o Teglia intera": 35.0
+                "Teglia intera": 35.0,
+                "Famiglia":  35.0
             },
             "allergeni": [1, 7]
         },
@@ -244,9 +292,11 @@
             "nome": "MAIVEN",
             "ingredienti": "Pomodoro, mozzarella, 'nduja, asparagi, pancetta",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 8.5,
+                "Rotonda": 8.5,
+                "1/4 di Teglia": 8.5,
                 "1/2 Teglia": 17.0,
-                "Famiglia o Teglia intera": 31.0
+                "Teglia intera": 31.0,
+                "Famiglia":  31.0
             },
             "allergeni": [1, 7]
         },
@@ -254,9 +304,11 @@
             "nome": "MARGHERITA",
             "ingredienti": "Pomodoro, mozzarella",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 5.5,
+                "Rotonda": 5.5,
+                "1/4 di Teglia": 5.5,
                 "1/2 Teglia": 11.0,
-                "Famiglia o Teglia intera": 20.0
+                "Teglia intera": 20.0,
+                "Famiglia":  20.0
             },
             "allergeni": [1, 7]
         },
@@ -264,9 +316,11 @@
             "nome": "MARE E MONTI",
             "ingredienti": "Pomodoro, mozzarella, gamberetti, salmone, porcini",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 10.0,
+                "Rotonda": 10.0,
+                "1/4 di Teglia": 10.0,
                 "1/2 Teglia": 20.0,
-                "Famiglia o Teglia intera": 37.0
+                "Teglia intera": 37.0,
+                "Famiglia":  37.0
             },
             "allergeni": [1, 7, 2, 4]
         },
@@ -274,9 +328,11 @@
             "nome": "MARINARA",
             "ingredienti": "Pomodoro, aglio, olio, origano",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 4.0,
+                "Rotonda": 4.0,
+                "1/4 di Teglia": 4.0,
                 "1/2 Teglia": 8.0,
-                "Famiglia o Teglia intera": 14.0
+                "Teglia intera": 14.0,
+                "Famiglia":  14.0
             },
             "allergeni": [1]
         },
@@ -284,9 +340,11 @@
             "nome": "MEZZALUNA",
             "ingredienti": "Metà: Pomodoro, mozzarella, prosciutto cotto; Metà: Pomodoro, mozzarella, salame piccante, funghi, olive",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 9.5,
+                "Rotonda": 9.5,
+                "1/4 di Teglia": 9.5,
                 "1/2 Teglia": 19.0,
-                "Famiglia o Teglia intera": 35.0
+                "Teglia intera": 35.0,
+                "Famiglia":  35.0
             },
             "allergeni": [1, 7]
         },
@@ -294,9 +352,11 @@
             "nome": "NAPOLI",
             "ingredienti": "Pomodoro, mozzarella, acciughe, origano",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 6.5,
+                "Rotonda": 6.5,
+                "1/4 di Teglia": 6.5,
                 "1/2 Teglia": 13.0,
-                "Famiglia o Teglia intera": 23.0
+                "Teglia intera": 23.0,
+                "Famiglia":  23.0
             },
             "allergeni": [1, 4, 7]
         },
@@ -304,9 +364,11 @@
             "nome": "'NDUJA E ZOLA",
             "ingredienti": "Pomodoro, mozzarella, 'nduja, zola",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 8.0,
+                "Rotonda": 8.0,
+                "1/4 di Teglia": 8.0,
                 "1/2 Teglia": 16.0,
-                "Famiglia o Teglia intera": 29.0
+                "Teglia intera": 29.0,
+                "Famiglia":  29.0
             },
             "allergeni": [1, 7]
         },
@@ -314,9 +376,11 @@
             "nome": "OLIVE",
             "ingredienti": "Pomodoro, mozzarella, olive nere",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 6.5,
+                "Rotonda": 6.5,
+                "1/4 di Teglia": 6.5,
                 "1/2 Teglia": 13.0,
-                "Famiglia o Teglia intera": 23.0
+                "Teglia intera": 23.0,
+                "Famiglia":  23.0
             },
             "allergeni": [1, 7]
         },
@@ -324,9 +388,11 @@
             "nome": "PANNA E SALMONE",
             "ingredienti": "Pomodoro, mozzarella, panna, salmone",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 8.5,
+                "Rotonda": 8.5,
+                "1/4 di Teglia": 8.5,
                 "1/2 Teglia": 17.0,
-                "Famiglia o Teglia intera": 31.0
+                "Teglia intera": 31.0,
+                "Famiglia":  31.0
             },
             "allergeni": [1, 7, 4]
         },
@@ -334,9 +400,11 @@
             "nome": "PARMIGIANA",
             "ingredienti": "Pomodoro, mozzarella, melanzane, grana",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 7.0,
+                "Rotonda": 7.0,
+                "1/4 di Teglia": 7.0,
                 "1/2 Teglia": 14.0,
-                "Famiglia o Teglia intera": 25.0
+                "Teglia intera": 25.0,
+                "Famiglia":  25.0
             },
             "allergeni": [1, 7]
         },
@@ -344,9 +412,11 @@
             "nome": "PATATINA",
             "ingredienti": "Pomodoro, mozzarella, patatine",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 6.5,
+                "Rotonda": 6.5,
+                "1/4 di Teglia": 6.5,
                 "1/2 Teglia": 13.0,
-                "Famiglia o Teglia intera": 23.0
+                "Teglia intera": 23.0,
+                "Famiglia":  23.0
             },
             "allergeni": [1, 7]
         },
@@ -354,9 +424,11 @@
             "nome": "PIZZA KEBAB",
             "ingredienti": "Pomodoro, mozzarella, kebab, insalata, pomodoro fresco, cipolla, salsa bianca, salsa piccante",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 10.0,
+                "Rotonda": 10.0,
+                "1/4 di Teglia": 10.0,
                 "1/2 Teglia": 20.0,
-                "Famiglia o Teglia intera": 37.0
+                "Teglia intera": 37.0,
+                "Famiglia":  37.0
             },
             "allergeni": [1, 7]
         },
@@ -364,9 +436,11 @@
             "nome": "PIZZA KEBAB 2",
             "ingredienti": "Pomodoro, mozzarella, kebab, patatine, salsa bianca, salsa piccante",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 10.0,
+                "Rotonda": 10.0,
+                "1/4 di Teglia": 10.0,
                 "1/2 Teglia": 20.0,
-                "Famiglia o Teglia intera": 37.0
+                "Teglia intera": 37.0,
+                "Famiglia":  37.0
             },
             "allergeni": [1, 7]
         },
@@ -374,9 +448,11 @@
             "nome": "PIZZA KEBAB SPECIALE",
             "ingredienti": "Pomodoro, mozzarella, kebab, 'nduja, cipolla, funghi, melanzane",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 12.0,
+                "Rotonda": 12.0,
+                "1/4 di Teglia": 12.0,
                 "1/2 Teglia": 24.0,
-                "Famiglia o Teglia intera": 45.0
+                "Teglia intera": 45.0,
+                "Famiglia":  45.0
             },
             "allergeni": [1, 7, 3]
         },
@@ -384,9 +460,11 @@
             "nome": "PRIMAVERA",
             "ingredienti": "Pomodoro, mozzarella, rucola, pomodorini",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 7.5,
+                "Rotonda": 7.5,
+                "1/4 di Teglia": 7.5,
                 "1/2 Teglia": 15.0,
-                "Famiglia o Teglia intera": 27.0
+                "Teglia intera": 27.0,
+                "Famiglia":  27.0
             },
             "allergeni": [1, 7]
         },
@@ -394,9 +472,11 @@
             "nome": "PUGLIESE",
             "ingredienti": "Pomodoro, mozzarella, cipolla rossa",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 6.5,
+                "Rotonda": 6.5,
+                "1/4 di Teglia": 6.5,
                 "1/2 Teglia": 13.0,
-                "Famiglia o Teglia intera": 23.0
+                "Teglia intera": 23.0,
+                "Famiglia":  23.0
             },
             "allergeni": [1, 7]
         },
@@ -404,9 +484,11 @@
             "nome": "QUATTRO FORMAGGI",
             "ingredienti": "Mozzarella, zola, scamorza, grana",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 8.0,
+                "Rotonda": 8.0,
+                "1/4 di Teglia": 8.0,
                 "1/2 Teglia": 16.0,
-                "Famiglia o Teglia intera": 29.0
+                "Teglia intera": 29.0,
+                "Famiglia":  29.0
             },
             "allergeni": [1, 7]
         },
@@ -414,9 +496,11 @@
             "nome": "QUATTRO STAGIONI",
             "ingredienti": "Pomodoro, mozzarella, prosciutto cotto, funghi, carciofi, olive",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 8.5,
+                "Rotonda": 8.5,
+                "1/4 di Teglia": 8.5,
                 "1/2 Teglia": 17.0,
-                "Famiglia o Teglia intera": 31.0
+                "Teglia intera": 31.0,
+                "Famiglia":  31.0
             },
             "allergeni": [1, 7]
         },
@@ -424,9 +508,11 @@
             "nome": "ROMANA",
             "ingredienti": "Pomodoro, mozzarella, acciughe, olive, capperi, origano",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 8.0,
+                "Rotonda": 8.0,
+                "1/4 di Teglia": 8.0,
                 "1/2 Teglia": 16.0,
-                "Famiglia o Teglia intera": 29.0
+                "Teglia intera": 29.0,
+                "Famiglia":  29.0
             },
             "allergeni": [1, 7, 4]
         },
@@ -434,9 +520,11 @@
             "nome": "RUCOLA",
             "ingredienti": "Pomodoro, mozzarella, rucola",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 6.5,
+                "Rotonda": 6.5,
+                "1/4 di Teglia": 6.5,
                 "1/2 Teglia": 13.0,
-                "Famiglia o Teglia intera": 23.0
+                "Teglia intera": 23.0,
+                "Famiglia":  23.0
             },
             "allergeni": [1, 7]
         },
@@ -444,9 +532,11 @@
             "nome": "SALAME DOLCE",
             "ingredienti": "Pomodoro, mozzarella, salame dolce",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 7.0,
+                "Rotonda": 7.0,
+                "1/4 di Teglia": 7.0,
                 "1/2 Teglia": 14.0,
-                "Famiglia o Teglia intera": 25.0
+                "Teglia intera": 25.0,
+                "Famiglia":  25.0
             },
             "allergeni": [1, 7]
         },
@@ -454,9 +544,11 @@
             "nome": "SALSICCIA E FRIARIELLI",
             "ingredienti": "Pomodoro, mozzarella, salsiccia, friarielli",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 8.0,
+                "Rotonda": 8.0,
+                "1/4 di Teglia": 8.0,
                 "1/2 Teglia": 16.0,
-                "Famiglia o Teglia intera": 29.0
+                "Teglia intera": 29.0,
+                "Famiglia":  29.0
             },
             "allergeni": [1, 7]
         },
@@ -464,9 +556,11 @@
             "nome": "SALSICCIA E PATATINE",
             "ingredienti": "Pomodoro, mozzarella, salsiccia, patatine",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 8.5,
+                "Rotonda": 8.5,
+                "1/4 di Teglia": 8.5,
                 "1/2 Teglia": 17.0,
-                "Famiglia o Teglia intera": 31.0
+                "Teglia intera": 31.0,
+                "Famiglia":  31.0
             },
             "allergeni": [1, 7]
         },
@@ -474,9 +568,11 @@
             "nome": "SAPORE DI MARE",
             "ingredienti": "Pomodoro, mozzarella, frutti di mare",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 9.0,
+                "Rotonda": 9.0,
+                "1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
-                "Famiglia o Teglia intera": 33.0
+                "Teglia intera": 33.0,
+                "Famiglia":  33.0
             },
             "allergeni": [1, 7, 4, 2, 14]
         },
@@ -484,9 +580,11 @@
             "nome": "SAPORITA",
             "ingredienti": "Pomodoro, mozzarella, prosciutto cotto, salame piccante, zola",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 9.0,
+                "Rotonda": 9.0,
+                "1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
-                "Famiglia o Teglia intera": 33.0
+                "Teglia intera": 33.0,
+                "Famiglia":  33.0
             },
             "allergeni": [1, 7]
         },
@@ -494,9 +592,11 @@
             "nome": "SCAMORZA E SPECK",
             "ingredienti": "Pomodoro, mozzarella, scamorza, speck",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 9.0,
+                "Rotonda": 9.0,
+                "1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
-                "Famiglia o Teglia intera": 33.0
+                "Teglia intera": 33.0,
+                "Famiglia":  33.0
             },
             "allergeni": [1, 7]
         },
@@ -504,9 +604,11 @@
             "nome": "SOLE",
             "ingredienti": "Pomodoro, mozzarella, bresaola, porcini, brie",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 10.0,
+                "Rotonda": 10.0,
+                "1/4 di Teglia": 10.0,
                 "1/2 Teglia": 20.0,
-                "Famiglia o Teglia intera": 37.0
+                "Teglia intera": 37.0,
+                "Famiglia":  37.0
             },
             "allergeni": [1, 7]
         },
@@ -514,9 +616,11 @@
             "nome": "TONNO E CIPOLLA",
             "ingredienti": "Pomodoro, mozzarella, tonno, cipolla rossa",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 8.0,
+                "Rotonda": 8.0,
+                "1/4 di Teglia": 8.0,
                 "1/2 Teglia": 16.0,
-                "Famiglia o Teglia intera": 29.0
+                "Teglia intera": 29.0,
+                "Famiglia":  29.0
             },
             "allergeni": [1, 7, 4]
         },
@@ -524,9 +628,11 @@
             "nome": "TRE COLORI",
             "ingredienti": "Pomodoro, mozzarella, ricotta, spinaci, pomodorini",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 7.5,
+                "Rotonda": 7.5,
+                "1/4 di Teglia": 7.5,
                 "1/2 Teglia": 15.0,
-                "Famiglia o Teglia intera": 27.0
+                "Teglia intera": 27.0,
+                "Famiglia":  27.0
             },
             "allergeni": [1, 7]
         },
@@ -534,9 +640,11 @@
             "nome": "TRIS",
             "ingredienti": "Pomodoro, mozzarella, prosciutto cotto, salsiccia, wurstel",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 8.5,
+                "Rotonda": 8.5,
+                "1/4 di Teglia": 8.5,
                 "1/2 Teglia": 17.0,
-                "Famiglia o Teglia intera": 31.0
+                "Teglia intera": 31.0,
+                "Famiglia":  31.0
             },
             "allergeni": [1, 7]
         },
@@ -544,9 +652,11 @@
             "nome": "VEGANA",
             "ingredienti": "Pomodoro, patatine fritte, falafel",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 9.0,
+                "Rotonda": 9.0,
+                "1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
-                "Famiglia o Teglia intera": 33.0
+                "Teglia intera": 33.0,
+                "Famiglia":  33.0
             },
             "allergeni": [1, 7]
         },
@@ -554,9 +664,11 @@
             "nome": "VEGETARIANA",
             "ingredienti": "Pomodoro, mozzarella, melanzane, zucchine, peperoni, origano",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 8.0,
+                "Rotonda": 8.0,
+                "1/4 di Teglia": 8.0,
                 "1/2 Teglia": 16.0,
-                "Famiglia o Teglia intera": 29.0
+                "Teglia intera": 29.0,
+                "Famiglia":  29.0
             },
             "allergeni": [1, 7]
         },
@@ -564,9 +676,11 @@
             "nome": "WURSTEL",
             "ingredienti": "Pomodoro, mozzarella, wurstel",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 6.5,
+                "Rotonda": 6.5,
+                "1/4 di Teglia": 6.5,
                 "1/2 Teglia": 13.0,
-                "Famiglia o Teglia intera": 23.0
+                "Teglia intera": 23.0,
+                "Famiglia":  23.0
             },
             "allergeni": [1, 7]
         },
@@ -574,9 +688,11 @@
             "nome": "WURSTEL E CRAUTI",
             "ingredienti": "Pomodoro, mozzarella, wurstel, crauti",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 7.5,
+                "Rotonda": 7.5,
+                "1/4 di Teglia": 7.5,
                 "1/2 Teglia": 15.0,
-                "Famiglia o Teglia intera": 27.0
+                "Teglia intera": 27.0,
+                "Famiglia":  27.0
             },
             "allergeni": [1, 7]
         },
@@ -584,9 +700,11 @@
             "nome": "WURSTEL E PATATINE",
             "ingredienti": "Pomodoro, mozzarella, wurstel, patatine",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 8.0,
+                "Rotonda": 8.0,
+                "1/4 di Teglia": 8.0,
                 "1/2 Teglia": 16.0,
-                "Famiglia o Teglia intera": 29.0
+                "Teglia intera": 29.0,
+                "Famiglia":  29.0
             },
             "allergeni": [1, 7]
         },
@@ -594,9 +712,11 @@
             "nome": "ZOLA BIANCA",
             "ingredienti": "Mozzarella, zola",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 7.0,
+                "Rotonda": 7.0,
+                "1/4 di Teglia": 7.0,
                 "1/2 Teglia": 14.0,
-                "Famiglia o Teglia intera": 25.0
+                "Teglia intera": 25.0,
+                "Famiglia":  25.0
             },
             "allergeni": [1, 7]
         },
@@ -604,9 +724,11 @@
             "nome": "ZOLA NOCI",
             "ingredienti": "Mozzarella, zola, noci",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 8.0,
+                "Rotonda": 8.0,
+                "1/4 di Teglia": 8.0,
                 "1/2 Teglia": 16.0,
-                "Famiglia o Teglia intera": 29.0
+                "Teglia intera": 29.0,
+                "Famiglia":  29.0
             },
             "allergeni": [1, 7, 8]
         },
@@ -614,9 +736,11 @@
             "nome": "2014",
             "ingredienti": "Mozzarella, prosciutto cotto, panna, mais",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 9.0,
+                "Rotonda": 9.0,
+                "1/4 di Teglia": 9.0,
                 "1/2 Teglia": 18.0,
-                "Famiglia o Teglia intera": 33.0
+                "Teglia intera": 33.0,
+                "Famiglia":  33.0
             },
             "allergeni": [1, 7]
         },
@@ -624,9 +748,11 @@
             "nome": "2015",
             "ingredienti": "Formaggi misti, scamorza, salame piccante",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 10.0,
+                "Rotonda": 10.0,
+                "1/4 di Teglia": 10.0,
                 "1/2 Teglia": 20.0,
-                "Famiglia o Teglia intera": 35.0
+                "Teglia intera": 35.0,
+                "Famiglia":  35.0
             },
             "allergeni": [1, 7]
         },
@@ -634,9 +760,11 @@
             "nome": "2022",
             "ingredienti": "Pomodoro, mozzarella, gamberetti, panna, mais",
             "prezzi": {
-                "Rotonda o 1/4 di Teglia": 8.5,
+                "Rotonda": 8.5,
+                "1/4 di Teglia": 8.5,
                 "1/2 Teglia": 17.0,
-                "Famiglia o Teglia intera": 31.0
+                "Teglia intera": 31.0,
+                "Famiglia":  31.0
             },
             "allergeni": [1, 7, 2]
         }

@@ -273,12 +273,12 @@
     gap: 8px;
     margin-top: 8px;
   }
-  
+
   .btnAddToOrder {
     font-size: 0.9rem;
     padding: 8px 16px;
   }
-  
+
   .quantityBtn {
     width: 28px;
     height: 28px;
@@ -309,6 +309,12 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.formatRow {
+  display: flex;
+  gap: 8px;
+  justify-content: end;
 }
 
 .formatButton {
@@ -382,7 +388,7 @@
     flex-direction: row;
     flex-wrap: wrap;
   }
-  
+
   .formatButton {
     flex: 1;
     min-width: 140px;
@@ -394,22 +400,22 @@
     padding: 10px;
     margin-bottom: 12px;
   }
-  
+
   .formatLabel {
     font-size: 0.85rem;
     margin-bottom: 6px;
   }
-  
+
   .formatButton {
     padding: 4px 10px;
     font-size: 0.75rem;
   }
-  
+
   .formatPrice {
     font-size: 0.75rem;
     padding: 2px 7px;
   }
-  
+
   .totalBadge {
     padding: 1px 8px;
     font-size: 0.8rem;
@@ -427,7 +433,8 @@
   flex: 1;
   width: 100%;
   font-size: 16px;
-  padding: 10px 40px 10px 14px; /* spazio per X a destra */
+  padding: 10px 40px 10px 14px;
+  /* spazio per X a destra */
   border: 2px solid #b04030;
   border-radius: 8px;
   background-color: #fff;
@@ -503,7 +510,8 @@
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  margin-bottom: 10px; /* o quello che usi */
+  margin-bottom: 10px;
+  /* o quello che usi */
 }
 
 .pizzaNome {

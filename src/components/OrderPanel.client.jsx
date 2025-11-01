@@ -41,6 +41,23 @@ export default function OrderPanel({
   const [intercom, setIntercom] = useState("");
   const [preferredTime, setPreferredTime] = useState(null);
   const [timeError, setTimeError] = useState("");
+  const [infoMessage, setInfoMessage] = useState("");
+
+  const isOpenNow = () => {
+    const now = dayjs();
+
+    // Fasce orarie di apertura: 11:00 - 15:00 e 17:30 - 00:00
+    const morningStart = now.startOf('day').hour(11).minute(0);
+    const morningEnd = now.startOf('day').hour(15).minute(0);
+
+    const eveningStart = now.startOf('day').hour(17).minute(30);
+    const eveningEnd = now.add(1, 'day').startOf('day').hour(0).minute(0); // mezzanotte fine giornata
+
+    const isInMorning = now.isBetween(morningStart, morningEnd, null, '[)');
+    const isInEvening = now.isBetween(eveningStart, eveningEnd, null, '[)');
+
+    return isInMorning || isInEvening;
+  };
 
   useEffect(() => {
     if (isOpen && !wasOpen.current) {
@@ -54,61 +71,153 @@ export default function OrderPanel({
     return () => window.removeEventListener("popstate", onPopState);
   }, [isOpen, onClose]);
 
-  const isTimeAllowed = (time) => {
-    if (!time) return { allowed: true };
+  // Funzioni per gli orari di apertura
+  const sundayDeliveryStart = dayjs().hour(18).minute(0).second(0);
+  const sundayDeliveryEnd = dayjs().hour(22).minute(0).second(0);
+  const openMorningStart = dayjs().hour(11).minute(0).second(0);
+  const openMorningEnd = dayjs().hour(15).minute(0).second(0);
+  const openDeliveryStart = dayjs().hour(18).minute(0).second(0);
+  const openDeliveryEnd = dayjs().hour(22).minute(0).second(0);
 
-    const now = dayjs();
-    const selected = dayjs(time);
-
-    if (selected.isBefore(now, "minute")) {
-      return { allowed: false, reason: "past" };
-    }
-
+  // Calcola il prossimo orario valido partendo da now + 30 minuti
+  const getNextValidTime = () => {
+    const now = dayjs().add(30, "minute");
     const day = now.day();
 
-    if (day === 0) {
-      const sundayDeliveryStart = now.hour(18).minute(0).second(0);
-      const sundayDeliveryEnd = now.hour(22).minute(0).second(0);
-      const inSundayDelivery = selected.isBetween(sundayDeliveryStart, sundayDeliveryEnd, null, "[)");
-      if (!inSundayDelivery) {
-        return { allowed: false, reason: "closed" };
+    setInfoMessage("");
+
+    if (day === 0) { // domenica
+      if (now.isAfter(sundayDeliveryEnd)) {
+        setInfoMessage("La pizzeria è chiusa. Gli ordini saranno disponibili dal giorno successivo.");
+        return null; // niente selezione possibile
       }
-      return { allowed: true };
+      if (now.isBefore(sundayDeliveryStart)) {
+        return sundayDeliveryStart;
+      }
+      if (now.isAfter(sundayDeliveryStart) && now.isBefore(sundayDeliveryEnd)) {
+        return now;
+      }
+    } else {
+      // Giorni feriali 
+      if (now.isBefore(openMorningStart)) {
+        return openMorningStart;
+      }
+      if (now.isAfter(openMorningEnd) && now.isBefore(openDeliveryStart)) {
+        return openDeliveryStart;
+      }
+      if (now.isAfter(openDeliveryEnd)) {
+        setInfoMessage("La pizzeria è chiusa. Gli ordini saranno disponibili dal giorno successivo.");
+        return null;
+      }
+      if ((now.isAfter(openMorningStart) && now.isBefore(openMorningEnd)) || (now.isAfter(openDeliveryStart) && now.isBefore(openDeliveryEnd))) {
+        return now;
+      }
     }
-
-    const openMorningStart = now.hour(11).minute(0).second(0);
-    const openMorningEnd = now.hour(15).minute(0).second(0);
-    const openDeliveryStart = now.hour(18).minute(0).second(0);
-    const openDeliveryEnd = now.hour(22).minute(0).second(0);
-
-    const inMorningWindow = selected.isBetween(openMorningStart, openMorningEnd, null, "[)");
-    const inDeliveryWindow = selected.isBetween(openDeliveryStart, openDeliveryEnd, null, "[)");
-
-    if (!inMorningWindow && !inDeliveryWindow) {
-      return { allowed: false, reason: "closed" };
-    }
-
-    return { allowed: true };
+    return null;
   };
 
-  const handlePreferredTimeChange = (time) => {
-    if (!time) {
-      setPreferredTime(null);
-      setTimeError("");
-      return;
+  // Ore e minuti per creare gli slot in step di 15 minuti
+  const slotsTimes = [];
+
+  // Funzione per generare gli slot di tempo dati start/end in formato "HH:mm"
+  const generateSlots = () => {
+    const slots = [];
+    let startHour, endHour;
+
+    if (day === 0) { // Domenica
+      startHour = 18;
+      endHour = 22;
+    } else {
+      startHour = 11; // Giorni feriali mattina
+      endHour = 13;
+      // Puoi aggiungere gli orari serali simili se necessario
     }
-    const { allowed, reason } = isTimeAllowed(time);
-    if (!allowed) {
-      setTimeError(
-        reason === "past"
-          ? "Orario non valido. Hai selezionato un orario già passato."
-          : "Orario non disponibile. La pizzeria è chiusa in questo orario."
-      );
+
+    const nowDate = dayjs().startOf('day'); // Data corrente a mezzanotte
+
+    for (let hour = startHour; hour < endHour; hour++) {
+      for (let min = 0; min < 60; min += 15) {
+        // Associa data corrente a slot orario
+        slots.push(nowDate.hour(hour).minute(min).second(0));
+      }
+    }
+    return slots;
+  };
+
+  const day = dayjs().day(); // 0 = domenica
+
+  // Generiamo gli slot solo se non domenica mattina
+  if (day !== 0) {
+    slotsTimes.push(...generateSlots("11:30", "15:00"));
+  }
+
+  slotsTimes.push(...generateSlots("18:00", "22:00"));
+
+  // Ora corrente
+  const now = dayjs();
+
+  // Controlla se la pizzeria è aperta adesso o no
+  const isClosedNow = () => {
+    if (day === 0) {
+      // Domenica mattina chiusa fino alle 18:00
+      if (now.isBefore(dayjs().hour(18).minute(0))) return true;
+    }
+    // Fuori dai range orari (11:30-15:00 e 18:00-22:00)
+    const morningOpen = now.isBetween(dayjs().hour(11).minute(30), dayjs().hour(15).minute(0), null, "[)");
+    const eveningOpen = now.isBetween(dayjs().hour(18).minute(0), dayjs().hour(22).minute(0), null, "[)");
+
+    if (!morningOpen && !eveningOpen) return true;
+    return false;
+  };
+
+  // Messaggi di chiusura o info
+  useEffect(() => {
+    if (isClosedNow()) {
+      setInfoMessage("La pizzeria è chiusa. Gli ordini saranno disponibili dal giorno successivo.");
+    } else if (day === 0 && now.isBefore(dayjs().hour(18).minute(0))) {
+      setInfoMessage("La domenica mattina è chiusa la pizzeria. Orari disponibili dalle 18:00.");
+    } else {
+      setInfoMessage("");
+    }
+  }, [now, day]);
+
+  // Funzione per disabilitare slot in base a ora attuale + 30 minuti minimo prenotazione
+  const isSlotDisabled = (slot) => {
+    const nowWithDate = dayjs();
+    const limit = nowWithDate.add(30, "minute");
+
+    // Slot prima del limite orario attuale + 30 minuti disabilitati
+    if (slot.isBefore(limit)) return true;
+
+    // Domenica chiusura mattina, slot prima delle 18 disabilitati
+    if (day === 0 && slot.isBefore(dayjs().startOf('day').hour(18).minute(0))) return true;
+
+    // Orari dopo le 22:00 disabilitati
+    if (slot.isAfter(dayjs().startOf('day').hour(22).minute(0))) return true;
+
+    return false;
+  };
+
+  // Gestore selezione slot orario
+  const handleSelectTime = (slot) => {
+    if (isSlotDisabled(slot)) {
+      setTimeError("Orario non disponibile, scegli un altro orario.");
       return;
     }
     setTimeError("");
-    setPreferredTime(time);
+    setPreferredTime(slot);
   };
+
+  // Al montaggio, imposta l'orario di default valido
+  useEffect(() => {
+    const nextValid = getNextValidTime();
+    if (nextValid) {
+      setPreferredTime(nextValid);
+      setTimeError("");
+    } else {
+      setPreferredTime(null);
+    }
+  }, []);
 
   // Funzione per calcolare il totale
   const calculateTotal = () =>
@@ -162,6 +271,18 @@ export default function OrderPanel({
       setAddressError("Inserisci l'indirizzo di consegna");
       return;
     }
+
+    if (!isOpenNow()) {
+      setTimeError("La pizzeria è chiusa. Non è possibile inviare ordini.");
+      return;
+    }
+
+    // Controlla orario preferito: se errore o non selezionato blocca invio
+    if (timeError || !preferredTime) {
+      setTimeError("Seleziona un orario di ritiro/consegna valido prima di procedere");
+      return;
+    }
+
     setAddressError("");
     const message = encodeURIComponent(formatOrderText());
     const url = `https://wa.me/${CONFIG.whatsappNumber}?text=${message}`;
@@ -405,20 +526,48 @@ export default function OrderPanel({
             </>
           )}
 
-          <p>Puoi suggerire un orario preferito di ritiro o ricezione ordine:</p>
-          <TimePicker
-            value={preferredTime}
-            onChange={handlePreferredTimeChange}
-            format="HH:mm"
-            style={{ marginBottom: 10, width: "100%", popup: { root: { zIndex: 5050 } } }}
-            placeholder="Seleziona orario preferito"
-            status={timeError ? "error" : ""}
-          />
-          {timeError && (
-            <div style={{ color: "red", fontSize: "0.85rem", marginTop: -8, marginBottom: 10 }}>
-              {timeError}
+          <div>
+            <p>Puoi suggerire un orario preferito di ritiro o ricezione ordine:</p>
+
+            <div className={styles.timeSlotsWrapper}>
+              {slotsTimes.length === 0 && (
+                <div className={styles.messageInfo}>
+                  La pizzeria è chiusa. Gli ordini saranno disponibili dal giorno successivo.
+                </div>
+              )}
+
+              <div className={styles.timeSlotsContainer}>
+                {slotsTimes.map((slot) => {
+                  const disabled = isSlotDisabled(slot);
+                  const isSelected = preferredTime && slot.isSame(preferredTime);
+
+                  return (
+                    <button
+                      key={slot.format("HH:mm")}
+                      onClick={() => handleSelectTime(slot)}
+                      disabled={disabled}
+                      className={`${styles.timeSlotButton} ${isSelected ? styles.selected : ""} ${disabled ? styles.disabled : ""}`}
+                      aria-pressed={isSelected}
+                      aria-disabled={disabled}
+                    >
+                      {slot.format("HH:mm")}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-          )}
+
+            {timeError && (
+              <div className={styles.messageError}>
+                {timeError}
+              </div>
+            )}
+            {infoMessage && !timeError && (
+              <div className={styles.messageInfo}>
+                {infoMessage}
+              </div>
+            )}
+          </div>
 
           <p style={{ fontStyle: "italic", fontSize: "small" }}>
             L'ordine si può definire accettato solo quando si riceve un messaggio

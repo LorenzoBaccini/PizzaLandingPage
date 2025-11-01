@@ -26,7 +26,7 @@ export default function MenuSection({ id }) {
     'Doner Kebab',
     'Panini e Piadine',
     'Dolci',
-    'Bevande e Aggiunte'
+    'Bevande'
   ];
 
   const contenuti = {
@@ -339,20 +339,51 @@ export default function MenuSection({ id }) {
                     <div className={styles.formatSelector}>
                       <label className={styles.formatLabel}>Formato:</label>
                       <div className={styles.formatButtons}>
-                        {formats.map((formato) => (
-                          <button
-                            key={formato}
-                            className={`${styles.formatButton} ${selectedFormat === formato ? styles.formatButtonActive : ""
-                              }`}
-                            onClick={() => setSelectedFormat(item, formato)}
-                            type="button"
-                          >
-                            {formato}
-                            <span className={styles.formatPrice}>
-                              €{item.prezzi[formato].toFixed(2)}
-                            </span>
-                          </button>
-                        ))}
+                        <div className={styles.formatRow}>
+                          {formats.filter(f => f === "Rotonda" || f === "1/4 di Teglia").map(formato => (
+                            <button
+                              key={formato}
+                              className={`${styles.formatButton} ${selectedFormat === formato ? styles.formatButtonActive : ""}`}
+                              onClick={() => setSelectedFormat(item, formato)}
+                              type="button"
+                            >
+                              {formato}
+                              <span className={styles.formatPrice}>
+                                €{item.prezzi[formato].toFixed(2)}
+                              </span>
+                            </button>
+                          ))}
+                        </div>
+                        <div className={styles.formatRow}>
+                          {formats.filter(f => f === "1/2 Teglia").map(formato => (
+                            <button
+                              key={formato}
+                              className={`${styles.formatButton} ${selectedFormat === formato ? styles.formatButtonActive : ""}`}
+                              onClick={() => setSelectedFormat(item, formato)}
+                              type="button"
+                            >
+                              {formato}
+                              <span className={styles.formatPrice}>
+                                €{item.prezzi[formato].toFixed(2)}
+                              </span>
+                            </button>
+                          ))}
+                        </div>
+                        <div className={styles.formatRow}>
+                          {formats.filter(f => f === "Famiglia" || f === "Teglia intera").map(formato => (
+                            <button
+                              key={formato}
+                              className={`${styles.formatButton} ${selectedFormat === formato ? styles.formatButtonActive : ""}`}
+                              onClick={() => setSelectedFormat(item, formato)}
+                              type="button"
+                            >
+                              {formato}
+                              <span className={styles.formatPrice}>
+                                €{item.prezzi[formato].toFixed(2)}
+                              </span>
+                            </button>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   )}
@@ -362,6 +393,7 @@ export default function MenuSection({ id }) {
                       <strong>Prezzo</strong> <em>{item.prezzo}€</em>
                     </div>
                   )}
+
 
                   <div className={styles.orderControls}>
                     <div className={styles.quantitySelector}>
