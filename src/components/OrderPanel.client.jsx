@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import styles from "../style/OrderPanel.module.css";
 
 // Importa Ant Design Modal, Input, Button, Switch e TimePicker per UI
-import { Modal, Input, Button, Switch, TimePicker, AutoComplete, message as antdMessage } from "antd";
+import { Modal, Input, Button, Switch, message as antdMessage } from "antd";
 import dayjs from "dayjs";
 import isBetween from "dayjs/plugin/isBetween";
 dayjs.extend(isBetween);
@@ -12,8 +12,7 @@ const CONFIG = {
   phoneNumber: "0362 197 2430",
   whatsappNumber: "393338007658",
   maxQuantityPerItem: 20,
-  toastDuration: 3000,
-  geoapifyApiKey: "70e308641cbf47e8bae82b5839aed7fa"
+  toastDuration: 3000
 };
 
 export default function OrderPanel({
@@ -43,22 +42,7 @@ export default function OrderPanel({
   const [timeError, setTimeError] = useState("");
   const [infoMessage, setInfoMessage] = useState("");
 
-  const isOpenNow = () => {
-    const now = dayjs();
-
-    // Fasce orarie di apertura: 11:00 - 15:00 e 17:30 - 00:00
-    const morningStart = now.startOf('day').hour(11).minute(0);
-    const morningEnd = now.startOf('day').hour(15).minute(0);
-
-    const eveningStart = now.startOf('day').hour(17).minute(30);
-    const eveningEnd = now.add(1, 'day').startOf('day').hour(0).minute(0); // mezzanotte fine giornata
-
-    const isInMorning = now.isBetween(morningStart, morningEnd, null, '[)');
-    const isInEvening = now.isBetween(eveningStart, eveningEnd, null, '[)');
-
-    return isInMorning || isInEvening;
-  };
-
+  // Gestisce la cronologia del browser per chiudere il pannello degli ordini all'indietro quando è aperto.
   useEffect(() => {
     if (isOpen && !wasOpen.current) {
       window.history.pushState({ mioOrdineOpen: true }, "");
@@ -71,153 +55,84 @@ export default function OrderPanel({
     return () => window.removeEventListener("popstate", onPopState);
   }, [isOpen, onClose]);
 
-  // Funzioni per gli orari di apertura
-  const sundayDeliveryStart = dayjs().hour(18).minute(0).second(0);
-  const sundayDeliveryEnd = dayjs().hour(22).minute(0).second(0);
-  const openMorningStart = dayjs().hour(11).minute(0).second(0);
+  const day = dayjs().day();
+  const nowDate = dayjs().startOf('day');
+  const now = dayjs()
+
+  // Orari di apertura dal lunedì al sabato
+  const openMorningStart = dayjs().hour(12).minute(0).second(0);
   const openMorningEnd = dayjs().hour(15).minute(0).second(0);
-  const openDeliveryStart = dayjs().hour(18).minute(0).second(0);
-  const openDeliveryEnd = dayjs().hour(22).minute(0).second(0);
+  const openEveningStart = dayjs().hour(18).minute(0).second(0);
+  const openEveningEnd = dayjs().hour(22).minute(0).second(0);
 
-  // Calcola il prossimo orario valido partendo da now + 30 minuti
-  const getNextValidTime = () => {
-    const now = dayjs().add(30, "minute");
-    const day = now.day();
+  // Orari di apertura della domenica
+  const sundayOpenStart = dayjs().hour(18).minute(0).second(0);
+  const sundayOpenEnd = dayjs().hour(22).minute(0).second(0);
 
-    setInfoMessage("");
-
-    if (day === 0) { // domenica
-      if (now.isAfter(sundayDeliveryEnd)) {
-        setInfoMessage("La pizzeria è chiusa. Gli ordini saranno disponibili dal giorno successivo.");
-        return null; // niente selezione possibile
-      }
-      if (now.isBefore(sundayDeliveryStart)) {
-        return sundayDeliveryStart;
-      }
-      if (now.isAfter(sundayDeliveryStart) && now.isBefore(sundayDeliveryEnd)) {
-        return now;
-      }
-    } else {
-      // Giorni feriali 
-      if (now.isBefore(openMorningStart)) {
-        return openMorningStart;
-      }
-      if (now.isAfter(openMorningEnd) && now.isBefore(openDeliveryStart)) {
-        return openDeliveryStart;
-      }
-      if (now.isAfter(openDeliveryEnd)) {
-        setInfoMessage("La pizzeria è chiusa. Gli ordini saranno disponibili dal giorno successivo.");
-        return null;
-      }
-      if ((now.isAfter(openMorningStart) && now.isBefore(openMorningEnd)) || (now.isAfter(openDeliveryStart) && now.isBefore(openDeliveryEnd))) {
-        return now;
-      }
-    }
-    return null;
-  };
-
-  // Ore e minuti per creare gli slot in step di 15 minuti
   const slotsTimes = [];
 
-  // Funzione per generare gli slot di tempo dati start/end in formato "HH:mm"
-  const generateSlots = () => {
+  // Funzione per generare gli slot di tempo dati startHour e endHour (numeri interi)
+  const generateSlots = (startHour, endHour) => {
     const slots = [];
-    let startHour, endHour;
-
-    if (day === 0) { // Domenica
-      startHour = 18;
-      endHour = 22;
-    } else {
-      startHour = 11; // Giorni feriali mattina
-      endHour = 13;
-      // Puoi aggiungere gli orari serali simili se necessario
-    }
-
-    const nowDate = dayjs().startOf('day'); // Data corrente a mezzanotte
-
     for (let hour = startHour; hour < endHour; hour++) {
       for (let min = 0; min < 60; min += 15) {
-        // Associa data corrente a slot orario
         slots.push(nowDate.hour(hour).minute(min).second(0));
       }
     }
     return slots;
   };
 
-  const day = dayjs().day(); // 0 = domenica
-
-  // Generiamo gli slot solo se non domenica mattina
-  if (day !== 0) {
-    slotsTimes.push(...generateSlots("11:30", "15:00"));
+  // Genera slot in base al giorno: domenica solo sera, feriali mattina e sera
+  if (day === 0) {
+    slotsTimes.push(...generateSlots(sundayOpenStart.hour(), sundayOpenEnd.hour()));
+  } else {
+    slotsTimes.push(...generateSlots(openMorningStart.hour(), openMorningEnd.hour()));
+    slotsTimes.push(...generateSlots(openEveningStart.hour(), openEveningEnd.hour()));
   }
 
-  slotsTimes.push(...generateSlots("18:00", "22:00"));
-
-  // Ora corrente
-  const now = dayjs();
-
-  // Controlla se la pizzeria è aperta adesso o no
-  const isClosedNow = () => {
-    if (day === 0) {
-      // Domenica mattina chiusa fino alle 18:00
-      if (now.isBefore(dayjs().hour(18).minute(0))) return true;
-    }
-    // Fuori dai range orari (11:30-15:00 e 18:00-22:00)
-    const morningOpen = now.isBetween(dayjs().hour(11).minute(30), dayjs().hour(15).minute(0), null, "[)");
-    const eveningOpen = now.isBetween(dayjs().hour(18).minute(0), dayjs().hour(22).minute(0), null, "[)");
-
-    if (!morningOpen && !eveningOpen) return true;
-    return false;
-  };
-
-  // Messaggi di chiusura o info
+  // Messaggi di chiusura o info in base allo stato
   useEffect(() => {
-    if (isClosedNow()) {
-      setInfoMessage("La pizzeria è chiusa. Gli ordini saranno disponibili dal giorno successivo.");
-    } else if (day === 0 && now.isBefore(dayjs().hour(18).minute(0))) {
-      setInfoMessage("La domenica mattina è chiusa la pizzeria. Orari disponibili dalle 18:00.");
+    if (day === 0 && now.isBefore(sundayOpenStart)) {
+      setInfoMessage("La domenica mattina la pizzeria è chiusa. Orari disponibili dalle 18:00");
+    } else if (now.isAfter(openEveningEnd) || now.isAfter(sundayOpenEnd)) {
+      setInfoMessage("La pizzeria è chiusa o è troppo tardi per consegnare a domicilio. Gli ordini saranno disponibili dal giorno successivo");
     } else {
       setInfoMessage("");
     }
   }, [now, day]);
 
-  // Funzione per disabilitare slot in base a ora attuale + 30 minuti minimo prenotazione
+  // Funzione per verificare se uno slot orario deve essere disabilitato
   const isSlotDisabled = (slot) => {
-    const nowWithDate = dayjs();
-    const limit = nowWithDate.add(30, "minute");
+    const minSelectableTime = nowDate.hour(9).minute(0).second(0); // 9:00 del giorno corrente
 
-    // Slot prima del limite orario attuale + 30 minuti disabilitati
-    if (slot.isBefore(limit)) return true;
+    // Disabilita slot prima delle 9:00 del giorno corrente
+    if (now.isBefore(minSelectableTime)) return true;
 
-    // Domenica chiusura mattina, slot prima delle 18 disabilitati
-    if (day === 0 && slot.isBefore(dayjs().startOf('day').hour(18).minute(0))) return true;
+    // Disabilita slot prima dell'ora attuale
+    if (slot.isBefore(now)) return true;
 
-    // Orari dopo le 22:00 disabilitati
-    if (slot.isAfter(dayjs().startOf('day').hour(22).minute(0))) return true;
+    // Disabilita slot fuori orari di apertura
+    if (day === 0) {
+      // Domenica solo fascia sera
+      if (slot.isBefore(sundayOpenStart) || slot.isAfter(sundayOpenEnd)) return true;
+    } else {
+      // Giorni feriali: mattina o sera
+      const inMorningRange = slot.isBetween(openMorningStart, openMorningEnd, null, '[)');
+      const inEveningRange = slot.isBetween(openEveningStart, openEveningEnd, null, '[)');
 
-    return false;
-  };
-
-  // Gestore selezione slot orario
-  const handleSelectTime = (slot) => {
-    if (isSlotDisabled(slot)) {
-      setTimeError("Orario non disponibile, scegli un altro orario.");
-      return;
+      if (!inMorningRange && !inEveningRange) return true;
     }
+
+    // Se nessuna delle condizioni sopra è stata soddisfatta, lo slot è abilitato
+    return false;
+  }
+
+
+  // Gestore della selezione dello slot orario
+  const handleSelectTime = (slot) => {
     setTimeError("");
     setPreferredTime(slot);
   };
-
-  // Al montaggio, imposta l'orario di default valido
-  useEffect(() => {
-    const nextValid = getNextValidTime();
-    if (nextValid) {
-      setPreferredTime(nextValid);
-      setTimeError("");
-    } else {
-      setPreferredTime(null);
-    }
-  }, []);
 
   // Funzione per calcolare il totale
   const calculateTotal = () =>
@@ -269,11 +184,6 @@ export default function OrderPanel({
   const handleConfirmShare = () => {
     if (deliverySelected && address.trim() === "") {
       setAddressError("Inserisci l'indirizzo di consegna");
-      return;
-    }
-
-    if (!isOpenNow()) {
-      setTimeError("La pizzeria è chiusa. Non è possibile inviare ordini.");
       return;
     }
 
@@ -530,12 +440,6 @@ export default function OrderPanel({
             <p>Puoi suggerire un orario preferito di ritiro o ricezione ordine:</p>
 
             <div className={styles.timeSlotsWrapper}>
-              {slotsTimes.length === 0 && (
-                <div className={styles.messageInfo}>
-                  La pizzeria è chiusa. Gli ordini saranno disponibili dal giorno successivo.
-                </div>
-              )}
-
               <div className={styles.timeSlotsContainer}>
                 {slotsTimes.map((slot) => {
                   const disabled = isSlotDisabled(slot);
@@ -571,7 +475,7 @@ export default function OrderPanel({
 
           <p style={{ fontStyle: "italic", fontSize: "small" }}>
             L'ordine si può definire accettato solo quando si riceve un messaggio
-            di risposta su WhatsApp. Il prezzo finale, in base ad eventuali
+            di risposta su WhatsApp. <br/> Il prezzo finale, in base ad eventuali
             modifiche o aggiunte, verrà confermato tramite WhatsApp.
           </p>
         </Modal>
