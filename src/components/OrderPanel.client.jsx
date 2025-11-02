@@ -228,7 +228,7 @@ export default function OrderPanel({
 
   // Funzione per formattare il testo dell'ordine
   const formatOrderText = () => {
-    let text = "IL MIO ORDINE\n";
+    let text = '🍕 IL MIO ORDINE\n\n';
     items.forEach((item) => {
       const price = typeof item.prezzo === "number" ? item.prezzo : parseFloat(item.prezzo) || 0;
       text += `${item.quantita}x ${item.nome} - €${(price * item.quantita).toFixed(2)}\n`;
