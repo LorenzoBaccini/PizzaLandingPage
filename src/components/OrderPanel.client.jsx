@@ -92,10 +92,14 @@ export default function OrderPanel({
 
   // Messaggi di chiusura o info in base allo stato
   useEffect(() => {
+    const minSelectableTime = nowDate.hour(9).minute(0).second(0);
     if (day === 0 && now.isBefore(sundayOpenStart)) {
       setInfoMessage("La domenica mattina la pizzeria è chiusa. Orari disponibili dalle 18:00");
     } else if (now.isAfter(openEveningEnd) || now.isAfter(sundayOpenEnd)) {
       setInfoMessage("La pizzeria è chiusa o è troppo tardi per consegnare a domicilio. Gli ordini saranno disponibili dal giorno successivo");
+    } else if (now.isBefore(minSelectableTime)) {
+      setInfoMessage("Attendi le 9.00 per poter effettuare un ordine");
+    } else if (now.isBefore(minSelectableTime)) {
     } else {
       setInfoMessage("");
     }
@@ -475,7 +479,7 @@ export default function OrderPanel({
 
           <p style={{ fontStyle: "italic", fontSize: "small" }}>
             L'ordine si può definire accettato solo quando si riceve un messaggio
-            di risposta su WhatsApp. <br/> Il prezzo finale, in base ad eventuali
+            di risposta su WhatsApp. <br /> Il prezzo finale, in base ad eventuali
             modifiche o aggiunte, verrà confermato tramite WhatsApp.
           </p>
         </Modal>
