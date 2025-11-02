@@ -47,6 +47,7 @@ export default function MenuSection({ id }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [quantities, setQuantities] = useState({});
   const [selectedFormats, setSelectedFormats] = useState({}); // Formato selezionato per ogni prodotto
+  const [tooltipId, setTooltipId] = useState(null);
 
   useEffect(() => {
     setSearchInput('');
@@ -243,6 +244,27 @@ export default function MenuSection({ id }) {
     }
   };
 
+  const handleAllergeneTouch = (pizzaName, allergeneId) => {
+    const id = `${pizzaName}-${allergeneId}`;
+    setTooltipId(tooltipId === id ? null : id);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Se click fuori dal contenitore tooltip, chiudi tooltip
+      if (!event.target.closest(`.${styles.allergeniContainer}`)) {
+        setTooltipId(null);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
+
   return (
     <section className={styles.menuSection} id={id}>
       <h2 className={styles.title}>IL NOSTRO MENU</h2>
@@ -311,18 +333,27 @@ export default function MenuSection({ id }) {
                       <span className={styles.totalBadge}> ({totalQuantity})</span>
                     )}
                   </h3>
-                  <div className={styles.allergeniContainer}>
-                    {item.allergeni?.map((id) => {
-                      const Icon = allergeniIcons[id];
-                      const allergeneInfo = allergeniData.allergeni.find((a) => a.id === id);
+                  <div key={item.nome} className={styles.allergeniContainer}>
+                    {item.allergeni?.map((allergeneId) => {
+                      const allergeneInfo = allergeniData.allergeni.find(a => a.id === allergeneId);
+                      const Icon = allergeniIcons[allergeneId];
+                      const uniqueId = `${item.nome}-${allergeneId}`;
+
                       return (
                         Icon && (
                           <span
+                            onClick={() => handleAllergeneTouch(item.nome, allergeneId)}
                             className={styles.allergeneIcon}
-                            key={id}
+                            key={uniqueId}
                             title={allergeneInfo?.nome || "Allergene"}
+                            style={{ position: 'relative' }}
                           >
                             <Icon />
+                            {tooltipId === uniqueId && (
+                              <span className={styles.tooltip}>
+                                {allergeneInfo?.nome}
+                              </span>
+                            )}
                           </span>
                         )
                       );

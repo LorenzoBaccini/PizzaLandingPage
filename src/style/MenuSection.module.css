@@ -545,3 +545,52 @@
   transform: scale(1.15);
   fill: #8b2f25;
 }
+
+.allergeneIcon {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(calc(-50% - 5px));
+  max-width: 200px;
+  /* Limita la larghezza massima */
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: normal;
+  /* Permette al testo di andare a capo */
+  font-size: 12px;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 5;
+  word-wrap: break-word;
+  /* Abilita la rottura delle parole lunghissime */
+}
+
+/* Quando il tooltip è visibile */
+.allergeneIcon .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Aggiungi una piccola freccia sotto il tooltip */
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  /* sotto il tooltip */
+  left: calc(50% + 5px);
+  /* spostata a destra di 5px per compensare il tooltip */
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.75) transparent transparent transparent;
+}
