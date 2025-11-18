@@ -39,7 +39,7 @@ export default function MenuSection({ id }) {
     'Doner Kebab': doner_kebab,
     'Panini e Piadine': panini_e_piadine,
     'Dolci': dolci,
-    'Bevande e Aggiunte': bevande,
+    'Bevande': bevande,
   };
 
   const [sezioneAttiva, setSezioneAttiva] = useState(sezioni[0]);
@@ -323,6 +323,12 @@ export default function MenuSection({ id }) {
             const formats = getAvailableFormats(item);
             const selectedFormat = getSelectedFormat(item);
 
+            const formatRows = formats.reduce((rows, formato, index) => {
+              if (index % 2 === 0) rows.push([formato]);
+              else rows[rows.length - 1].push(formato);
+              return rows;
+            }, []);
+
             return (
               <li key={`${baseId}_${index}`} className={styles.pizzaCard}>
                 <div className={styles.cardHeader}>
@@ -370,51 +376,22 @@ export default function MenuSection({ id }) {
                     <div className={styles.formatSelector}>
                       <label className={styles.formatLabel}>Formato:</label>
                       <div className={styles.formatButtons}>
-                        <div className={styles.formatRow}>
-                          {formats.filter(f => f === "Rotonda" || f === "1/4 di Teglia").map(formato => (
-                            <button
-                              key={formato}
-                              className={`${styles.formatButton} ${selectedFormat === formato ? styles.formatButtonActive : ""}`}
-                              onClick={() => setSelectedFormat(item, formato)}
-                              type="button"
-                            >
-                              {formato}
-                              <span className={styles.formatPrice}>
-                                €{item.prezzi[formato].toFixed(2)}
-                              </span>
-                            </button>
-                          ))}
-                        </div>
-                        <div className={styles.formatRow}>
-                          {formats.filter(f => f === "1/2 Teglia").map(formato => (
-                            <button
-                              key={formato}
-                              className={`${styles.formatButton} ${selectedFormat === formato ? styles.formatButtonActive : ""}`}
-                              onClick={() => setSelectedFormat(item, formato)}
-                              type="button"
-                            >
-                              {formato}
-                              <span className={styles.formatPrice}>
-                                €{item.prezzi[formato].toFixed(2)}
-                              </span>
-                            </button>
-                          ))}
-                        </div>
-                        <div className={styles.formatRow}>
-                          {formats.filter(f => f === "Famiglia" || f === "Teglia intera").map(formato => (
-                            <button
-                              key={formato}
-                              className={`${styles.formatButton} ${selectedFormat === formato ? styles.formatButtonActive : ""}`}
-                              onClick={() => setSelectedFormat(item, formato)}
-                              type="button"
-                            >
-                              {formato}
-                              <span className={styles.formatPrice}>
-                                €{item.prezzi[formato].toFixed(2)}
-                              </span>
-                            </button>
-                          ))}
-                        </div>
+
+                        {formatRows.map((row, i) => (
+                          <div className={styles.formatRow} key={i}>
+                            {row.map(formato => (
+                              <button
+                                key={formato}
+                                type="button"
+                                className={`${styles.formatButton} ${selectedFormat === formato ? styles.formatButtonActive : ''}`}
+                                onClick={() => setSelectedFormat(item, formato)}
+                              >
+                                {formato}
+                                <span className={styles.formatPrice}>{item.prezzi[formato].toFixed(2)}</span>
+                              </button>
+                            ))}
+                          </div>
+                        ))}
                       </div>
                     </div>
                   )}
