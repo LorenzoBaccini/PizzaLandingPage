@@ -14,7 +14,7 @@
 }
 
 .logo {
-  color: #b04030;
+  color: var(--color-alternative-primary);
   font-size: 2.5rem;
   font-weight: 700;
 }
@@ -34,7 +34,7 @@
   position: absolute;
   width: 100%;
   height: 3px;
-  background-color: #b04030;
+  background-color: var(--color-alternative-primary);
   border-radius: 4px;
   left: 0;
   transition: all 0.3s ease;
@@ -90,7 +90,7 @@
 }
 
 .menuItem {
-  color: #5c3a21;
+  color: var(--color-text-primary);
   font-size: 2.2rem;
   margin: 25px 0;
   font-weight: 800;
@@ -98,8 +98,18 @@
   transition: color 0.2s ease;
 }
 
+.menuItemButton {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+  width: 100%;
+}
+
 .menuItem:hover {
-  color: #b04030;
+  color: var(--color-alternative-primary);
 }
 
 @media (max-width: 600px) {

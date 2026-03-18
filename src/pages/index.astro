@@ -1,18 +1,14 @@
 ---
-import Header from "../components/organisms/Header.client.jsx";
-import HomeSection from "../components/organisms/HomeSection.client.jsx";
-import MenuSection from "../components/organisms/MenuSection.client.jsx";
-import HoursSection from "../components/organisms/HoursSection.client.jsx";
-import ContactSection from "../components/organisms/ContactSection.client.jsx";
-import OrderManager from "../components/organisms/order/OrderManager.client.jsx";
+import { App } from "../components/App.client";
 import styles from "../style/generic.module.css";
 import "../style/colorVariable.css";
 ---
 
-<html>
+<html lang="it">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
+    <meta name="robots" content="noindex, nofollow" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,11 +18,6 @@ import "../style/colorVariable.css";
     <title>La Teglia</title>
   </head>
   <body class={styles.body}>
-    <Header client:load />
-    <HomeSection client:load id="home-section" />
-    <MenuSection client:load id="menu-section" />
-    <HoursSection client:load id="hours-section" />
-    <ContactSection client:load id="contact-section" />
-    <OrderManager client:load />
+    <App client:load />
   </body>
 </html>

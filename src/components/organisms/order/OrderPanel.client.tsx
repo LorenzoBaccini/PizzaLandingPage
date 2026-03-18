@@ -1,21 +1,35 @@
-import React, { useState, useEffect, useRef } from "react";
-import styles from "../../../style/OrderPanel.module.css";
+import { useState, useEffect, useRef } from "react";
 
-// Importa Ant Design Modal, Input, Button, Switch e TimePicker per UI
-import { Modal, Input, Button, Switch, message as antdMessage } from "antd";
+import { Modal, Input, Button, Switch } from "antd";
 import dayjs from "dayjs";
 import isBetween from "dayjs/plugin/isBetween";
+
+import styles from "../../../style/OrderPanel.module.css";
+import { ORDER_SLOTS } from "../../../config/businessHours";
+
+import type { OrderItem } from "../../../types";
+
 dayjs.extend(isBetween);
 
-// Config example
 const CONFIG = {
   phoneNumber: "0362 197 2430",
   whatsappNumber: "393338007658",
   maxQuantityPerItem: 20,
-  toastDuration: 3000
+  toastDuration: 3000,
 };
 
-export default function OrderPanel({
+interface OrderPanelProps {
+  isOpen: boolean;
+  onClose: () => void;
+  items: OrderItem[];
+  onUpdateQuantity: (productId: string, newQuantity: number) => void;
+  onRemoveItem: (productId: string) => void;
+  onClearOrder: () => void;
+  note: string;
+  onUpdateNote: (newNote: string) => void;
+}
+
+export const OrderPanel = ({
   isOpen,
   onClose,
   items,
@@ -24,31 +38,29 @@ export default function OrderPanel({
   onClearOrder,
   note,
   onUpdateNote,
-}) {
+}: OrderPanelProps) => {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastType, setToastType] = useState("");
   const [showConfirm, setShowConfirm] = useState(false);
   const wasOpen = useRef(false);
 
-  // Nuove state per la modale di condivisione e consegna
   const [modalVisible, setModalVisible] = useState(false);
   const [deliverySelected, setDeliverySelected] = useState(false);
   const [address, setAddress] = useState("");
   const [addressError, setAddressError] = useState("");
   const [civicNumber, setCivicNumber] = useState("");
   const [intercom, setIntercom] = useState("");
-  const [preferredTime, setPreferredTime] = useState(null);
+  const [preferredTime, setPreferredTime] = useState<dayjs.Dayjs | null>(null);
   const [timeError, setTimeError] = useState("");
   const [infoMessage, setInfoMessage] = useState("");
 
-  // Gestisce la cronologia del browser per chiudere il pannello degli ordini all'indietro quando è aperto.
   useEffect(() => {
     if (isOpen && !wasOpen.current) {
       window.history.pushState({ mioOrdineOpen: true }, "");
       wasOpen.current = true;
     }
-    const onPopState = (e) => {
+    const onPopState = () => {
       if (wasOpen.current) onClose();
     };
     window.addEventListener("popstate", onPopState);
@@ -56,24 +68,21 @@ export default function OrderPanel({
   }, [isOpen, onClose]);
 
   const day = dayjs().day();
-  const nowDate = dayjs().startOf('day');
-  const now = dayjs()
+  const nowDate = dayjs().startOf("day");
+  const now = dayjs();
 
-  // Orari di apertura dal lunedì al sabato
-  const openMorningStart = dayjs().hour(12).minute(0).second(0);
-  const openMorningEnd = dayjs().hour(15).minute(0).second(0);
-  const openEveningStart = dayjs().hour(18).minute(0).second(0);
-  const openEveningEnd = dayjs().hour(22).minute(0).second(0);
+  const openMorningStart = dayjs().hour(ORDER_SLOTS.weekday.morning.start).minute(0).second(0);
+  const openMorningEnd = dayjs().hour(ORDER_SLOTS.weekday.morning.end).minute(0).second(0);
+  const openEveningStart = dayjs().hour(ORDER_SLOTS.weekday.evening.start).minute(0).second(0);
+  const openEveningEnd = dayjs().hour(ORDER_SLOTS.weekday.evening.end).minute(0).second(0);
 
-  // Orari di apertura della domenica
-  const sundayOpenStart = dayjs().hour(18).minute(0).second(0);
-  const sundayOpenEnd = dayjs().hour(22).minute(0).second(0);
+  const sundayOpenStart = dayjs().hour(ORDER_SLOTS.sunday.evening.start).minute(0).second(0);
+  const sundayOpenEnd = dayjs().hour(ORDER_SLOTS.sunday.evening.end).minute(0).second(0);
 
-  const slotsTimes = [];
+  const slotsTimes: dayjs.Dayjs[] = [];
 
-  // Funzione per generare gli slot di tempo dati startHour e endHour (numeri interi)
-  const generateSlots = (startHour, endHour) => {
-    const slots = [];
+  const generateSlots = (startHour: number, endHour: number) => {
+    const slots: dayjs.Dayjs[] = [];
     for (let hour = startHour; hour < endHour; hour++) {
       for (let min = 0; min < 60; min += 15) {
         slots.push(nowDate.hour(hour).minute(min).second(0));
@@ -82,7 +91,6 @@ export default function OrderPanel({
     return slots;
   };
 
-  // Genera slot in base al giorno: domenica solo sera, feriali mattina e sera
   if (day === 0) {
     slotsTimes.push(...generateSlots(sundayOpenStart.hour(), sundayOpenEnd.hour()));
   } else {
@@ -90,66 +98,54 @@ export default function OrderPanel({
     slotsTimes.push(...generateSlots(openEveningStart.hour(), openEveningEnd.hour()));
   }
 
-  // Messaggi di chiusura o info in base allo stato
   useEffect(() => {
     const minSelectableTime = nowDate.hour(9).minute(0).second(0);
     if (day === 0 && now.isBefore(sundayOpenStart)) {
-      setInfoMessage("La domenica mattina la pizzeria è chiusa. Orari disponibili dalle 18:00");
+      setInfoMessage(
+        "La domenica mattina la pizzeria è chiusa. Orari disponibili dalle 18:00"
+      );
     } else if (now.isAfter(openEveningEnd) || now.isAfter(sundayOpenEnd)) {
-      setInfoMessage("La pizzeria è chiusa o è troppo tardi per consegnare a domicilio. Gli ordini saranno disponibili dal giorno successivo");
+      setInfoMessage(
+        "La pizzeria è chiusa o è troppo tardi per consegnare a domicilio. Gli ordini saranno disponibili dal giorno successivo"
+      );
     } else if (now.isBefore(minSelectableTime)) {
       setInfoMessage("Attendi le 9.00 per poter effettuare un ordine");
-    } else if (now.isBefore(minSelectableTime)) {
     } else {
       setInfoMessage("");
     }
   }, [now, day]);
 
-  // Funzione per verificare se uno slot orario deve essere disabilitato
-  const isSlotDisabled = (slot) => {
-    const minSelectableTime = nowDate.hour(9).minute(0).second(0); // 9:00 del giorno corrente
-
-    // Disabilita slot prima delle 9:00 del giorno corrente
+  const isSlotDisabled = (slot: dayjs.Dayjs) => {
+    const minSelectableTime = nowDate.hour(9).minute(0).second(0);
     if (now.isBefore(minSelectableTime)) return true;
-
-    // Disabilita slot prima dell'ora attuale
     if (slot.isBefore(now)) return true;
 
-    // Disabilita slot fuori orari di apertura
     if (day === 0) {
-      // Domenica solo fascia sera
       if (slot.isBefore(sundayOpenStart) || slot.isAfter(sundayOpenEnd)) return true;
     } else {
-      // Giorni feriali: mattina o sera
-      const inMorningRange = slot.isBetween(openMorningStart, openMorningEnd, null, '[)');
-      const inEveningRange = slot.isBetween(openEveningStart, openEveningEnd, null, '[)');
-
+      const inMorningRange = slot.isBetween(openMorningStart, openMorningEnd, null, "[)");
+      const inEveningRange = slot.isBetween(openEveningStart, openEveningEnd, null, "[)");
       if (!inMorningRange && !inEveningRange) return true;
     }
 
-    // Se nessuna delle condizioni sopra è stata soddisfatta, lo slot è abilitato
     return false;
-  }
+  };
 
-
-  // Gestore della selezione dello slot orario
-  const handleSelectTime = (slot) => {
+  const handleSelectTime = (slot: dayjs.Dayjs) => {
     setTimeError("");
     setPreferredTime(slot);
   };
 
-  // Funzione per calcolare il totale
   const calculateTotal = () =>
     items.reduce((total, item) => {
-      const price = typeof item.prezzo === "number" ? item.prezzo : parseFloat(item.prezzo) || 0;
+      const price = typeof item.prezzo === "number" ? item.prezzo : parseFloat(String(item.prezzo)) || 0;
       return total + price * item.quantita;
     }, 0);
 
-  // Funzione per formattare il testo dell'ordine
   const formatOrderText = () => {
-    let text = '🍕 IL MIO ORDINE\n\n';
+    let text = "🍕 IL MIO ORDINE\n\n";
     items.forEach((item) => {
-      const price = typeof item.prezzo === "number" ? item.prezzo : parseFloat(item.prezzo) || 0;
+      const price = typeof item.prezzo === "number" ? item.prezzo : parseFloat(String(item.prezzo)) || 0;
       text += `${item.quantita}x ${item.nome} - €${(price * item.quantita).toFixed(2)}\n`;
     });
     text += `Totale: €${calculateTotal().toFixed(2)}\n\n`;
@@ -167,31 +163,27 @@ export default function OrderPanel({
     text += note.trim() ? `Note: ${note.trim()}\n` : "";
     text +=
       "\nL'ordine si intende accettato solo con messaggio di risposta via WhatsApp.\n";
-    text += "**Il prezzo definitivo, inclusi eventuali extra, verrà confermato via WhatsApp.**\n";
+    text +=
+      "**Il prezzo definitivo, inclusi eventuali extra, verrà confermato via WhatsApp.**\n";
     return text;
   };
 
-  // Funzione per mostrare toast (come messaggio esterno)
-  const toast = (message, type = "success") => {
+  const toast = (message: string, type = "success") => {
     setToastMessage(message);
     setToastType(type);
     setShowToast(true);
     setTimeout(() => setShowToast(false), CONFIG.toastDuration);
   };
 
-  // Funzione chiamata all'apertura della modale condivisione WhatsApp
   const handleShareWhatsAppClick = () => {
     setModalVisible(true);
   };
 
-  // Gestione conferma convalidata
   const handleConfirmShare = () => {
     if (deliverySelected && address.trim() === "") {
       setAddressError("Inserisci l'indirizzo di consegna");
       return;
     }
-
-    // Controlla orario preferito: se errore o non selezionato blocca invio
     if (timeError || !preferredTime) {
       setTimeError("Seleziona un orario di ritiro/consegna valido prima di procedere");
       return;
@@ -222,13 +214,15 @@ export default function OrderPanel({
         onClick={(e) => e.stopPropagation()}
       >
         <div className={styles.orderPanelHeader}>
-          <h2>Il Mio Ordine ({items.reduce((sum, item) => sum + item.quantita, 0)})</h2>
+          <h2>
+            Il Mio Ordine ({items.reduce((sum, item) => sum + item.quantita, 0)})
+          </h2>
           <button
             className={styles.btnClosePanel}
             onClick={onClose}
             aria-label="Chiudi pannello"
           >
-            ×
+            &times;
           </button>
         </div>
 
@@ -237,8 +231,7 @@ export default function OrderPanel({
             <div className={styles.emptyState}>
               <div className={styles.emptyStateIcon} />
               <p className={styles.emptyStateText}>
-                La tua lista è vuota. Inizia ad aggiungere i tuoi prodotti
-                preferiti!
+                La tua lista è vuota. Inizia ad aggiungere i tuoi prodotti preferiti!
               </p>
               <button className={styles.btnPrimary} onClick={onClose}>
                 Vai al Menù
@@ -247,21 +240,28 @@ export default function OrderPanel({
           ) : (
             <>
               <div className={styles.orderItemsList}>
-                {items.map(item => {
-                  const price = typeof item.prezzo === 'number' ? item.prezzo : parseFloat(item.prezzo) || 0;
+                {items.map((item) => {
+                  const price =
+                    typeof item.prezzo === "number"
+                      ? item.prezzo
+                      : parseFloat(String(item.prezzo)) || 0;
                   return (
                     <div key={item.id} className={styles.orderItem}>
                       <div className={styles.orderItemInfo}>
                         <div className={styles.orderItemName}>{item.nome}</div>
-                        <div className={styles.orderItemPrice}>€{price.toFixed(2)} cad.</div>
+                        <div className={styles.orderItemPrice}>
+                          &euro;{price.toFixed(2)} cad.
+                        </div>
                       </div>
                       <div className={styles.orderItemControls}>
                         <div className={styles.orderItemSubtotal}>
-                          €{(price * item.quantita).toFixed(2)}
+                          &euro;{(price * item.quantita).toFixed(2)}
                         </div>
                         <div className={styles.quantitySelector}>
-                          <button onClick={() => onUpdateQuantity(item.id, item.quantita - 1)}>
-                            −
+                          <button
+                            onClick={() => onUpdateQuantity(item.id, item.quantita - 1)}
+                          >
+                            &minus;
                           </button>
                           <span className={styles.quantity}>{item.quantita}</span>
                           <button
@@ -271,7 +271,10 @@ export default function OrderPanel({
                             +
                           </button>
                         </div>
-                        <button className={styles.btnRemoveItem} onClick={() => onRemoveItem(item.id)}>
+                        <button
+                          className={styles.btnRemoveItem}
+                          onClick={() => onRemoveItem(item.id)}
+                        >
                           Rimuovi
                         </button>
                       </div>
@@ -282,10 +285,13 @@ export default function OrderPanel({
 
               <div className={styles.orderNotes}>
                 <label htmlFor="orderNotes">
-                  Note aggiuntive (opzionale) <br />
-                  - ingredienti aggiunti da <span className={styles.orderDeliveryAmount}>1.00€</span> a <span className={styles.orderDeliveryAmount}>3.00€</span> <br />
-                  - impasto integrale <span className={styles.orderDeliveryAmount}>1.00€</span> <br />
-                  - mozzarella senza lattosio <span className={styles.orderDeliveryAmount}>1.50€</span>
+                  Note aggiuntive (opzionale) <br />- ingredienti aggiunti da{" "}
+                  <span className={styles.orderDeliveryAmount}>1.00&euro;</span> a{" "}
+                  <span className={styles.orderDeliveryAmount}>3.00&euro;</span> <br />-
+                  impasto integrale{" "}
+                  <span className={styles.orderDeliveryAmount}>1.00&euro;</span> <br />-
+                  mozzarella senza lattosio{" "}
+                  <span className={styles.orderDeliveryAmount}>1.50&euro;</span>
                 </label>
                 <textarea
                   id="orderNotes"
@@ -298,16 +304,27 @@ export default function OrderPanel({
               <div className={styles.orderTotal}>
                 <div className={styles.orderTotalRow}>
                   <span>Totale</span>
-                  <span className={styles.orderTotalAmount}>€{calculateTotal().toFixed(2)}</span>
+                  <span className={styles.orderTotalAmount}>
+                    &euro;{calculateTotal().toFixed(2)}
+                  </span>
                 </div>
                 <div className={styles.orderDeliveryInfo}>
                   <span className={styles.orderDeliveryAmount}>ATTENZIONE</span>
                   <br />
-                  <span>Al totale bisogna aggiungere il costo di consegna (se a domicilio) ed eventuali aggiunte all'ordine</span>
+                  <span>
+                    Al totale bisogna aggiungere il costo di consegna (se a domicilio) ed
+                    eventuali aggiunte all&apos;ordine
+                  </span>
                   <br />
-                  <span>Consegna a Desio <span className={styles.orderDeliveryAmount}>1,00€</span></span>
+                  <span>
+                    Consegna a Desio{" "}
+                    <span className={styles.orderDeliveryAmount}>1,00&euro;</span>
+                  </span>
                   <br />
-                  <span>Fuori Desio <span className={styles.orderDeliveryAmount}>2,00€</span></span>
+                  <span>
+                    Fuori Desio{" "}
+                    <span className={styles.orderDeliveryAmount}>2,00&euro;</span>
+                  </span>
                 </div>
               </div>
 
@@ -316,21 +333,17 @@ export default function OrderPanel({
                   className={styles.btnPrimary}
                   onClick={() => {
                     window.location.href = `tel:${CONFIG.phoneNumber}`;
-                    toast(
-                      "Tieni aperta questa lista mentre ordini",
-                      "success"
-                    );
+                    toast("Tieni aperta questa lista mentre ordini", "success");
                   }}
                 >
                   Chiama per Ordinare
                 </button>
 
-                {/* Pulsante Condividi via WhatsApp con apertura modale */}
                 <button
                   className={`${styles.btnSecondary} ${styles.btnWhatsapp}`}
                   onClick={handleShareWhatsAppClick}
                 >
-                  💬 Condividi via WhatsApp
+                  Condividi via WhatsApp
                 </button>
 
                 <button
@@ -345,7 +358,10 @@ export default function OrderPanel({
                   Copia Lista
                 </button>
 
-                <button className={styles.btnClear} onClick={() => setShowConfirm(true)}>
+                <button
+                  className={styles.btnClear}
+                  onClick={() => setShowConfirm(true)}
+                >
                   Svuota Lista
                 </button>
               </div>
@@ -353,9 +369,13 @@ export default function OrderPanel({
           )}
         </div>
 
-        {/* Modale conferma svuota lista */}
         {showConfirm && (
-          <div className={styles.confirmModalOverlay} tabIndex={-1} role="dialog" aria-modal="true">
+          <div
+            className={styles.confirmModalOverlay}
+            tabIndex={-1}
+            role="dialog"
+            aria-modal="true"
+          >
             <div className={styles.confirmModal}>
               <div className={styles.confirmModalContent}>
                 <h3>Sei sicuro di voler svuotare la lista?</h3>
@@ -382,7 +402,6 @@ export default function OrderPanel({
           </div>
         )}
 
-        {/* Modale Condivisione WhatsApp con gestione consegna */}
         <Modal
           zIndex={5000}
           title="Condividi via WhatsApp"
@@ -442,12 +461,11 @@ export default function OrderPanel({
 
           <div>
             <p>Puoi suggerire un orario preferito di ritiro o ricezione ordine:</p>
-
             <div className={styles.timeSlotsWrapper}>
               <div className={styles.timeSlotsContainer}>
                 {slotsTimes.map((slot) => {
                   const disabled = isSlotDisabled(slot);
-                  const isSelected = preferredTime && slot.isSame(preferredTime);
+                  const isSelected = preferredTime !== null && slot.isSame(preferredTime);
 
                   return (
                     <button
@@ -465,30 +483,22 @@ export default function OrderPanel({
               </div>
             </div>
 
-            {timeError && (
-              <div className={styles.messageError}>
-                {timeError}
-              </div>
-            )}
+            {timeError && <div className={styles.messageError}>{timeError}</div>}
             {infoMessage && !timeError && (
-              <div className={styles.messageInfo}>
-                {infoMessage}
-              </div>
+              <div className={styles.messageInfo}>{infoMessage}</div>
             )}
           </div>
 
           <p style={{ fontStyle: "italic", fontSize: "small" }}>
-            L'ordine si può definire accettato solo quando si riceve un messaggio
-            di risposta su WhatsApp. <br /> Il prezzo finale, in base ad eventuali
-            modifiche o aggiunte, verrà confermato tramite WhatsApp.
+            L&apos;ordine si può definire accettato solo quando si riceve un messaggio di
+            risposta su WhatsApp. <br /> Il prezzo finale, in base ad eventuali modifiche o
+            aggiunte, verrà confermato tramite WhatsApp.
           </p>
         </Modal>
 
-        {/* Toast messaggio */}
         {showToast && (
           <div
-            className={`${styles.toast} ${toastType === "success" ? styles.success : styles.error
-              }`}
+            className={`${styles.toast} ${toastType === "success" ? styles.success : styles.error}`}
           >
             {toastMessage}
           </div>
@@ -496,4 +506,4 @@ export default function OrderPanel({
       </div>
     </div>
   );
-}
+};

@@ -1,17 +1,23 @@
-import React from 'react';
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import styles from '../../style/HomeSection.module.css';
-import Button from '../atoms/Button.jsx';
-import { MyCarousel } from '../molecules/MyCarousel.client.jsx';
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-export default function HomeSection({ id }) {
-  const images = [
-    '/PizzaLandingPage/assets/pizza.png',
-    '/PizzaLandingPage/assets/piadinaKebab.jpg',
-    '/PizzaLandingPage/assets/pizze.jpg',
-  ];
+import styles from "../../style/HomeSection.module.css";
+import { Button } from "../atoms/Button";
+import { MyCarousel } from "../molecules/MyCarousel.client";
 
+interface HomeSectionProps {
+  id: string;
+}
+
+const BASE_URL = import.meta.env.BASE_URL;
+
+const images = [
+  `${BASE_URL}assets/pizza.png`,
+  `${BASE_URL}assets/piadinaKebab.jpg`,
+  `${BASE_URL}assets/pizze.jpg`,
+];
+
+export const HomeSection = ({ id }: HomeSectionProps) => {
   return (
     <section id={id} className={styles.homeSection}>
       <Carousel
@@ -27,7 +33,7 @@ export default function HomeSection({ id }) {
         swipeable={false}
         dynamicHeight={false}
         emulateTouch={false}
-        statusFormatter={() => ``}
+        statusFormatter={() => ""}
       >
         {images.map((src, index) => (
           <div key={index} className={styles.slide}>
@@ -43,22 +49,22 @@ export default function HomeSection({ id }) {
         Scopri La nostra deliziosa pizza in teglia, preparate con ingredienti freschi
       </p>
       <Button
-        size='large'
+        size="large"
         role="navigation"
         label="Scopri il menù"
-        variant='primary'
+        variant="primary"
         onClick={() => {
-          const menuSection = document.getElementById('menu-section');
-          if (menuSection) menuSection.scrollIntoView({ behavior: 'smooth' });
+          const menuSection = document.getElementById("menu-section");
+          if (menuSection) menuSection.scrollIntoView({ behavior: "smooth" });
         }}
       />
-      <p className={styles.description} style={{ marginBottom: '0', fontSize: '0.9rem' }}>
+      <p className={styles.description} style={{ marginBottom: "0", fontSize: "0.9rem" }}>
         Pagamento anche con Satispay e carte di credito, anche a domicilio!
       </p>
-      <p className={styles.description} style={{ marginTop: '0', fontSize: '0.9rem' }}>
+      <p className={styles.description} style={{ marginTop: "0", fontSize: "0.9rem" }}>
         Consegna effettuata al citofono e non al piano
       </p>
       <MyCarousel />
     </section>
   );
-}
+};

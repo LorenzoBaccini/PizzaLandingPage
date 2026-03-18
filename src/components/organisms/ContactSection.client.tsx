@@ -1,10 +1,19 @@
-import React, { useState } from "react";
-import styles from '../../style/ContactSection.module.css';
+import { useState } from "react";
+
+import styles from "../../style/ContactSection.module.css";
 import allergeniData from "../../data/allergeni.json";
-import { allergeniIcons } from "../../config/allergeniIcons.js";
+import { allergeniIcons } from "../../config/allergeniIcons";
 
-export default function ContactSection({ id }) {
+import type { AllergeniData, AllergeniIconsMap } from "../../types";
 
+const typedAllergeniData = allergeniData as AllergeniData;
+const typedAllergeniIcons = allergeniIcons as AllergeniIconsMap;
+
+interface ContactSectionProps {
+  id: string;
+}
+
+export const ContactSection = ({ id }: ContactSectionProps) => {
   const [showAllergens, setShowAllergens] = useState(false);
 
   return (
@@ -12,8 +21,14 @@ export default function ContactSection({ id }) {
       <h2 className={styles.title}>Contatti</h2>
       <div className={styles.contactInfo}>
         <div className={styles.phone}>
-          Numero di telefono: <br /><a href="tel:0362 197 2430" style={{ color: '#B04030', textDecoration: 'none' }}>0362 197 2430</a>
-          <br /><a href="tel:3464052750" style={{ color: '#B04030', textDecoration: 'none' }}>3464052750</a>
+          Numero di telefono: <br />
+          <a href="tel:0362 197 2430" style={{ color: "var(--color-alternative-primary)", textDecoration: "none" }}>
+            0362 197 2430
+          </a>
+          <br />
+          <a href="tel:3464052750" style={{ color: "var(--color-alternative-primary)", textDecoration: "none" }}>
+            3464052750
+          </a>
         </div>
         <div className={styles.address}>
           Indirizzo: <br /> Via Monterosa 132, Desio (MB)
@@ -24,7 +39,6 @@ export default function ContactSection({ id }) {
           title="Mappa La Teglia"
           width="100%"
           height="100%"
-          frameBorder="0"
           style={{ border: 0 }}
           referrerPolicy="no-referrer-when-downgrade"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2790.5807345505305!2d9.19151667914968!3d45.6190688363988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786bc2e13d7d0fd%3A0x97d1f73a87c27be4!2sLa%20Teglia!5e0!3m2!1sit!2sit!4v1760802077903!5m2!1sit!2sit"
@@ -32,8 +46,10 @@ export default function ContactSection({ id }) {
           loading="lazy"
         />
       </div>
-      <h2 className={styles.title} style={{ fontSize: '1rem', marginBottom: '0px' }}>{allergeniData.titolo}</h2>
-      <p>{allergeniData.descrizione}</p>
+      <h2 className={styles.title} style={{ fontSize: "1rem", marginBottom: "0px" }}>
+        {typedAllergeniData.titolo}
+      </h2>
+      <p>{typedAllergeniData.descrizione}</p>
 
       <button
         className={styles.btnToggleLegend}
@@ -46,8 +62,8 @@ export default function ContactSection({ id }) {
 
       {showAllergens && (
         <div id="allergenLegend" className={styles.allergenLegend}>
-          {allergeniData.allergeni.map(({ id, nome, dettaglio }) => {
-            const IconComponent = allergeniIcons[id] || null;
+          {typedAllergeniData.allergeni.map(({ id, nome, dettaglio }) => {
+            const IconComponent = typedAllergeniIcons[id] || null;
             return (
               <div key={id} className={styles.allergenItem}>
                 {IconComponent && <IconComponent className={styles.allergenIcon} />}
@@ -61,4 +77,4 @@ export default function ContactSection({ id }) {
       )}
     </section>
   );
-}
+};

@@ -1,6 +1,11 @@
 import styles from "../../style/PizzaSearch.module.css";
 
-export function PizzaSearch({ searchInput, setSearchInput }) {
+interface PizzaSearchProps {
+  searchInput: string;
+  setSearchInput: (value: string) => void;
+}
+
+export const PizzaSearch = ({ searchInput, setSearchInput }: PizzaSearchProps) => {
   return (
     <div className={styles.searchContainer}>
       <label htmlFor="searchPizze" className={styles.searchLabel}>
@@ -23,10 +28,10 @@ export function PizzaSearch({ searchInput, setSearchInput }) {
             onClick={() => setSearchInput("")}
             aria-label="Pulisci campo"
           >
-            ×
+            &times;
           </button>
         )}
       </div>
     </div>
   );
-}
+};

@@ -12,8 +12,12 @@
 }
 
 .orderBadgeButton {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
   background: var(--color-alternative-primary);
-  color: #FFF8F0;
+  color: var(--color-secondary);
   border: none;
   border-radius: 50px;
   padding: 8px 12px;
@@ -28,12 +32,13 @@
 }
 
 .orderBadgeButton:hover {
-  background: #8B2F25;
+  background: var(--color-alternative-primary-dark);
+  transform: scale(1.05);
 }
 
 .badgeCounter {
-  background: #FFF8F0;
-  color: #B04030;
+  background: var(--color-secondary);
+  color: var(--color-alternative-primary);
   border-radius: 50%;
   width: 26px;
   height: 26px;

@@ -1,8 +1,29 @@
 import styles from "../../style/MenuSection.module.css";
 import genericStyles from "../../style/generic.module.css";
-import Button from '../atoms/Button.jsx';
+import { Button } from "../atoms/Button";
 
-export function PizzaList({
+import type { MenuItem, AllergeniData, AllergeniIconsMap } from "../../types";
+
+interface PizzaListProps {
+  itemsSelezionati: MenuItem[];
+  quantities: Record<string, number>;
+  allergeniData: AllergeniData;
+  allergeniIcons: AllergeniIconsMap;
+  tooltipId: string | null;
+  handleAllergeneTouch: (pizzaName: string, allergeneId: number) => void;
+  getCurrentFormatQuantity: (item: MenuItem) => number;
+  hasMultipleFormats: (item: MenuItem) => boolean;
+  getAvailableFormats: (item: MenuItem) => string[];
+  getSelectedFormat: (item: MenuItem) => string | null;
+  setSelectedFormat: (item: MenuItem, formato: string) => void;
+  handleDecreaseQuantity: (item: MenuItem) => void;
+  handleIncreaseQuantity: (item: MenuItem) => void;
+  handleOpenIngredientModal: (item: MenuItem) => void;
+  handleAddToOrder: (item: MenuItem) => void;
+  generateProductBaseId: (item: MenuItem) => string;
+}
+
+export const PizzaList = ({
   itemsSelezionati,
   quantities,
   allergeniData,
@@ -18,11 +39,11 @@ export function PizzaList({
   handleIncreaseQuantity,
   handleOpenIngredientModal,
   handleAddToOrder,
-  generateProductBaseId
-}) {
+  generateProductBaseId,
+}: PizzaListProps) => {
   if (itemsSelezionati.length === 0) {
     return (
-      <p style={{ textAlign: 'center', padding: '40px', color: '#5C3A21' }}>
+      <p style={{ textAlign: "center", padding: "40px", color: "var(--color-text-primary)" }}>
         Contenuto in aggiornamento...
       </p>
     );
@@ -38,8 +59,8 @@ export function PizzaList({
         const formats = getAvailableFormats(item);
         const selectedFormat = getSelectedFormat(item);
 
-        const formatRows = formats.reduce((rows, formato, index) => {
-          if (index % 2 === 0) rows.push([formato]);
+        const formatRows = formats.reduce<string[][]>((rows, formato, idx) => {
+          if (idx % 2 === 0) rows.push([formato]);
           else rows[rows.length - 1].push(formato);
           return rows;
         }, []);
@@ -56,7 +77,9 @@ export function PizzaList({
               </h3>
               <div key={item.nome} className={styles.allergeniContainer}>
                 {item.allergeni?.map((allergeneId) => {
-                  const allergeneInfo = allergeniData.allergeni.find(a => a.id === allergeneId);
+                  const allergeneInfo = allergeniData.allergeni.find(
+                    (a) => a.id === allergeneId
+                  );
                   const Icon = allergeniIcons[allergeneId];
                   const uniqueId = `${item.nome}-${allergeneId}`;
 
@@ -67,13 +90,11 @@ export function PizzaList({
                         className={styles.allergeneIcon}
                         key={uniqueId}
                         title={allergeneInfo?.nome || "Allergene"}
-                        style={{ position: 'relative' }}
+                        style={{ position: "relative" }}
                       >
                         <Icon />
                         {tooltipId === uniqueId && (
-                          <span className={styles.tooltip}>
-                            {allergeneInfo?.nome}
-                          </span>
+                          <span className={styles.tooltip}>{allergeneInfo?.nome}</span>
                         )}
                       </span>
                     )
@@ -93,7 +114,7 @@ export function PizzaList({
                   <div className={styles.formatButtons}>
                     {formatRows.map((row, i) => (
                       <div className={styles.formatRow} key={i}>
-                        {row.map(formato => (
+                        {row.map((formato) => (
                           <Button
                             key={formato}
                             role="button"
@@ -101,11 +122,13 @@ export function PizzaList({
                               <>
                                 <span>{formato}</span>
                                 <span className={styles.formatPrice}>
-                                  {item.prezzi && item.prezzi[formato] ? `${parseFloat(item.prezzi[formato]).toFixed(2)}` : ''}
+                                  {item.prezzi && item.prezzi[formato]
+                                    ? `${parseFloat(String(item.prezzi[formato])).toFixed(2)}`
+                                    : ""}
                                 </span>
                               </>
                             }
-                            variant={selectedFormat === formato ? 'primaryAlt' : 'secondary'}
+                            variant={selectedFormat === formato ? "primaryAlt" : "secondary"}
                             isActive={selectedFormat === formato}
                             aria-selected={selectedFormat === formato}
                             onClick={() => setSelectedFormat(item, formato)}
@@ -120,7 +143,7 @@ export function PizzaList({
 
               {!hasFormats && item.prezzo && (
                 <div>
-                  <strong>Prezzo</strong> <em>{item.prezzo}€</em>
+                  <strong>Prezzo</strong> <em>{item.prezzo}&euro;</em>
                 </div>
               )}
 
@@ -133,7 +156,7 @@ export function PizzaList({
                       aria-label="Diminuisci quantità"
                       className={styles.quantityBtn}
                     >
-                      −
+                      &minus;
                     </button>
                     <span className={styles.quantity}>{currentFormatQuantity}</span>
                     <button
@@ -150,14 +173,14 @@ export function PizzaList({
                   <Button
                     role="button"
                     label="Aggiungi"
-                    variant='primaryAlt'
+                    variant="primaryAlt"
                     onClick={() => handleOpenIngredientModal(item)}
                   />
                 ) : (
                   <Button
                     role="button"
                     label="Aggiungi"
-                    variant='primaryAlt'
+                    variant="primaryAlt"
                     onClick={() => handleAddToOrder(item)}
                   />
                 )}
@@ -168,4 +191,4 @@ export function PizzaList({
       })}
     </ul>
   );
-}
+};

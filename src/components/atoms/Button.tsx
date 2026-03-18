@@ -1,10 +1,23 @@
-import React from "react";
-import styles from '../../style/buttonStyles.module.css';
+import type { ButtonHTMLAttributes } from "react";
 
-const Button = ({
+import styles from "../../style/buttonStyles.module.css";
+
+type ButtonVariant = "primary" | "primaryAlt" | "secondary" | "danger";
+type ButtonSize = "small" | "medium" | "large";
+
+interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "className"> {
+  label: React.ReactNode;
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  isActive?: boolean;
+  className?: string;
+  ariaSelected?: boolean;
+}
+
+export const Button = ({
   label,
   variant = "primary",
-  size = "medium",         // default size
+  size = "medium",
   isActive = false,
   onClick,
   type = "button",
@@ -12,16 +25,10 @@ const Button = ({
   role,
   className = "",
   ...props
-}) => {
+}: ButtonProps) => {
   const baseClass = styles.buttonBase;
-
-  // Classe variante (sempre presente)
   const variantClass = styles[`button${variant.charAt(0).toUpperCase() + variant.slice(1)}`] || "";
-
-  // Classe dimensione (small, medium, large)
   const sizeClass = styles[`button${size.charAt(0).toUpperCase() + size.slice(1)}`];
-
-  // Classe attiva comune
   const activeClass = isActive ? styles.buttonActive : "";
 
   const combinedClassName = [baseClass, variantClass, sizeClass, activeClass, className]
@@ -41,5 +48,3 @@ const Button = ({
     </button>
   );
 };
-
-export default Button;
