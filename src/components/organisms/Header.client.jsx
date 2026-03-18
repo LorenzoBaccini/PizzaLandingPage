@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from '../style/header.module.css';
+import styles from '../../style/header.module.css';
 
 const menuItems = [
   { label: 'Home', targetId: 'home-section' },

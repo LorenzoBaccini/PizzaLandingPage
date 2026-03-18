@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import styles from "../style/OrderPanel.module.css";
+import styles from "../../../style/OrderPanel.module.css";
 
 // Importa Ant Design Modal, Input, Button, Switch e TimePicker per UI
 import { Modal, Input, Button, Switch, message as antdMessage } from "antd";

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import styles from '../style/ContactSection.module.css';
-import allergeniData from "../data/allergeni.json";
-import { allergeniIcons } from "../data/allergeniIcons.js";
+import styles from '../../style/ContactSection.module.css';
+import allergeniData from "../../data/allergeni.json";
+import { allergeniIcons } from "../../config/allergeniIcons.js";
 
 export default function ContactSection({ id }) {
 

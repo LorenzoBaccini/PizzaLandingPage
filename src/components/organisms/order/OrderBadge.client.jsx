@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import styles from '../style/OrderBadge.module.css';
+import styles from '../../../style/OrderBadge.module.css';
 
 export default function OrderBadge({ onClick, totalItems }) {
   const [animate, setAnimate] = useState(false);

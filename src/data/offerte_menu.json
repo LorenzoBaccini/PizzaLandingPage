@@ -3,42 +3,299 @@
     {
       "nome": "PANINO KEBAB O PANINO A SCELTA",
       "ingredienti": "Panino, patatine e bibita 33cl",
-      "prezzo": 9.00
+      "prezzo": 9.00,
+      "personalizzabile": true,
+      "tipo": "menu_scelta",
+      "scelta": [
+        {
+          "nome": "Panino kebab",
+          "ingredienti": "Kebab, insalata, pomodoro fresco, cipolla, salsa bianca, salsa piccante",
+          "prezzo": 5.50,
+          "allergeni": [1, 7],
+          "personalizzabile" : true,
+          "ingredienti_removibili": [
+            "Insalata",
+            "Pomodoro fresco",
+            "Cipolla",
+            "Salsa bianca",
+            "Salsa piccante"
+          ]
+        },
+        {
+          "nome": "Americano 1",
+          "ingredienti": "Würstel, patatine, maionese",
+          "prezzo": 5.50,
+          "allergeni": [1, 7, 3]
+        },
+        {
+          "nome": "Americano 2",
+          "ingredienti": "Würstel, crauti, senape",
+          "prezzo": 5.50,
+          "allergeni": [1, 10]
+        },
+        {
+          "nome": "Caprese",
+          "ingredienti": "Pomodoro fresco, mozzarella, olio, origano",
+          "prezzo": 5.50,
+          "allergeni": [1, 7]
+        },
+        {
+          "nome": "Cotoletta di pollo",
+          "ingredienti": "Cotoletta, insalata, pomodoro fresco, salsa rosa",
+          "prezzo": 5.50,
+          "allergeni": [1, 7, 3]
+        },
+        {
+          "nome": "Cotto",
+          "ingredienti": "Prosciutto cotto, insalata, pomodoro fresco, mozzarella, maionese",
+          "prezzo": 5.50,
+          "allergeni": [1, 7, 3]
+        },
+        {
+          "nome": "Crudo",
+          "ingredienti": "Prosciutto crudo, insalata, mozzarella, salsa rosa",
+          "prezzo": 5.50,
+          "allergeni": [1, 7, 3]
+        },
+        {
+          "nome": "Falafel",
+          "ingredienti": "Polpette di verdura, insalata, pomodoro fresco, cipolla, salsa bianca, salsa piccante",
+          "prezzo": 5.50,
+          "allergeni": [1, 7]
+        },
+        {
+          "nome": "Italiano",
+          "ingredienti": "Bresaola, rucola, grana",
+          "prezzo": 6.50,
+          "allergeni": [1, 7] 
+        },
+        {
+          "nome": "Salamella",
+          "ingredienti": "Salamella, cipolla, peperoni, maionese",
+          "prezzo": 5.50,
+          "allergeni": [1, 7, 3]
+        },
+        {
+          "nome": "Speck e brie",
+          "ingredienti": "Speck, brie, rucola",
+          "prezzo": 5.50,
+          "allergeni": [1, 7]
+        },
+        {
+          "nome": "Tonno",
+          "ingredienti": "Tonno, pomodoro fresco, rucola, cipolla rossa",
+          "prezzo": 5.50,
+          "allergeni": [1, 4]
+        }
+      ]
     },
     {
       "nome": "PIADINA KEBAB O PIADINA A SCELTA",
       "ingredienti": "Piadina, patatine e bibita 33cl",
-      "prezzo": 9.50
+      "prezzo": 9.50,
+      "personalizzabile": true,
+      "tipo": "menu_scelta",
+      "scelta": [
+        {
+          "nome": "Piadina kebab",
+          "ingredienti": "Kebab, insalata, pomodoro fresco, cipolla, salsa bianca, salsa piccante",
+          "prezzo": 6.00,
+          "allergeni": [1, 7],
+          "personalizzabile" : true,
+          "ingredienti_removibili": [
+            "Insalata",
+            "Pomodoro fresco",
+            "Cipolla",
+            "Salsa bianca",
+            "Salsa piccante"
+          ]
+        },
+        {
+          "nome": "Americano 1",
+          "ingredienti": "Würstel, patatine, maionese",
+          "prezzo": 5.50,
+          "allergeni": [1, 7, 3]
+        },
+        {
+          "nome": "Americano 2",
+          "ingredienti": "Würstel, crauti, senape",
+          "prezzo": 5.50,
+          "allergeni": [1, 10]
+        },
+        {
+          "nome": "Caprese",
+          "ingredienti": "Pomodoro fresco, mozzarella, olio, origano",
+          "prezzo": 5.50,
+          "allergeni": [1, 7]
+        },
+        {
+          "nome": "Cotoletta di pollo",
+          "ingredienti": "Cotoletta, insalata, pomodoro fresco, salsa rosa",
+          "prezzo": 5.50,
+          "allergeni": [1, 7, 3]
+        },
+        {
+          "nome": "Cotto",
+          "ingredienti": "Prosciutto cotto, insalata, pomodoro fresco, mozzarella, maionese",
+          "prezzo": 5.50,
+          "allergeni": [1, 7, 3]
+        },
+        {
+          "nome": "Crudo",
+          "ingredienti": "Prosciutto crudo, insalata, mozzarella, salsa rosa",
+          "prezzo": 5.50,
+          "allergeni": [1, 7, 3]
+        },
+        {
+          "nome": "Falafel",
+          "ingredienti": "Polpette di verdura, insalata, pomodoro fresco, cipolla, salsa bianca, salsa piccante",
+          "prezzo": 5.50,
+          "allergeni": [1, 7]
+        },
+        {
+          "nome": "Italiano",
+          "ingredienti": "Bresaola, rucola, grana",
+          "prezzo": 6.50,
+          "allergeni": [1, 7] 
+        },
+        {
+          "nome": "Salamella",
+          "ingredienti": "Salamella, cipolla, peperoni, maionese",
+          "prezzo": 5.50,
+          "allergeni": [1, 7, 3]
+        },
+        {
+          "nome": "Speck e brie",
+          "ingredienti": "Speck, brie, rucola",
+          "prezzo": 5.50,
+          "allergeni": [1, 7]
+        },
+        {
+          "nome": "Tonno",
+          "ingredienti": "Tonno, pomodoro fresco, rucola, cipolla rossa",
+          "prezzo": 5.50,
+          "allergeni": [1, 4]
+        }
+      ]
     },
     {
       "nome": "SUPER KEBAB",
       "ingredienti": "Panino super kebab, patatine e bibita 33cl",
-      "prezzo": 12.00
+      "prezzo": 12.00,
+      "personalizzabile": true
     },
     {
       "nome": "PIATTO KEBAB",
       "ingredienti": "Piatto kebab, patatine e bibita 33cl",
-      "prezzo": 11.00
+      "prezzo": 11.00,
+      "personalizzabile": true
     },
     {
       "nome": "MARGHERITA",
       "ingredienti": "Pizza margherita, patatine e bibita 33cl",
-      "prezzo": 9.00
+      "prezzo": 9.00,
+      "personalizzabile": true
     },
     {
       "nome": "TRANCIO MARGHERITA",
       "ingredienti": "Trancio margherita, patatine e bibita 33cl",
-      "prezzo": 9.00
+      "prezzo": 9.00,
+      "personalizzabile": true
     },
     {
       "nome": "PANINO CON BIRRA",
       "ingredienti": "Panino, patatine e birra 33cl",
-      "prezzo": 10.00
+      "prezzo": 10.00,
+      "personalizzabile": true,
+      "tipo": "menu_scelta",
+      "scelta": [
+        {
+          "nome": "Panino kebab 1",
+          "ingredienti": "Kebab, insalata, pomodoro fresco, cipolla, salsa bianca, salsa piccante",
+          "prezzo": 5.50,
+          "allergeni": [1, 7],
+          "personalizzabile" : true,
+          "ingredienti_removibili": [
+            "Insalata",
+            "Pomodoro fresco",
+            "Cipolla",
+            "Salsa bianca",
+            "Salsa piccante"
+          ]
+        },
+        {
+          "nome": "Americano 1",
+          "ingredienti": "Würstel, patatine, maionese",
+          "prezzo": 5.50,
+          "allergeni": [1, 7, 3]
+        },
+        {
+          "nome": "Americano 2",
+          "ingredienti": "Würstel, crauti, senape",
+          "prezzo": 5.50,
+          "allergeni": [1, 10]
+        },
+        {
+          "nome": "Caprese",
+          "ingredienti": "Pomodoro fresco, mozzarella, olio, origano",
+          "prezzo": 5.50,
+          "allergeni": [1, 7]
+        },
+        {
+          "nome": "Cotoletta di pollo",
+          "ingredienti": "Cotoletta, insalata, pomodoro fresco, salsa rosa",
+          "prezzo": 5.50,
+          "allergeni": [1, 7, 3]
+        },
+        {
+          "nome": "Cotto",
+          "ingredienti": "Prosciutto cotto, insalata, pomodoro fresco, mozzarella, maionese",
+          "prezzo": 5.50,
+          "allergeni": [1, 7, 3]
+        },
+        {
+          "nome": "Crudo",
+          "ingredienti": "Prosciutto crudo, insalata, mozzarella, salsa rosa",
+          "prezzo": 5.50,
+          "allergeni": [1, 7, 3]
+        },
+        {
+          "nome": "Falafel",
+          "ingredienti": "Polpette di verdura, insalata, pomodoro fresco, cipolla, salsa bianca, salsa piccante",
+          "prezzo": 5.50,
+          "allergeni": [1, 7]
+        },
+        {
+          "nome": "Italiano",
+          "ingredienti": "Bresaola, rucola, grana",
+          "prezzo": 6.50,
+          "allergeni": [1, 7] 
+        },
+        {
+          "nome": "Salamella",
+          "ingredienti": "Salamella, cipolla, peperoni, maionese",
+          "prezzo": 5.50,
+          "allergeni": [1, 7, 3]
+        },
+        {
+          "nome": "Speck e brie",
+          "ingredienti": "Speck, brie, rucola",
+          "prezzo": 5.50,
+          "allergeni": [1, 7]
+        },
+        {
+          "nome": "Tonno",
+          "ingredienti": "Tonno, pomodoro fresco, rucola, cipolla rossa",
+          "prezzo": 5.50,
+          "allergeni": [1, 4]
+        }
+      ]
     },
     {
       "nome": "PIATTO COTOLETTA",
       "ingredienti": "Piatto cotoletta, patatine e bibita 33cl",
-      "prezzo": 10.00
+      "prezzo": 10.00,
+      "personalizzabile": true
     }
   ]
 }

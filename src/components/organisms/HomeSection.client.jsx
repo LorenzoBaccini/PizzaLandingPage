@@ -1,7 +1,9 @@
 import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import styles from '../style/HomeSection.module.css';
+import styles from '../../style/HomeSection.module.css';
+import Button from '../atoms/Button.jsx';
+import { MyCarousel } from '../molecules/MyCarousel.client.jsx';
 
 export default function HomeSection({ id }) {
   const images = [
@@ -40,21 +42,23 @@ export default function HomeSection({ id }) {
       <p className={styles.description}>
         Scopri La nostra deliziosa pizza in teglia, preparate con ingredienti freschi
       </p>
-      <button
-        className={styles.ctaButton}
+      <Button
+        size='large'
+        role="navigation"
+        label="Scopri il menù"
+        variant='primary'
         onClick={() => {
           const menuSection = document.getElementById('menu-section');
           if (menuSection) menuSection.scrollIntoView({ behavior: 'smooth' });
         }}
-      >
-        Scopri il menù
-      </button>
+      />
       <p className={styles.description} style={{ marginBottom: '0', fontSize: '0.9rem' }}>
         Pagamento anche con Satispay e carte di credito, anche a domicilio!
       </p>
       <p className={styles.description} style={{ marginTop: '0', fontSize: '0.9rem' }}>
         Consegna effettuata al citofono e non al piano
       </p>
+      <MyCarousel />
     </section>
   );
 }

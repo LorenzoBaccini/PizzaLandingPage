@@ -4,43 +4,94 @@
       "nome": "Panino kebab 1",
       "ingredienti": "Kebab, insalata, pomodoro fresco, cipolla, salsa bianca, salsa piccante",
       "prezzo": 5.50,
-      "allergeni": [1, 7]
+      "allergeni": [1, 7],
+      "personalizzabile" : true,
+      "ingredienti_removibili": [
+        "Insalata",
+        "Pomodoro fresco",
+        "Cipolla",
+        "Salsa bianca",
+        "Salsa piccante"
+      ]
     },
     {
       "nome": "Panino kebab 2",
       "ingredienti": "Kebab, patatine, salsa bianca, salsa piccante",
       "prezzo": 5.50,
-      "allergeni": [1, 7]
+      "allergeni": [1, 7],
+      "personalizzabile" : true,
+      "ingredienti_removibili": [
+        "Patatine",
+        "Salsa bianca",
+        "Salsa piccante"
+      ]
     },
     {
       "nome": "Piadina kebab",
       "ingredienti": "Kebab, insalata, pomodoro fresco, cipolla, salsa bianca, salsa piccante",
       "prezzo": 6.00,
-      "allergeni": [1, 7] 
+      "allergeni": [1, 7],
+      "personalizzabile" : true,
+      "ingredienti_removibili": [
+        "Insalata",
+        "Pomodoro fresco",
+        "Cipolla",
+        "Salsa bianca",
+        "Salsa piccante"
+      ]
     },
     {
       "nome": "Panino kebab super",
       "ingredienti": "Kebab, patatine, insalata, pomodoro fresco, cipolla, salsa bianca, salsa piccante",
       "prezzo": 7.00,
-      "allergeni": [1, 7]
+      "allergeni": [1, 7],
+      "personalizzabile" : true,
+      "ingredienti_removibili": [
+        "Patatine",
+        "Insalata",
+        "Pomodoro fresco",
+        "Cipolla",
+        "Salsa bianca",
+        "Salsa piccante"
+      ]
     },
     {
       "nome": "Piadina kebab speciale",
       "ingredienti": "Kebab, melanzane, zucchine, salsa bianca, salsa piccante",
       "prezzo": 8.00,
-      "allergeni": [1, 7] 
+      "allergeni": [1, 7],
+      "personalizzabile" : true,
+      "ingredienti_removibili": [
+        "Melanzane",
+        "Zucchine",
+        "Salsa bianca",
+        "Salsa piccante"
+      ]
     },
     {
       "nome": "Piadina kebab la Teglia",
       "ingredienti": "Kebab, scamorza, funghi, salsa bianca, salsa piccante",
       "prezzo": 8.00,
-      "allergeni": [1, 7] 
+      "allergeni": [1, 7],
+      "personalizzabile" : true,
+      "ingredienti_removibili": [
+        "Scamorza",
+        "Funghi",
+        "Salsa bianca",
+        "Salsa piccante"
+      ]
     },
     {
       "nome": "Vaschetta kebab + pane",
       "ingredienti": "Kebab, patatine, salsa bianca, salsa piccante",
       "prezzo": 6.00,
-      "allergeni": [1, 7]   
+      "allergeni": [1, 7],
+      "personalizzabile" : true,
+      "ingredienti_removibili": [
+        "Patatine",
+        "Salsa bianca",
+        "Salsa piccante"
+      ]   
     },
     {
       "nome": "Vaschetta solo kebab",
@@ -51,13 +102,27 @@
       "nome": "Focaccia kebab",
       "ingredienti": "Kebab, insalata, pomodoro fresco, cipolla, salsa bianca, salsa piccante",
       "prezzo": 7.00,
-      "allergeni": [1, 7]
+      "allergeni": [1, 7],
+      "personalizzabile" : true,
+      "ingredienti_removibili": [
+        "Insalata",
+        "Pomodoro fresco",
+        "Cipolla",
+        "Salsa bianca",
+        "Salsa piccante"
+      ]
     },
     {
       "nome": "Calzone kebab",
       "ingredienti": "Pomodoro, mozzarella, kebab, cipolla, salsa bianca, salsa piccante",
       "prezzo": 10.00,
-      "allergeni": [1, 7]
+      "allergeni": [1, 7],
+      "personalizzabile" : true,
+      "ingredienti_removibili": [
+        "Cipolla",
+        "Salsa bianca",
+        "Salsa piccante"
+      ]
     }
   ]
 }

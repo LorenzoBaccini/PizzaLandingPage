@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  background-color: var(--color-background-primary);
+  background-color: var(--color-primary-background);
   padding: 10px 30px;
   display: flex;
   justify-content: space-between;

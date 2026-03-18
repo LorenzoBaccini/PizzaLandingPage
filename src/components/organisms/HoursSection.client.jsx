@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../style/HoursSection.module.css';
+import styles from '../../style/HoursSection.module.css';
 
 export default function HoursSection({ id }) {
   return (

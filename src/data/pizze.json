@@ -10,7 +10,8 @@
                 "Teglia intera": 33.0,
                 "Famiglia":  33.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "BARSENIA",
@@ -22,7 +23,8 @@
                 "Teglia intera": 35.0,
                 "Famiglia":  35.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "BIANCA",
@@ -34,7 +36,8 @@
                 "Teglia intera": 20.0,
                 "Famiglia":  20.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "BISMARCK",
@@ -46,7 +49,8 @@
                 "Teglia intera": 25.0,
                 "Famiglia":  25.0
             },
-            "allergeni": [1, 7, 3]
+            "allergeni": [1, 7, 3],
+            "personalizzabile" : true
         },
         {
             "nome": "BRACCIO DI FERRO",
@@ -58,7 +62,8 @@
                 "Teglia intera": 27.0,
                 "Famiglia":  27.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "BRESAOLA",
@@ -70,7 +75,8 @@
                 "Teglia intera": 33.0,
                 "Famiglia":  33.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true 
         },
         {
             "nome": "CALABRESE",
@@ -82,7 +88,8 @@
                 "Teglia intera": 27.0,
                 "Famiglia":  27.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "CAPRICCIOSA",
@@ -94,7 +101,8 @@
                 "Teglia intera": 33.0,
                 "Famiglia":  33.0
             },
-            "allergeni": [1, 4, 7]
+            "allergeni": [1, 4, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "CARBONARA",
@@ -106,7 +114,8 @@
                 "Teglia intera": 31.0,
                 "Famiglia":  31.0
             },
-            "allergeni": [1, 7, 3]
+            "allergeni": [1, 7, 3],
+            "personalizzabile" : true 
         },
         {
             "nome": "CHRISTIAN",
@@ -118,7 +127,8 @@
                 "Teglia intera": 37.0,
                 "Famiglia":  37.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "COCKTAIL",
@@ -130,7 +140,8 @@
                 "Teglia intera": 33.0,
                 "Famiglia":  33.0
             },
-            "allergeni": [1, 2, 7]
+            "allergeni": [1, 2, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "COTTO",
@@ -142,7 +153,8 @@
                 "Teglia intera": 23.0,
                 "Famiglia":  23.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "COTTO E FUNGHI",
@@ -154,7 +166,8 @@
                 "Teglia intera": 27.0,
                 "Famiglia":  27.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "CRUDO",
@@ -166,7 +179,8 @@
                 "Teglia intera": 29.0,
                 "Famiglia":  29.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "ESTATE",
@@ -178,7 +192,8 @@
                 "Teglia intera": 33.0,
                 "Famiglia":  33.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "FANTASTICA",
@@ -190,7 +205,8 @@
                 "Teglia intera": 33.0,
                 "Famiglia":  33.0
             },
-            "allergeni": [1, 4, 7]
+            "allergeni": [1, 4, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "FOCACCIA LISCIA",
@@ -202,7 +218,8 @@
                 "Teglia intera": 14.0,
                 "Famiglia":  14.0
             },
-            "allergeni": [1]
+            "allergeni": [1],
+            "personalizzabile" : true
         },
         {
             "nome": "FUMÉ",
@@ -214,7 +231,8 @@
                 "Teglia intera": 33.0,
                 "Famiglia":  33.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "FUNGHI",
@@ -226,7 +244,8 @@
                 "Teglia intera": 25.0,
                 "Famiglia":  25.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "GIOIA",
@@ -238,7 +257,8 @@
                 "Teglia intera": 35.0,
                 "Famiglia":  35.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "GOLOSA",
@@ -250,7 +270,8 @@
                 "Teglia intera": 33.0,
                 "Famiglia":  33.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "ITALIA",
@@ -262,7 +283,8 @@
                 "Teglia intera": 35.0,
                 "Famiglia":  35.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "KERO",
@@ -274,7 +296,8 @@
                 "Teglia intera": 35.0,
                 "Famiglia":  35.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "LEO",
@@ -286,7 +309,8 @@
                 "Teglia intera": 35.0,
                 "Famiglia":  35.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "MAIVEN",
@@ -298,7 +322,8 @@
                 "Teglia intera": 31.0,
                 "Famiglia":  31.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "MARGHERITA",
@@ -310,7 +335,8 @@
                 "Teglia intera": 20.0,
                 "Famiglia":  20.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "MARE E MONTI",
@@ -322,7 +348,8 @@
                 "Teglia intera": 37.0,
                 "Famiglia":  37.0
             },
-            "allergeni": [1, 7, 2, 4]
+            "allergeni": [1, 7, 2, 4],
+            "personalizzabile" : true
         },
         {
             "nome": "MARINARA",
@@ -334,7 +361,8 @@
                 "Teglia intera": 14.0,
                 "Famiglia":  14.0
             },
-            "allergeni": [1]
+            "allergeni": [1],
+            "personalizzabile" : true
         },
         {
             "nome": "MEZZALUNA",
@@ -346,7 +374,8 @@
                 "Teglia intera": 35.0,
                 "Famiglia":  35.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "NAPOLI",
@@ -358,7 +387,8 @@
                 "Teglia intera": 23.0,
                 "Famiglia":  23.0
             },
-            "allergeni": [1, 4, 7]
+            "allergeni": [1, 4, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "'NDUJA E ZOLA",
@@ -370,7 +400,8 @@
                 "Teglia intera": 29.0,
                 "Famiglia":  29.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "OLIVE",
@@ -382,7 +413,8 @@
                 "Teglia intera": 23.0,
                 "Famiglia":  23.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "PANNA E SALMONE",
@@ -394,7 +426,8 @@
                 "Teglia intera": 31.0,
                 "Famiglia":  31.0
             },
-            "allergeni": [1, 7, 4]
+            "allergeni": [1, 7, 4],
+            "personalizzabile" : true
         },
         {
             "nome": "PARMIGIANA",
@@ -406,7 +439,8 @@
                 "Teglia intera": 25.0,
                 "Famiglia":  25.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "PATATINA",
@@ -418,7 +452,8 @@
                 "Teglia intera": 23.0,
                 "Famiglia":  23.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "PIZZA KEBAB",
@@ -430,7 +465,15 @@
                 "Teglia intera": 37.0,
                 "Famiglia":  37.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true,
+            "ingredienti_removibili": [
+                "insalata",
+                "pomodoro fresco",
+                "cipolla",
+                "salsa bianca",
+                "salsa piccante"
+            ]
         },
         {
             "nome": "PIZZA KEBAB 2",
@@ -442,7 +485,13 @@
                 "Teglia intera": 37.0,
                 "Famiglia":  37.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true,
+            "ingredienti_removibili": [
+                "patatine",
+                "salsa bianca",
+                "salsa piccante"
+            ]
         },
         {
             "nome": "PIZZA KEBAB SPECIALE",
@@ -454,7 +503,14 @@
                 "Teglia intera": 45.0,
                 "Famiglia":  45.0
             },
-            "allergeni": [1, 7, 3]
+            "allergeni": [1, 7, 3],
+            "personalizzabile" : true,
+            "ingredienti_removibili": [
+                "cipolla",
+                "funghi",
+                "melanzane",
+                "'nduja"
+            ]
         },
         {
             "nome": "PRIMAVERA",
@@ -466,7 +522,8 @@
                 "Teglia intera": 27.0,
                 "Famiglia":  27.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "PUGLIESE",
@@ -478,7 +535,8 @@
                 "Teglia intera": 23.0,
                 "Famiglia":  23.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "QUATTRO FORMAGGI",
@@ -490,7 +548,8 @@
                 "Teglia intera": 29.0,
                 "Famiglia":  29.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "QUATTRO STAGIONI",
@@ -502,7 +561,8 @@
                 "Teglia intera": 31.0,
                 "Famiglia":  31.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "ROMANA",
@@ -514,7 +574,8 @@
                 "Teglia intera": 29.0,
                 "Famiglia":  29.0
             },
-            "allergeni": [1, 7, 4]
+            "allergeni": [1, 7, 4],
+            "personalizzabile" : true
         },
         {
             "nome": "RUCOLA",
@@ -526,7 +587,8 @@
                 "Teglia intera": 23.0,
                 "Famiglia":  23.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "SALAME DOLCE",
@@ -538,7 +600,8 @@
                 "Teglia intera": 25.0,
                 "Famiglia":  25.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "SALSICCIA E FRIARIELLI",
@@ -550,7 +613,8 @@
                 "Teglia intera": 29.0,
                 "Famiglia":  29.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "SALSICCIA E PATATINE",
@@ -562,7 +626,8 @@
                 "Teglia intera": 31.0,
                 "Famiglia":  31.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "SAPORE DI MARE",
@@ -574,7 +639,8 @@
                 "Teglia intera": 33.0,
                 "Famiglia":  33.0
             },
-            "allergeni": [1, 7, 4, 2, 14]
+            "allergeni": [1, 7, 4, 2, 14],
+            "personalizzabile" : true
         },
         {
             "nome": "SAPORITA",
@@ -586,7 +652,8 @@
                 "Teglia intera": 33.0,
                 "Famiglia":  33.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "SCAMORZA E SPECK",
@@ -598,7 +665,8 @@
                 "Teglia intera": 33.0,
                 "Famiglia":  33.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "SOLE",
@@ -610,7 +678,8 @@
                 "Teglia intera": 37.0,
                 "Famiglia":  37.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "TONNO E CIPOLLA",
@@ -622,7 +691,8 @@
                 "Teglia intera": 29.0,
                 "Famiglia":  29.0
             },
-            "allergeni": [1, 7, 4]
+            "allergeni": [1, 7, 4],
+            "personalizzabile" : true
         },
         {
             "nome": "TRE COLORI",
@@ -634,7 +704,8 @@
                 "Teglia intera": 27.0,
                 "Famiglia":  27.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "TRIS",
@@ -646,7 +717,8 @@
                 "Teglia intera": 31.0,
                 "Famiglia":  31.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "VEGANA",
@@ -658,7 +730,8 @@
                 "Teglia intera": 33.0,
                 "Famiglia":  33.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "VEGETARIANA",
@@ -670,7 +743,8 @@
                 "Teglia intera": 29.0,
                 "Famiglia":  29.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "WURSTEL",
@@ -682,7 +756,8 @@
                 "Teglia intera": 23.0,
                 "Famiglia":  23.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "WURSTEL E CRAUTI",
@@ -694,7 +769,8 @@
                 "Teglia intera": 27.0,
                 "Famiglia":  27.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "WURSTEL E PATATINE",
@@ -706,7 +782,8 @@
                 "Teglia intera": 29.0,
                 "Famiglia":  29.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "ZOLA BIANCA",
@@ -718,7 +795,8 @@
                 "Teglia intera": 25.0,
                 "Famiglia":  25.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "ZOLA NOCI",
@@ -730,7 +808,8 @@
                 "Teglia intera": 29.0,
                 "Famiglia":  29.0
             },
-            "allergeni": [1, 7, 8]
+            "allergeni": [1, 7, 8],
+            "personalizzabile" : true
         },
         {
             "nome": "2014",
@@ -742,7 +821,8 @@
                 "Teglia intera": 33.0,
                 "Famiglia":  33.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "2015",
@@ -754,7 +834,8 @@
                 "Teglia intera": 35.0,
                 "Famiglia":  35.0
             },
-            "allergeni": [1, 7]
+            "allergeni": [1, 7],
+            "personalizzabile" : true
         },
         {
             "nome": "2022",
@@ -766,7 +847,8 @@
                 "Teglia intera": 31.0,
                 "Famiglia":  31.0
             },
-            "allergeni": [1, 7, 2]
+            "allergeni": [1, 7, 2],
+            "personalizzabile" : true
         }
     ]
 }

@@ -4,37 +4,44 @@
       "nome": "LISCIO",
       "ingredienti": "Pomodoro, mozzarella, prosciutto cotto",
       "prezzo": 7.00,
-      "allergeni": [1, 7]
+      "allergeni": [1, 7],
+      "personalizzabile" : true
     },
     {
       "nome": "FARCITO",
       "ingredienti": "Pomodoro, mozzarella, prosciutto cotto, funghi, carciofi",
       "prezzo": 8.00,
-      "allergeni": [1, 7]
+      "allergeni": [1, 7],
+      "personalizzabile" : true
     },
     {
       "nome": "VEGETARIANO",
       "ingredienti": "Pomodoro, mozzarella, verdure grigliate",
       "prezzo": 8.00,
-      "allergeni": [1, 7] 
+      "allergeni": [1, 7],
+      "personalizzabile" : true 
     },
     {
       "nome": "BRACCIO DI FERRO",
       "ingredienti": "Pomodoro, mozzarella, ricotta, spinaci",
       "prezzo": 7.50,
-      "allergeni": [1, 7]
+      "allergeni": [1, 7],
+      "personalizzabile" : true
     },
     {
       "nome": "FUOCO",
       "ingredienti": "Pomodoro, mozzarella, zola, salame piccante, peperoncino",
       "prezzo": 8.00,
-      "allergeni": [1, 7] 
+      "allergeni": [1, 7],
+      "personalizzabile" : true 
     },
     {
       "nome": "BOCCAPERTA",
       "ingredienti": "Mozzarella di bufala, bresaola, rucola, pomodorini, grana",
       "prezzo": 10.00,
-      "allergeni": [1, 7]
+      "allergeni": [1, 7],
+      "personalizzabile" : true
     }
-  ]
+  ],
+  "personalizzabile" : true
 }
