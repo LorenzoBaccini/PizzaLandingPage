@@ -154,6 +154,39 @@
   color: #5C3A21;
 }
 
+.orderItemCustomization {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 4px 0;
+  padding: 6px 8px;
+  background: #FFF3E0;
+  border-radius: 6px;
+  border-left: 3px solid #D2691E;
+  font-size: 0.8rem;
+  color: #5C3A21;
+  line-height: 1.4;
+}
+
+.orderItemActions {
+  display: flex;
+  gap: 12px;
+}
+
+.btnEditItem {
+  background: none;
+  border: none;
+  color: #1890ff;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.btnEditItem:hover {
+  color: #096dd9;
+}
+
 .btnRemoveItem {
   background: none;
   border: none;
@@ -166,36 +199,6 @@
 
 .btnRemoveItem:hover {
   color: #B04030;
-}
-
-.orderNotes {
-  margin-bottom: 24px;
-}
-
-.orderNotes label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 700;
-  color: #5C3A21;
-}
-
-.orderNotes textarea {
-  width: 91%;
-  padding: 12px;
-  border: 2px solid #D2691E;
-  border-radius: 8px;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1rem;
-  resize: vertical;
-  min-height: 80px;
-  background: white;
-  color: #5C3A21;
-}
-
-.orderNotes textarea:focus {
-  outline: none;
-  border-color: #B04030;
-  box-shadow: 0 0 8px rgba(176, 64, 48, 0.3);
 }
 
 .orderTotal {

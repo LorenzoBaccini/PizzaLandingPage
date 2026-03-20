@@ -5,14 +5,13 @@ import { OrderPanel } from "./OrderPanel.client";
 export const OrderManager = () => {
   const {
     items,
-    note,
     updateQuantity,
     removeItem,
     clearOrder,
-    updateNote,
     totalItems,
     isPanelOpen,
     setIsPanelOpen,
+    setEditRequest,
   } = useOrder();
 
   return (
@@ -26,8 +25,10 @@ export const OrderManager = () => {
         onUpdateQuantity={updateQuantity}
         onRemoveItem={removeItem}
         onClearOrder={clearOrder}
-        note={note}
-        onUpdateNote={updateNote}
+        onEditItem={(item) => {
+          setEditRequest(item);
+          setIsPanelOpen(false);
+        }}
       />
     </>
   );

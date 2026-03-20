@@ -1,24 +1,36 @@
 import type { ComponentType, SVGProps } from "react";
 
+export interface OrderItemCustomization {
+  extras: Ingrediente[];
+  removedIngredients: string[];
+  variante: string | null;
+  menuScelta: string | null;
+  menuBevanda: string | null;
+  opzioniSpeciali: string[];
+}
+
 export interface OrderItem {
   id: string;
   nome: string;
   prezzo: number;
   quantita: number;
+  customization?: OrderItemCustomization;
+  sourceProduct?: Partial<MenuItem>;
 }
 
 export interface OrderContextType {
   items: OrderItem[];
-  note: string;
-  addItem: (product: Pick<OrderItem, "id" | "nome" | "prezzo">, quantity?: number) => void;
+  addItem: (product: Pick<OrderItem, "id" | "nome" | "prezzo"> & { customization?: OrderItemCustomization; sourceProduct?: Partial<MenuItem> }, quantity?: number) => void;
+  replaceItem: (oldId: string, newItem: Pick<OrderItem, "id" | "nome" | "prezzo"> & { customization?: OrderItemCustomization; sourceProduct?: Partial<MenuItem> }) => void;
   updateQuantity: (productId: string, newQuantity: number) => void;
   removeItem: (productId: string) => void;
   clearOrder: () => void;
   getItemQuantity: (productId: string) => number;
-  updateNote: (newNote: string) => void;
   totalItems: number;
   isPanelOpen: boolean;
   setIsPanelOpen: (open: boolean) => void;
+  editRequest: OrderItem | null;
+  setEditRequest: (item: OrderItem | null) => void;
 }
 
 export interface MenuItemVariante {

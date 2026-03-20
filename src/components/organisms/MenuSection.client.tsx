@@ -19,6 +19,7 @@ import { IngredientiModal } from "./IngredientiModal.client";
 import { PizzaSearch } from "./PizzaSearch.client";
 import { PizzaList } from "./PizzaList.client";
 import { useMenuLogic } from "../../hooks/useMenuLogic";
+import { useOrder } from "../../context/OrderContext";
 
 import type { MenuItem, AllergeniData, AllergeniIconsMap, Ingrediente } from "../../types";
 
@@ -58,11 +59,15 @@ export const MenuSection = ({ id }: MenuSectionProps) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [tooltipId, setTooltipId] = useState<string | null>(null);
 
+  const { editRequest, setEditRequest } = useOrder();
+
   const {
     isIngredientModalOpen,
     setIsIngredientModalOpen,
     selectedProduct,
     selectedExtras,
+    initialCustomization,
+    editingItemId,
     generateProductBaseId,
     hasMultipleFormats,
     getAvailableFormats,
@@ -75,7 +80,15 @@ export const MenuSection = ({ id }: MenuSectionProps) => {
     handleAddToOrder,
     handleIncreaseQuantity,
     handleDecreaseQuantity,
+    handleEditFromCart,
   } = useMenuLogic(activeSection);
+
+  useEffect(() => {
+    if (editRequest) {
+      handleEditFromCart(editRequest);
+      setEditRequest(null);
+    }
+  }, [editRequest, handleEditFromCart, setEditRequest]);
 
   useEffect(() => {
     if (isIngredientModalOpen) {
@@ -179,6 +192,9 @@ export const MenuSection = ({ id }: MenuSectionProps) => {
           selectedExtras={selectedExtras}
           handleToggleExtra={handleToggleExtra}
           handleAddToOrder={handleAddToOrder}
+          initialCustomization={initialCustomization}
+          isEditMode={!!editingItemId}
+          showSpecialOptions={["Pizze", "Calzoni", "Focacce Rotonde"].includes(activeSection)}
         />
       )}
     </section>

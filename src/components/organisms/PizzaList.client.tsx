@@ -19,7 +19,7 @@ interface PizzaListProps {
   handleDecreaseQuantity: (item: MenuItem) => void;
   handleIncreaseQuantity: (item: MenuItem) => void;
   handleOpenIngredientModal: (item: MenuItem) => void;
-  handleAddToOrder: (item: MenuItem) => void;
+  handleAddToOrder: (item: MenuItem, customization?: import("../../types").OrderItemCustomization) => void;
   generateProductBaseId: (item: MenuItem) => string;
 }
 

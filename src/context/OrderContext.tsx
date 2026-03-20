@@ -2,9 +2,14 @@ import { createContext, useContext, useState, useEffect, useCallback, useMemo } 
 
 import type { ReactNode } from "react";
 
-import type { OrderItem, OrderContextType } from "../types";
+import type { OrderItem, OrderContextType, OrderItemCustomization, MenuItem } from "../types";
 
 const STORAGE_KEY = "pizzeria_mio_ordine";
+
+type AddItemProduct = Pick<OrderItem, "id" | "nome" | "prezzo"> & {
+  customization?: OrderItemCustomization;
+  sourceProduct?: Partial<MenuItem>;
+};
 
 const OrderContext = createContext<OrderContextType | null>(null);
 
@@ -22,8 +27,8 @@ interface OrderProviderProps {
 
 export const OrderProvider = ({ children }: OrderProviderProps) => {
   const [items, setItems] = useState<OrderItem[]>([]);
-  const [note, setNote] = useState("");
   const [isPanelOpen, setIsPanelOpen] = useState(false);
+  const [editRequest, setEditRequest] = useState<OrderItem | null>(null);
 
   useEffect(() => {
     try {
@@ -31,7 +36,6 @@ export const OrderProvider = ({ children }: OrderProviderProps) => {
       if (data) {
         const parsed = JSON.parse(data);
         setItems(parsed.items || []);
-        setNote(parsed.note || "");
       }
     } catch {
       // Silently ignore corrupted localStorage
@@ -41,14 +45,13 @@ export const OrderProvider = ({ children }: OrderProviderProps) => {
   useEffect(() => {
     const data = {
       items,
-      note,
       timestamp: Date.now(),
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  }, [items, note]);
+  }, [items]);
 
   const addItem = useCallback(
-    (product: Pick<OrderItem, "id" | "nome" | "prezzo">, quantity = 1) => {
+    (product: AddItemProduct, quantity = 1) => {
       setItems((currentItems) => {
         const existing = currentItems.find((item) => item.id === product.id);
         if (existing) {
@@ -65,8 +68,60 @@ export const OrderProvider = ({ children }: OrderProviderProps) => {
             nome: product.nome,
             prezzo: product.prezzo,
             quantita: quantity,
+            customization: product.customization,
+            sourceProduct: product.sourceProduct,
           },
         ];
+      });
+    },
+    []
+  );
+
+  const replaceItem = useCallback(
+    (oldId: string, newItem: AddItemProduct) => {
+      setItems((currentItems) => {
+        if (oldId === newItem.id) {
+          return currentItems.map((item) =>
+            item.id === oldId
+              ? {
+                  ...item,
+                  nome: newItem.nome,
+                  prezzo: newItem.prezzo,
+                  customization: newItem.customization,
+                  sourceProduct: newItem.sourceProduct,
+                }
+              : item
+          );
+        }
+
+        const existingTarget = currentItems.find(
+          (item) => item.id === newItem.id && item.id !== oldId
+        );
+        const oldItem = currentItems.find((item) => item.id === oldId);
+        const oldQuantity = oldItem?.quantita ?? 1;
+
+        if (existingTarget) {
+          return currentItems
+            .filter((item) => item.id !== oldId)
+            .map((item) =>
+              item.id === newItem.id
+                ? { ...item, quantita: Math.min(item.quantita + oldQuantity, 20) }
+                : item
+            );
+        }
+
+        return currentItems.map((item) =>
+          item.id === oldId
+            ? {
+                id: newItem.id,
+                nome: newItem.nome,
+                prezzo: newItem.prezzo,
+                quantita: oldQuantity,
+                customization: newItem.customization,
+                sourceProduct: newItem.sourceProduct,
+              }
+            : item
+        );
       });
     },
     []
@@ -90,7 +145,6 @@ export const OrderProvider = ({ children }: OrderProviderProps) => {
 
   const clearOrder = useCallback(() => {
     setItems([]);
-    setNote("");
   }, []);
 
   const getItemQuantity = useCallback(
@@ -101,10 +155,6 @@ export const OrderProvider = ({ children }: OrderProviderProps) => {
     [items]
   );
 
-  const updateNote = useCallback((newNote: string) => {
-    setNote(newNote);
-  }, []);
-
   const totalItems = useMemo(
     () => items.reduce((sum, item) => sum + item.quantita, 0),
     [items]
@@ -113,28 +163,29 @@ export const OrderProvider = ({ children }: OrderProviderProps) => {
   const value = useMemo<OrderContextType>(
     () => ({
       items,
-      note,
       addItem,
+      replaceItem,
       updateQuantity,
       removeItem,
       clearOrder,
       getItemQuantity,
-      updateNote,
       totalItems,
       isPanelOpen,
       setIsPanelOpen,
+      editRequest,
+      setEditRequest,
     }),
     [
       items,
-      note,
       addItem,
+      replaceItem,
       updateQuantity,
       removeItem,
       clearOrder,
       getItemQuantity,
-      updateNote,
       totalItems,
       isPanelOpen,
+      editRequest,
     ]
   );
 

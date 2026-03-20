@@ -4,7 +4,12 @@ import { useEffect, useState, useCallback } from "react";
 import { Button } from "../atoms/Button";
 import genericStyle from "../../style/generic.module.css";
 
-import type { MenuItem, Ingrediente } from "../../types";
+import type { MenuItem, Ingrediente, OrderItemCustomization, MenuItemVariante } from "../../types";
+
+const SPECIAL_OPTIONS = [
+  { nome: "Impasto integrale", prezzo: 1.00 },
+  { nome: "Mozzarella senza lattosio", prezzo: 1.50 },
+];
 
 const MENU_BEVANDE = [
   { nome: "Acqua naturale" },
@@ -24,7 +29,10 @@ interface IngredientiModalProps {
   selectedProduct: MenuItem | null;
   selectedExtras: Ingrediente[];
   handleToggleExtra: (ingrediente: string, formato: string | null | undefined) => void;
-  handleAddToOrder: (product: MenuItem) => void;
+  handleAddToOrder: (product: MenuItem, customization?: OrderItemCustomization) => void;
+  initialCustomization?: OrderItemCustomization;
+  isEditMode?: boolean;
+  showSpecialOptions?: boolean;
 }
 
 export const IngredientiModal = ({
@@ -35,11 +43,15 @@ export const IngredientiModal = ({
   selectedExtras,
   handleToggleExtra,
   handleAddToOrder,
+  initialCustomization,
+  isEditMode = false,
+  showSpecialOptions = false,
 }: IngredientiModalProps) => {
   const [selectedMenuItem, setSelectedMenuItem] = useState<MenuItem | null>(null);
   const [selectedBevanda, setSelectedBevanda] = useState<{ nome: string } | null>(null);
-  const [selectedVariante, setSelectedVariante] = useState<MenuItem["varianti"] extends (infer T)[] ? T | null : null>(null);
+  const [selectedVariante, setSelectedVariante] = useState<MenuItemVariante | null>(null);
   const [removedIngredients, setRemovedIngredients] = useState<string[]>([]);
+  const [selectedSpecialOptions, setSelectedSpecialOptions] = useState<string[]>([]);
   const [menuActiveKey, setMenuActiveKey] = useState<string | null>(null);
   const [bevandeActiveKey, setBevandeActiveKey] = useState<string | null>(null);
 
@@ -49,10 +61,32 @@ export const IngredientiModal = ({
       setSelectedBevanda(null);
       setSelectedVariante(null);
       setRemovedIngredients([]);
+      setSelectedSpecialOptions([]);
       setMenuActiveKey(null);
       setBevandeActiveKey(null);
+      return;
     }
-  }, [open]);
+
+    if (initialCustomization) {
+      setRemovedIngredients(initialCustomization.removedIngredients || []);
+      setSelectedSpecialOptions(initialCustomization.opzioniSpeciali || []);
+
+      if (initialCustomization.variante && selectedProduct?.varianti) {
+        const v = selectedProduct.varianti.find((va) => va.tipo === initialCustomization.variante);
+        if (v) setSelectedVariante(v);
+      }
+
+      if (initialCustomization.menuScelta && selectedProduct?.scelta) {
+        const m = selectedProduct.scelta.find((s) => s.nome === initialCustomization.menuScelta);
+        if (m) setSelectedMenuItem(m);
+      }
+
+      if (initialCustomization.menuBevanda) {
+        const b = MENU_BEVANDE.find((bev) => bev.nome === initialCustomization.menuBevanda);
+        if (b) setSelectedBevanda(b);
+      }
+    }
+  }, [open, initialCustomization, selectedProduct?.varianti, selectedProduct?.scelta]);
 
   const handleToggleRemove = useCallback((nomeIngrediente: string) => {
     setRemovedIngredients((prev) =>
@@ -79,15 +113,26 @@ export const IngredientiModal = ({
   );
 
   const handleConfirmOrder = useCallback(() => {
-    const prodottoFinale: MenuItem = {
-      ...selectedProduct!,
-      extras: selectedExtras as unknown as Ingrediente[],
-      removedIngredients: removedIngredients.length > 0 ? removedIngredients : undefined,
-      menuScelta: selectedMenuItem,
-      menuBevanda: selectedBevanda,
-      variante: selectedVariante,
-    } as MenuItem & { extras?: Ingrediente[]; removedIngredients?: string[]; menuScelta?: MenuItem | null; menuBevanda?: { nome: string } | null; variante?: unknown };
-    handleAddToOrder(prodottoFinale as MenuItem);
+    if (!selectedProduct) return;
+
+    const customization: OrderItemCustomization = {
+      extras: selectedExtras,
+      removedIngredients,
+      variante: selectedVariante?.tipo ?? null,
+      menuScelta: selectedMenuItem?.nome ?? null,
+      menuBevanda: selectedBevanda?.nome ?? null,
+      opzioniSpeciali: selectedSpecialOptions,
+    };
+
+    const hasCustomization =
+      customization.extras.length > 0 ||
+      customization.removedIngredients.length > 0 ||
+      customization.variante !== null ||
+      customization.menuScelta !== null ||
+      customization.menuBevanda !== null ||
+      customization.opzioniSpeciali.length > 0;
+
+    handleAddToOrder(selectedProduct, hasCustomization ? customization : undefined);
     onClose();
   }, [
     selectedProduct,
@@ -96,6 +141,7 @@ export const IngredientiModal = ({
     selectedMenuItem,
     selectedBevanda,
     selectedVariante,
+    selectedSpecialOptions,
     handleAddToOrder,
     onClose,
   ]);
@@ -209,6 +255,20 @@ export const IngredientiModal = ({
 
   const totalModifiche = selectedExtras.length + removedIngredients.length;
 
+  const getButtonLabel = () => {
+    if (!isReadyToOrder) {
+      return menuOptions.length > 0 ? "Completa menu" : "Completa la selezione";
+    }
+    if (isEditMode) {
+      return totalModifiche > 0
+        ? `Aggiorna ${totalModifiche} modifi${totalModifiche === 1 ? "ca" : "che"}`
+        : "Aggiorna senza modifiche";
+    }
+    return totalModifiche > 0
+      ? `Aggiungi ${totalModifiche} modifi${totalModifiche === 1 ? "ca" : "che"}`
+      : "Aggiungi senza modifiche";
+  };
+
   return (
     <Modal
       open={open}
@@ -258,15 +318,7 @@ export const IngredientiModal = ({
           }}
         >
           <Button
-            label={
-              !isReadyToOrder
-                ? menuOptions.length > 0
-                  ? "Completa menu"
-                  : "Completa la selezione"
-                : totalModifiche > 0
-                  ? `Aggiungi ${totalModifiche} modifi${totalModifiche === 1 ? "ca" : "che"}`
-                  : "Aggiungi senza modifiche"
-            }
+            label={getButtonLabel()}
             variant="primaryAlt"
             onClick={handleConfirmOrder}
             disabled={!isReadyToOrder}
@@ -437,7 +489,7 @@ export const IngredientiModal = ({
               Formato
             </h4>
             <Radio.Group
-              value={(selectedVariante as { tipo?: string } | null)?.tipo}
+              value={selectedVariante?.tipo}
               onChange={(e) => {
                 const v = varianti.find((v) => v.tipo === e.target.value);
                 setSelectedVariante(v ?? null);
@@ -547,10 +599,59 @@ export const IngredientiModal = ({
           </div>
         )}
 
+        {showSpecialOptions && (
+          <div style={{ marginBottom: 20 }}>
+            <h4
+              style={{
+                margin: "16px 0 12px 0",
+                color: "#722ed1",
+                fontSize: 16,
+                fontWeight: 600,
+              }}
+            >
+              Opzioni speciali
+            </h4>
+            <List
+              dataSource={SPECIAL_OPTIONS}
+              renderItem={({ nome, prezzo }) => {
+                const isChecked = selectedSpecialOptions.includes(nome);
+                return (
+                  <List.Item style={{ paddingBlock: 12 }} key={nome}>
+                    <Checkbox
+                      checked={isChecked}
+                      onChange={() =>
+                        setSelectedSpecialOptions((prev) =>
+                          prev.includes(nome)
+                            ? prev.filter((o) => o !== nome)
+                            : [...prev, nome]
+                        )
+                      }
+                      style={{ fontSize: 15 }}
+                    >
+                      <strong>{nome}</strong>{" "}
+                      <span
+                        style={{
+                          color: "var(--color-danger-dark)",
+                          marginLeft: 8,
+                          fontWeight: 600,
+                          fontSize: 14,
+                        }}
+                      >
+                        (+{prezzo.toFixed(2)} &euro;)
+                      </span>
+                    </Checkbox>
+                  </List.Item>
+                );
+              }}
+            />
+          </div>
+        )}
+
         {!menuOptions.length &&
           !varianti.length &&
           !currentRemovableIngredients.length &&
-          !ingredienti?.length && (
+          !ingredienti?.length &&
+          !showSpecialOptions && (
             <div
               style={{
                 padding: 48,
