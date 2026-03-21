@@ -41,6 +41,7 @@ export const OrderPanel = ({
   const [toastType, setToastType] = useState("");
   const [showConfirm, setShowConfirm] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [showWhatsappConfirm, setShowWhatsappConfirm] = useState(false);
   const wasOpen = useRef(false);
 
   const form = useOrderForm();
@@ -137,7 +138,7 @@ export const OrderPanel = ({
     setTimeout(() => setShowToast(false), CONFIG.toastDuration);
   };
 
-  const handleConfirmShare = () => {
+  const handleValidateAndConfirm = () => {
     let hasError = false;
 
     if (form.deliverySelected && !form.validateDelivery()) {
@@ -151,8 +152,13 @@ export const OrderPanel = ({
 
     if (hasError) return;
 
+    setShowWhatsappConfirm(true);
+  };
+
+  const handleSendWhatsapp = () => {
     const message = encodeURIComponent(formatOrderText());
     window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${message}`, "_blank");
+    setShowWhatsappConfirm(false);
     setModalVisible(false);
   };
 
@@ -260,7 +266,7 @@ export const OrderPanel = ({
           footer={
             <div className={styles.whatsappModalFooter}>
               <Button label="Annulla" variant="secondary" onClick={() => setModalVisible(false)} />
-              <Button label="Invia su WhatsApp" variant="primaryAlt" onClick={handleConfirmShare} />
+              <Button label="Invia su WhatsApp" variant="primaryAlt" onClick={handleValidateAndConfirm} />
             </div>
           }
         >
@@ -268,7 +274,7 @@ export const OrderPanel = ({
 
           <div>
             <p className={styles.timeSlotsLabel}>
-              Puoi suggerire un orario preferito di ritiro o ricezione ordine:
+              Puoi suggerire un orario preferito di {form.deliverySelected ? "ricezione" : "ritiro"} ordine:
             </p>
             <div className={styles.timeSlotsWrapper}>
               <div className={styles.timeSlotsContainer}>
@@ -302,6 +308,26 @@ export const OrderPanel = ({
             aggiunte, verrà confermato tramite WhatsApp.
           </p>
         </Modal>
+
+        {showWhatsappConfirm && (
+          <div className={styles.confirmModalOverlay} tabIndex={-1} role="dialog" aria-modal="true">
+            <div className={styles.confirmModal}>
+              <div className={styles.confirmModalContent}>
+                <h3>Confermi l&apos;invio dell&apos;ordine su WhatsApp?</h3>
+                <p style={{ fontSize: "0.9rem", color: "var(--color-text-secondary)", marginBottom: "16px" }}>
+                  {form.deliverySelected
+                    ? `Consegna a ${form.address}, ${form.civicNumber} — ${form.comune}`
+                    : "Ritiro in pizzeria"}
+                  {timeSlots.preferredTime && ` · Ore ${timeSlots.preferredTime.format("HH:mm")}`}
+                </p>
+                <div className={styles.confirmModalActions}>
+                  <Button label="Annulla" variant="secondary" onClick={() => setShowWhatsappConfirm(false)} />
+                  <Button label="Conferma e invia" variant="primaryAlt" onClick={handleSendWhatsapp} />
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {showToast && (
           <div className={`${styles.toast} ${toastType === "success" ? styles.success : styles.error}`}>
