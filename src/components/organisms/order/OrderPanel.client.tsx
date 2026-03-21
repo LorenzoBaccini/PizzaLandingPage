@@ -133,7 +133,7 @@ export const OrderPanel = ({
   const isSlotDisabled = (slot: dayjs.Dayjs) => {
     const minSelectableTime = nowDate.hour(9).minute(0).second(0);
     if (now.isBefore(minSelectableTime)) return true;
-    if (slot.isBefore(now)) return true;
+    if (slot.isBefore(now.add(30, "minute"))) return true;
 
     if (day === 0) {
       if (slot.isBefore(sundayOpenStart) || slot.isAfter(sundayOpenEnd)) return true;
