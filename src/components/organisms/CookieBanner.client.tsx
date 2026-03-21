@@ -1,10 +1,17 @@
+import { useState, useEffect } from "react";
+
 import { useCookieConsent } from "../../context/CookieConsentContext";
 import styles from "../../style/CookieBanner.module.css";
 
 export const CookieBanner = () => {
   const { consent, accept, reject } = useCookieConsent();
+  const [mounted, setMounted] = useState(false);
 
-  if (consent !== "pending") return null;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted || consent !== "pending") return null;
 
   return (
     <div className={styles.banner}>

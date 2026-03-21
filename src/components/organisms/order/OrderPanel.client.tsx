@@ -116,6 +116,7 @@ export const OrderPanel = ({
       text += "📍 *Consegna a domicilio*\n";
       text += `${form.address}, ${form.civicNumber} — ${form.comune}\n`;
       text += `Citofono: ${form.intercom}\n`;
+      text += `💳 Pagamento: ${form.paymentMethod === "carta" ? "Carta" : "Contanti"}\n`;
     } else {
       text += "🏪 *Ritiro in negozio*\n";
     }

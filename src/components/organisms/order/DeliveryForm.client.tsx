@@ -2,13 +2,18 @@ import { Input, Switch, Select } from "../../atoms";
 import { COMUNI_CONSEGNA } from "../../../hooks/useOrderForm";
 import styles from "../../../style/OrderPanel.module.css";
 
-import type { useOrderForm } from "../../../hooks/useOrderForm";
+import type { useOrderForm, PaymentMethod } from "../../../hooks/useOrderForm";
 
 type OrderFormReturn = ReturnType<typeof useOrderForm>;
 
 interface DeliveryFormProps {
   form: OrderFormReturn;
 }
+
+const PAYMENT_OPTIONS: { value: PaymentMethod; label: string }[] = [
+  { value: "contanti", label: "Contanti" },
+  { value: "carta", label: "Carta" },
+];
 
 export const DeliveryForm = ({ form }: DeliveryFormProps) => {
   return (
@@ -67,6 +72,26 @@ export const DeliveryForm = ({ form }: DeliveryFormProps) => {
             }))}
           />
           {form.comuneError && <div className={styles.fieldError}>{form.comuneError}</div>}
+
+          <div className={styles.paymentMethodSection}>
+            <span className={styles.paymentMethodLabel}>Metodo di pagamento:</span>
+            <div className={styles.paymentMethodButtons}>
+              {PAYMENT_OPTIONS.map(({ value, label }) => (
+                <button
+                  key={value}
+                  type="button"
+                  className={`${styles.paymentMethodBtn} ${form.paymentMethod === value ? styles.paymentMethodBtnActive : ""}`}
+                  onClick={() => {
+                    form.setPaymentMethod(value);
+                    form.setPaymentError("");
+                  }}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+          {form.paymentError && <div className={styles.fieldError}>{form.paymentError}</div>}
         </div>
       )}
     </>

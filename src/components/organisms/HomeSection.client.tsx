@@ -31,7 +31,7 @@ export const HomeSection = ({ id }: HomeSectionProps) => {
           }}
         />
         <div className={styles.infoTexts}>
-          <p>Pagamento anche con Satispay e carte di credito, anche a domicilio!</p>
+          <p>Pagamento anche con carte di credito, anche a domicilio!</p>
           <p>Consegna effettuata al citofono e non al piano</p>
         </div>
       </div>

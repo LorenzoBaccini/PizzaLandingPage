@@ -505,3 +505,49 @@
   margin-bottom: 8px;
   font-size: 0.85rem;
 }
+
+.paymentMethodSection {
+  margin-top: 8px;
+}
+
+.paymentMethodLabel {
+  display: block;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.paymentMethodButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.paymentMethodBtn {
+  flex: 1;
+  padding: 10px;
+  background: var(--color-elevated);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 8px;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.paymentMethodBtn:hover {
+  border-color: var(--color-amber);
+  color: var(--color-text);
+}
+
+.paymentMethodBtnActive {
+  background: var(--color-amber);
+  border-color: var(--color-amber);
+  color: var(--color-bg);
+}
+
+.paymentMethodBtnActive:hover {
+  background: var(--color-amber-dark);
+  border-color: var(--color-amber-dark);
+}

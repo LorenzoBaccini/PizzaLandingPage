@@ -12,6 +12,8 @@ export const COMUNI_CONSEGNA = [
   { nome: "Meda", sovrapprezzo: 2 },
 ] as const;
 
+export type PaymentMethod = "contanti" | "carta" | null;
+
 export const useOrderForm = () => {
   const [deliverySelected, setDeliverySelected] = useState(false);
   const [address, setAddress] = useState("");
@@ -22,6 +24,8 @@ export const useOrderForm = () => {
   const [intercomError, setIntercomError] = useState("");
   const [comune, setComune] = useState<string | null>(null);
   const [comuneError, setComuneError] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(null);
+  const [paymentError, setPaymentError] = useState("");
 
   const handleDeliveryToggle = (checked: boolean) => {
     setDeliverySelected(checked);
@@ -30,6 +34,8 @@ export const useOrderForm = () => {
       setCivicError("");
       setIntercomError("");
       setComuneError("");
+      setPaymentMethod(null);
+      setPaymentError("");
     }
   };
 
@@ -60,6 +66,12 @@ export const useOrderForm = () => {
     } else {
       setComuneError("");
     }
+    if (!paymentMethod) {
+      setPaymentError("Seleziona il metodo di pagamento");
+      hasError = true;
+    } else {
+      setPaymentError("");
+    }
 
     return !hasError;
   };
@@ -86,6 +98,10 @@ export const useOrderForm = () => {
     setComune,
     comuneError,
     setComuneError,
+    paymentMethod,
+    setPaymentMethod,
+    paymentError,
+    setPaymentError,
     validateDelivery,
     getComuneData,
   };
