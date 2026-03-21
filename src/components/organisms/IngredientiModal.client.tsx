@@ -227,7 +227,9 @@ export const IngredientiModal = ({
                 <div className={styles.collapseHeader}>
                   <div className={styles.collapseHeaderText}>
                     <span className={`${styles.collapseHeaderLabel} ${selectedMenuItem ? styles.selected : styles.unselected}`}>
-                      {selectedMenuItem ? selectedMenuItem.nome : "Seleziona panino del menu"}
+                      {selectedMenuItem
+                        ? selectedMenuItem.nome
+                        : `Seleziona ${selectedProduct?.nome?.toLowerCase().includes("piadina") ? "piadina" : "panino"} del menu`}
                     </span>
                   </div>
                   <span className={selectedMenuItem ? styles.badgeSelected : styles.badgeRequired}>
