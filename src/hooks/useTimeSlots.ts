@@ -8,8 +8,9 @@ import { ORDER_SLOTS } from "../config/businessHours";
 dayjs.extend(isBetween);
 
 const PREP_BUFFER_MINUTES = 30;
+const DELIVERY_SKIP_SLOTS = 2;
 
-export const useTimeSlots = () => {
+export const useTimeSlots = (isDelivery = false) => {
   const [preferredTime, setPreferredTime] = useState<dayjs.Dayjs | null>(null);
   const [timeError, setTimeError] = useState("");
   const [infoMessage, setInfoMessage] = useState("");
@@ -36,14 +37,16 @@ export const useTimeSlots = () => {
       return slots;
     };
 
+    const skip = isDelivery ? DELIVERY_SKIP_SLOTS : 0;
+
     if (day === 0) {
-      return generateSlots(sundayOpenStart.hour(), sundayOpenEnd.hour());
+      return generateSlots(sundayOpenStart.hour(), sundayOpenEnd.hour()).slice(skip);
     }
     return [
-      ...generateSlots(openMorningStart.hour(), openMorningEnd.hour()),
-      ...generateSlots(openEveningStart.hour(), openEveningEnd.hour()),
+      ...generateSlots(openMorningStart.hour(), openMorningEnd.hour()).slice(skip),
+      ...generateSlots(openEveningStart.hour(), openEveningEnd.hour()).slice(skip),
     ];
-  }, [day, nowDate, sundayOpenStart, sundayOpenEnd, openMorningStart, openMorningEnd, openEveningStart, openEveningEnd]);
+  }, [day, nowDate, sundayOpenStart, sundayOpenEnd, openMorningStart, openMorningEnd, openEveningStart, openEveningEnd, isDelivery]);
 
   useEffect(() => {
     const minSelectableTime = nowDate.hour(9);

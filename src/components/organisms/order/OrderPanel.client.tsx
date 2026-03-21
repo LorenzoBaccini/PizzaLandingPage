@@ -44,7 +44,7 @@ export const OrderPanel = ({
   const wasOpen = useRef(false);
 
   const form = useOrderForm();
-  const timeSlots = useTimeSlots();
+  const timeSlots = useTimeSlots(form.deliverySelected);
 
   useEffect(() => {
     if (isOpen && !wasOpen.current) {
