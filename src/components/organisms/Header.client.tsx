@@ -22,40 +22,19 @@ export const Header = () => {
 
   return (
     <header className={styles.header}>
-      <div className={styles.logo}>
-        {["L", "A"].map((char, i) => (
-          <span
-            key={`LA-${i}`}
-            style={{
-              color: ["#EE5A00", "#B43104"][i],
-              display: "inline-block",
-              transition: "color 0.3s ease",
-            }}
+      <div className={styles.logo}>LA TEGLIA</div>
+
+      <nav className={styles.desktopNav}>
+        {menuItems.map(({ label, targetId }) => (
+          <button
+            key={label}
+            className={styles.desktopNavLink}
+            onClick={() => handleScroll(targetId)}
           >
-            {char}
-          </span>
+            {label}
+          </button>
         ))}
-        <span> </span>
-        {"TEGLIA".split("").map((char, i) => (
-          <span
-            key={`TEGLIA-${i}`}
-            style={{
-              color: [
-                "#facd17ff",
-                "#5b7a1bff",
-                "#B43104",
-                "#d6ae0cff",
-                "#34912A",
-                "#EE5A00",
-              ][i],
-              display: "inline-block",
-              transition: "color 0.3s ease",
-            }}
-          >
-            {char}
-          </span>
-        ))}
-      </div>
+      </nav>
 
       <button
         className={`${styles.hamburgerButton} ${open ? styles.active : ""}`}

@@ -1,0 +1,225 @@
+.scrollBody {
+  max-height: 50vh;
+  overflow-y: auto;
+  padding-bottom: 16px;
+}
+
+.sectionTitle {
+  margin: 16px 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Oswald", sans-serif;
+}
+
+.sectionTitleFormato {
+  composes: sectionTitle;
+  color: var(--color-amber);
+}
+
+.sectionTitleRemove {
+  composes: sectionTitle;
+  color: var(--color-amber-dark);
+}
+
+.sectionTitleExtra {
+  composes: sectionTitle;
+  color: var(--color-red);
+}
+
+.sectionTitleSpecial {
+  composes: sectionTitle;
+  color: var(--color-amber);
+}
+
+.subLabel {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin-left: 8px;
+  font-weight: 400;
+}
+
+.listItem {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.listItem:last-child {
+  border-bottom: none;
+}
+
+.collapseHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 4px 0;
+}
+
+.collapseHeaderText {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.collapseHeaderLabel {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.collapseHeaderLabel.selected {
+  color: var(--color-amber);
+}
+
+.collapseHeaderLabel.unselected {
+  color: var(--color-text);
+}
+
+.badge {
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  min-width: 90px;
+  text-align: center;
+}
+
+.badgeSelected {
+  composes: badge;
+  background: rgba(232, 168, 56, 0.15);
+  color: var(--color-amber);
+  border: 1px solid rgba(232, 168, 56, 0.3);
+}
+
+.badgeRequired {
+  composes: badge;
+  background: rgba(192, 57, 43, 0.15);
+  color: var(--color-red);
+  border: 1px solid rgba(192, 57, 43, 0.3);
+}
+
+.menuItem {
+  cursor: pointer;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  transition: all 0.2s ease;
+}
+
+.menuItem:hover {
+  border-color: var(--color-amber);
+}
+
+.menuItemSelected {
+  composes: menuItem;
+  background: rgba(232, 168, 56, 0.1);
+  border-color: var(--color-amber);
+  box-shadow: 0 2px 8px var(--color-amber-glow);
+}
+
+.menuItemName {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 4px;
+  color: var(--color-text);
+}
+
+.menuItemIngredients {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+  background: var(--color-elevated);
+  padding: 6px 10px;
+  border-radius: 6px;
+  border-left: 3px solid var(--color-amber);
+}
+
+.bevandaItem {
+  cursor: pointer;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bevandaItem:hover {
+  border-color: var(--color-amber);
+}
+
+.bevandaItemSelected {
+  composes: bevandaItem;
+  background: rgba(232, 168, 56, 0.1);
+  border-color: var(--color-amber);
+}
+
+.bevandaName {
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--color-text);
+}
+
+.bevandaBadge {
+  color: var(--color-amber);
+  font-size: 13px;
+  font-weight: 500;
+  background: rgba(232, 168, 56, 0.15);
+  padding: 2px 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(232, 168, 56, 0.3);
+  margin-left: 12px;
+}
+
+.titleBorder {
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 12px;
+}
+
+.formatLabel {
+  color: var(--color-red);
+}
+
+.priceTag {
+  color: var(--color-red);
+  margin-left: 8px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.boldName {
+  font-weight: 700;
+  color: var(--color-amber);
+}
+
+.emptyState {
+  padding: 48px;
+  text-align: center;
+  color: var(--color-amber);
+  font-size: 16px;
+}
+
+.emptyStateIcon {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.emptyStateTitle {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.emptyStateSubtitle {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.footerButtons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}

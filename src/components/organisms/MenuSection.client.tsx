@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 
 import styles from "../../style/MenuSection.module.css";
+
 import { pizze } from "../../data/pizze.json";
 import { calzoni } from "../../data/calzoni.json";
 import { focacce_rotonde } from "../../data/focacce_rotonde.json";
@@ -160,9 +161,7 @@ export const MenuSection = ({ id }: MenuSectionProps) => {
         ))}
       </div>
 
-      {activeSection === "Pizze" && (
-        <PizzaSearch searchInput={searchInput} setSearchInput={setSearchInput} />
-      )}
+      <PizzaSearch searchInput={searchInput} setSearchInput={setSearchInput} />
 
       <PizzaList
         itemsSelezionati={itemsSelezionati}

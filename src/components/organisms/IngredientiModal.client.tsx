@@ -1,8 +1,8 @@
-import { Modal, Checkbox, List, Radio, Collapse } from "antd";
 import { useEffect, useState, useCallback } from "react";
 
-import { Button } from "../atoms/Button";
+import { Modal, Checkbox, Collapse, Radio, RadioGroup, Button } from "../atoms";
 import genericStyle from "../../style/generic.module.css";
+import styles from "../../style/IngredientiModal.module.css";
 
 import type { MenuItem, Ingrediente, OrderItemCustomization, MenuItemVariante } from "../../types";
 
@@ -52,8 +52,8 @@ export const IngredientiModal = ({
   const [selectedVariante, setSelectedVariante] = useState<MenuItemVariante | null>(null);
   const [removedIngredients, setRemovedIngredients] = useState<string[]>([]);
   const [selectedSpecialOptions, setSelectedSpecialOptions] = useState<string[]>([]);
-  const [menuActiveKey, setMenuActiveKey] = useState<string | null>(null);
-  const [bevandeActiveKey, setBevandeActiveKey] = useState<string | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [bevandeOpen, setBevandeOpen] = useState(false);
 
   useEffect(() => {
     if (!open) {
@@ -62,8 +62,8 @@ export const IngredientiModal = ({
       setSelectedVariante(null);
       setRemovedIngredients([]);
       setSelectedSpecialOptions([]);
-      setMenuActiveKey(null);
-      setBevandeActiveKey(null);
+      setMenuOpen(false);
+      setBevandeOpen(false);
       return;
     }
 
@@ -95,22 +95,6 @@ export const IngredientiModal = ({
         : [...prev, nomeIngrediente]
     );
   }, []);
-
-  const handleMenuCollapseChange = useCallback(
-    (key: string | string[]) => {
-      const currentKey = Array.isArray(key) ? key[0] : key;
-      setMenuActiveKey(currentKey === menuActiveKey ? null : currentKey);
-    },
-    [menuActiveKey]
-  );
-
-  const handleBevandeCollapseChange = useCallback(
-    (key: string | string[]) => {
-      const currentKey = Array.isArray(key) ? key[0] : key;
-      setBevandeActiveKey(currentKey === bevandeActiveKey ? null : currentKey);
-    },
-    [bevandeActiveKey]
-  );
 
   const handleConfirmOrder = useCallback(() => {
     if (!selectedProduct) return;
@@ -176,83 +160,6 @@ export const IngredientiModal = ({
     return (selectedMenuItem as MenuItem | null)?.formato || selectedProduct?.formato;
   };
 
-  const renderMenuHeader = () => (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        width: "100%",
-        padding: "4px 0",
-      }}
-    >
-      <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-        <span
-          style={{
-            fontWeight: 600,
-            fontSize: 15,
-            color: selectedMenuItem ? "#1890ff" : "#333",
-          }}
-        >
-          {selectedMenuItem ? `${selectedMenuItem.nome}` : "Seleziona panino del menu"}
-        </span>
-      </div>
-      <span
-        style={{
-          fontSize: 12,
-          padding: "4px 12px",
-          borderRadius: 20,
-          fontWeight: 500,
-          backgroundColor: selectedMenuItem ? "#e6f7ff" : "#fff2f0",
-          color: selectedMenuItem ? "#1890ff" : "#ff4d4f",
-          border: `1px solid ${selectedMenuItem ? "#91d5ff" : "#ffccc7"}`,
-          minWidth: 90,
-          textAlign: "center",
-        }}
-      >
-        {selectedMenuItem ? "Selezionato" : "Obbligatorio"}
-      </span>
-    </div>
-  );
-
-  const renderBevandeHeader = () => (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        width: "100%",
-      }}
-    >
-      <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-        <span
-          style={{
-            fontWeight: 600,
-            fontSize: 15,
-            color: selectedBevanda ? "#52c41a" : "#333",
-          }}
-        >
-          {selectedBevanda ? `${selectedBevanda.nome}` : "Seleziona bevanda"}
-        </span>
-      </div>
-      <span
-        style={{
-          fontSize: 12,
-          padding: "4px 12px",
-          borderRadius: 20,
-          fontWeight: 500,
-          backgroundColor: selectedBevanda ? "#e6f7ff" : "#fff2f0",
-          color: selectedBevanda ? "#1890ff" : "#ff4d4f",
-          border: `1px solid ${selectedBevanda ? "#91d5ff" : "#ffccc7"}`,
-          minWidth: 90,
-          textAlign: "center",
-        }}
-      >
-        {selectedBevanda ? "Selezionata" : "Obbligatoria"}
-      </span>
-    </div>
-  );
-
   const totalModifiche = selectedExtras.length + removedIngredients.length;
 
   const getButtonLabel = () => {
@@ -272,27 +179,23 @@ export const IngredientiModal = ({
   return (
     <Modal
       open={open}
-      centered
-      zIndex={5000}
+      onClose={onClose}
       title={
-        <div style={{ padding: "0 5px" }}>
+        <div>
           <p className={genericStyle.nomeProdotto}>{selectedProduct?.nome}</p>
           {selectedProduct?.formato && (
             <p className={genericStyle.ingredienti}>
-              <span style={{ color: "var(--color-alternative-primary)" }}> Formato: </span>
+              <span className={styles.formatLabel}> Formato: </span>
               {selectedProduct.formato}
             </p>
           )}
-          <p
-            style={{ borderBottom: "1px solid #ccc", paddingBottom: 12 }}
-            className={genericStyle.ingredienti}
-          >
+          <p className={`${genericStyle.ingredienti} ${styles.titleBorder}`}>
             {selectedProduct?.tipo !== "menu_scelta" && (
-              <span style={{ color: "var(--color-alternative-primary)" }}> Ingredienti: </span>
+              <span className={styles.formatLabel}> Ingredienti: </span>
             )}
             {selectedProduct?.ingredienti}
           </p>
-          <p style={{ margin: "10px 0 0 0", fontSize: 18, fontWeight: 600 }}>
+          <p style={{ margin: "10px 0 0 0", fontSize: 18, fontWeight: 600, color: "var(--color-text)" }}>
             {menuOptions.length > 0
               ? "Menu completo"
               : currentRemovableIngredients.length > 0
@@ -301,22 +204,8 @@ export const IngredientiModal = ({
           </p>
         </div>
       }
-      onCancel={onClose}
       footer={
-        <div
-          style={{
-            display: "flex",
-            gap: 12,
-            justifyContent: "center",
-            position: "sticky",
-            bottom: 0,
-            background: "white",
-            padding: "16px 12px",
-            borderTop: "1px solid #f0f0f0",
-            zIndex: 10,
-            borderRadius: "0 0 12px 12px",
-          }}
-        >
+        <div className={styles.footerButtons}>
           <Button
             label={getButtonLabel()}
             variant="primaryAlt"
@@ -328,322 +217,168 @@ export const IngredientiModal = ({
         </div>
       }
     >
-      <div
-        style={{
-          maxHeight: "50vh",
-          overflowY: "auto",
-          paddingBottom: 16,
-          padding: "0 16px",
-        }}
-      >
+      <div className={styles.scrollBody}>
         {menuOptions.length > 0 && (
           <>
             <Collapse
-              accordion
-              activeKey={menuActiveKey ?? undefined}
-              onChange={handleMenuCollapseChange}
-              bordered={false}
-              expandIconPosition="end"
-              style={{ background: "transparent", marginBottom: 16 }}
-              items={[
-                {
-                  key: "menu",
-                  label: renderMenuHeader(),
-                  children: (
-                    <List
-                      dataSource={menuOptions}
-                      renderItem={(item: MenuItem) => (
-                        <List.Item
-                          onClick={() => setSelectedMenuItem(item)}
-                          style={{
-                            cursor: "pointer",
-                            padding: "12px 16px",
-                            borderRadius: 8,
-                            marginBottom: 8,
-                            background:
-                              selectedMenuItem?.nome === item.nome ? "#e6f7ff" : "white",
-                            border: `1px solid ${selectedMenuItem?.nome === item.nome ? "#1890ff" : "#f0f0f0"}`,
-                            transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                            boxShadow:
-                              selectedMenuItem?.nome === item.nome
-                                ? "0 2px 8px rgba(24, 144, 255, 0.15)"
-                                : "none",
-                          }}
-                        >
-                          <div
-                            style={{
-                              display: "flex",
-                              justifyContent: "space-between",
-                              alignItems: "flex-start",
-                            }}
-                          >
-                            <div style={{ flex: 1 }}>
-                              <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 4 }}>
-                                {item.nome}
-                              </div>
-                              {item.ingredienti && (
-                                <div
-                                  style={{
-                                    fontSize: 13,
-                                    color: "#666",
-                                    lineHeight: 1.4,
-                                    background: "#f9f9f9",
-                                    padding: "6px 10px",
-                                    borderRadius: 6,
-                                    borderLeft: "3px solid #1890ff",
-                                  }}
-                                >
-                                  {item.ingredienti}
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        </List.Item>
-                      )}
-                    />
-                  ),
-                  style: {
-                    borderRadius: 12,
-                    border: "1px solid #f0f0f0",
-                    overflow: "hidden",
-                    boxShadow: "0 1px 4px rgba(0,0,0,0.05)",
-                  },
-                },
-              ]}
-            />
+              isOpen={menuOpen}
+              onToggle={() => setMenuOpen(!menuOpen)}
+              header={
+                <div className={styles.collapseHeader}>
+                  <div className={styles.collapseHeaderText}>
+                    <span className={`${styles.collapseHeaderLabel} ${selectedMenuItem ? styles.selected : styles.unselected}`}>
+                      {selectedMenuItem ? selectedMenuItem.nome : "Seleziona panino del menu"}
+                    </span>
+                  </div>
+                  <span className={selectedMenuItem ? styles.badgeSelected : styles.badgeRequired}>
+                    {selectedMenuItem ? "Selezionato" : "Obbligatorio"}
+                  </span>
+                </div>
+              }
+            >
+              {menuOptions.map((item: MenuItem) => (
+                <div
+                  key={item.nome}
+                  className={selectedMenuItem?.nome === item.nome ? styles.menuItemSelected : styles.menuItem}
+                  onClick={() => setSelectedMenuItem(item)}
+                >
+                  <div className={styles.menuItemName}>{item.nome}</div>
+                  {item.ingredienti && (
+                    <div className={styles.menuItemIngredients}>{item.ingredienti}</div>
+                  )}
+                </div>
+              ))}
+            </Collapse>
 
-            {menuOptions.length > 0 && (
-              <Collapse
-                accordion
-                activeKey={bevandeActiveKey ?? undefined}
-                onChange={handleBevandeCollapseChange}
-                bordered={false}
-                expandIconPosition="end"
-                style={{ background: "transparent", marginBottom: 16 }}
-                items={[
-                  {
-                    key: "bevande",
-                    label: renderBevandeHeader(),
-                    children: (
-                      <List
-                        dataSource={MENU_BEVANDE}
-                        renderItem={(bevanda: { nome: string }) => (
-                          <List.Item
-                            onClick={() => setSelectedBevanda(bevanda)}
-                            style={{
-                              cursor: "pointer",
-                              padding: "12px 16px",
-                              borderRadius: 8,
-                              marginBottom: 6,
-                              background:
-                                selectedBevanda?.nome === bevanda.nome ? "#e6fff2" : "white",
-                              border: `1px solid ${selectedBevanda?.nome === bevanda.nome ? "#52c41a" : "#f0f0f0"}`,
-                              transition: "all 0.2s",
-                            }}
-                          >
-                            <div
-                              style={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                              }}
-                            >
-                              <span style={{ fontWeight: 500, fontSize: 15 }}>
-                                {bevanda.nome}
-                              </span>
-                              <span
-                                style={{
-                                  color: "#52c41a",
-                                  fontSize: 13,
-                                  fontWeight: 500,
-                                  background: "#f6ffed",
-                                  padding: "2px 8px",
-                                  borderRadius: 12,
-                                  border: "1px solid #b7eb8f",
-                                  marginLeft: 12,
-                                }}
-                              >
-                                Inclusa
-                              </span>
-                            </div>
-                          </List.Item>
-                        )}
-                      />
-                    ),
-                    style: {
-                      borderRadius: 12,
-                      border: "1px solid #f0f0f0",
-                      overflow: "hidden",
-                      boxShadow: "0 1px 4px rgba(0,0,0,0.05)",
-                    },
-                  },
-                ]}
-              />
-            )}
+            <Collapse
+              isOpen={bevandeOpen}
+              onToggle={() => setBevandeOpen(!bevandeOpen)}
+              header={
+                <div className={styles.collapseHeader}>
+                  <div className={styles.collapseHeaderText}>
+                    <span className={`${styles.collapseHeaderLabel} ${selectedBevanda ? styles.selected : styles.unselected}`}>
+                      {selectedBevanda ? selectedBevanda.nome : "Seleziona bevanda"}
+                    </span>
+                  </div>
+                  <span className={selectedBevanda ? styles.badgeSelected : styles.badgeRequired}>
+                    {selectedBevanda ? "Selezionata" : "Obbligatoria"}
+                  </span>
+                </div>
+              }
+            >
+              {MENU_BEVANDE.map((bevanda) => (
+                <div
+                  key={bevanda.nome}
+                  className={selectedBevanda?.nome === bevanda.nome ? styles.bevandaItemSelected : styles.bevandaItem}
+                  onClick={() => setSelectedBevanda(bevanda)}
+                >
+                  <span className={styles.bevandaName}>{bevanda.nome}</span>
+                  <span className={styles.bevandaBadge}>Inclusa</span>
+                </div>
+              ))}
+            </Collapse>
           </>
         )}
 
         {varianti.length > 0 && (
           <div style={{ marginBottom: 20 }}>
-            <h4 style={{ margin: "16px 0 12px 0", color: "#722ed1", fontSize: 16, fontWeight: 600 }}>
-              Formato
-            </h4>
-            <Radio.Group
-              value={selectedVariante?.tipo}
-              onChange={(e) => {
-                const v = varianti.find((v) => v.tipo === e.target.value);
-                setSelectedVariante(v ?? null);
-              }}
-              style={{ display: "flex", flexDirection: "column", gap: 10 }}
-            >
+            <h4 className={styles.sectionTitleFormato}>Formato</h4>
+            <RadioGroup>
               {varianti.map((v) => (
-                <Radio key={v.tipo} value={v.tipo} style={{ padding: 12 }}>
+                <Radio
+                  key={v.tipo}
+                  value={v.tipo}
+                  selected={selectedVariante?.tipo === v.tipo}
+                  onChange={(val) => {
+                    const found = varianti.find((va) => va.tipo === val);
+                    setSelectedVariante(found ?? null);
+                  }}
+                >
                   <span style={{ fontWeight: 500, fontSize: 15 }}>
                     {v.tipo.charAt(0).toUpperCase() + v.tipo.slice(1)}
                   </span>
                   {v.sovrapprezzo > 0 && (
-                    <span
-                      style={{
-                        color: "#ff4d4f",
-                        marginLeft: 12,
-                        fontSize: 14,
-                        fontWeight: 600,
-                      }}
-                    >
+                    <span className={styles.priceTag}>
                       (+{v.sovrapprezzo}&euro;)
                     </span>
                   )}
                 </Radio>
               ))}
-            </Radio.Group>
+            </RadioGroup>
           </div>
         )}
 
         {(currentRemovableIngredients.length > 0 || removedIngredients.length > 0) && (
           <div style={{ marginBottom: 20 }}>
-            <h4
-              style={{
-                margin: "16px 0 12px 0",
-                color: "#faad14",
-                fontSize: 16,
-                fontWeight: 600,
-              }}
-            >
+            <h4 className={styles.sectionTitleRemove}>
               Rimuovi ingredienti
               {menuPaninoHaRemovibili && (
-                <span style={{ fontSize: 13, color: "#666", marginLeft: 8, fontWeight: 400 }}>
+                <span className={styles.subLabel}>
                   ({(selectedMenuItem as MenuItem).nome})
                 </span>
               )}
             </h4>
-            <List
-              dataSource={currentRemovableIngredients}
-              renderItem={(nome: string) => {
-                const isRemoved = removedIngredients.includes(nome);
-                return (
-                  <List.Item style={{ paddingBlock: 12 }} key={nome}>
-                    <Checkbox
-                      checked={isRemoved}
-                      onChange={() => handleToggleRemove(nome)}
-                      style={{ fontSize: 15 }}
-                    >
-                      Rimuovi <strong style={{ color: "#faad14" }}>{nome}</strong>
-                    </Checkbox>
-                  </List.Item>
-                );
-              }}
-            />
+            {currentRemovableIngredients.map((nome: string) => {
+              const isRemoved = removedIngredients.includes(nome);
+              return (
+                <div className={styles.listItem} key={nome}>
+                  <Checkbox checked={isRemoved} onChange={() => handleToggleRemove(nome)}>
+                    Rimuovi <span className={styles.boldName}>{nome}</span>
+                  </Checkbox>
+                </div>
+              );
+            })}
           </div>
         )}
 
         {ingredienti?.length > 0 && (
           <div>
-            <h4
-              style={{
-                margin: "16px 0 12px 0",
-                color: "var(--color-alternative-primary)",
-                fontSize: 16,
-                fontWeight: 600,
-              }}
-            >
-              Aggiungi extra
-            </h4>
-            <List
-              dataSource={ingredienti}
-              renderItem={({ ingrediente, prezzo }: Ingrediente) => {
-                const isChecked = selectedExtras.some((e) => e.ingrediente === ingrediente);
-                const prezzoFinale = getPrezzoFinaleExtra(prezzo);
-                return (
-                  <List.Item style={{ paddingBlock: 12 }} key={ingrediente}>
-                    <Checkbox
-                      checked={isChecked}
-                      onChange={() => handleToggleExtra(ingrediente, getFormatoPerExtra())}
-                      style={{ fontSize: 15 }}
-                    >
-                      <strong>{ingrediente}</strong>{" "}
-                      <span
-                        style={{
-                          color: "var(--color-danger-dark)",
-                          marginLeft: 8,
-                          fontWeight: 600,
-                          fontSize: 14,
-                        }}
-                      >
-                        (+{prezzoFinale.toFixed(2)} &euro;)
-                      </span>
-                    </Checkbox>
-                  </List.Item>
-                );
-              }}
-            />
+            <h4 className={styles.sectionTitleExtra}>Aggiungi extra</h4>
+            {ingredienti.map(({ ingrediente, prezzo }: Ingrediente) => {
+              const isChecked = selectedExtras.some((e) => e.ingrediente === ingrediente);
+              const prezzoFinale = getPrezzoFinaleExtra(prezzo);
+              return (
+                <div className={styles.listItem} key={ingrediente}>
+                  <Checkbox
+                    checked={isChecked}
+                    onChange={() => handleToggleExtra(ingrediente, getFormatoPerExtra())}
+                  >
+                    <strong>{ingrediente}</strong>{" "}
+                    <span className={styles.priceTag}>
+                      (+{prezzoFinale.toFixed(2)} &euro;)
+                    </span>
+                  </Checkbox>
+                </div>
+              );
+            })}
           </div>
         )}
 
         {showSpecialOptions && (
           <div style={{ marginBottom: 20 }}>
-            <h4
-              style={{
-                margin: "16px 0 12px 0",
-                color: "#722ed1",
-                fontSize: 16,
-                fontWeight: 600,
-              }}
-            >
-              Opzioni speciali
-            </h4>
-            <List
-              dataSource={SPECIAL_OPTIONS}
-              renderItem={({ nome, prezzo }) => {
-                const isChecked = selectedSpecialOptions.includes(nome);
-                return (
-                  <List.Item style={{ paddingBlock: 12 }} key={nome}>
-                    <Checkbox
-                      checked={isChecked}
-                      onChange={() =>
-                        setSelectedSpecialOptions((prev) =>
-                          prev.includes(nome)
-                            ? prev.filter((o) => o !== nome)
-                            : [...prev, nome]
-                        )
-                      }
-                      style={{ fontSize: 15 }}
-                    >
-                      <strong>{nome}</strong>{" "}
-                      <span
-                        style={{
-                          color: "var(--color-danger-dark)",
-                          marginLeft: 8,
-                          fontWeight: 600,
-                          fontSize: 14,
-                        }}
-                      >
-                        (+{prezzo.toFixed(2)} &euro;)
-                      </span>
-                    </Checkbox>
-                  </List.Item>
-                );
-              }}
-            />
+            <h4 className={styles.sectionTitleSpecial}>Opzioni speciali</h4>
+            {SPECIAL_OPTIONS.map(({ nome, prezzo }) => {
+              const isChecked = selectedSpecialOptions.includes(nome);
+              return (
+                <div className={styles.listItem} key={nome}>
+                  <Checkbox
+                    checked={isChecked}
+                    onChange={() =>
+                      setSelectedSpecialOptions((prev) =>
+                        prev.includes(nome)
+                          ? prev.filter((o) => o !== nome)
+                          : [...prev, nome]
+                      )
+                    }
+                  >
+                    <strong>{nome}</strong>{" "}
+                    <span className={styles.priceTag}>
+                      (+{prezzo.toFixed(2)} &euro;)
+                    </span>
+                  </Checkbox>
+                </div>
+              );
+            })}
           </div>
         )}
 
@@ -652,18 +387,10 @@ export const IngredientiModal = ({
           !currentRemovableIngredients.length &&
           !ingredienti?.length &&
           !showSpecialOptions && (
-            <div
-              style={{
-                padding: 48,
-                textAlign: "center",
-                color: "#52c41a",
-                fontStyle: "normal",
-                fontSize: 16,
-              }}
-            >
-              <div style={{ fontSize: 48, marginBottom: 12 }}>&#x2705;</div>
-              <div style={{ fontWeight: 500, marginBottom: 4 }}>Perfetto!</div>
-              <div style={{ fontSize: 14, color: "#666" }}>
+            <div className={styles.emptyState}>
+              <div className={styles.emptyStateIcon}>&#x2705;</div>
+              <div className={styles.emptyStateTitle}>Perfetto!</div>
+              <div className={styles.emptyStateSubtitle}>
                 Questo prodotto non richiede personalizzazioni
               </div>
             </div>

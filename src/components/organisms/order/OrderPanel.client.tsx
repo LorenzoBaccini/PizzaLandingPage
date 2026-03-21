@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 
-import { Modal, Input, Button, Switch, Select } from "antd";
 import dayjs from "dayjs";
 import isBetween from "dayjs/plugin/isBetween";
 
+import { Modal, Input, Switch, Select } from "../../atoms";
+import { Button } from "../../atoms/Button";
 import styles from "../../../style/OrderPanel.module.css";
 import { ORDER_SLOTS } from "../../../config/businessHours";
 
@@ -181,36 +182,50 @@ export const OrderPanel = ({
   };
 
   const formatOrderText = () => {
-    let text = "IL MIO ORDINE\n\n";
+    const subtotal = calculateTotal();
+    const comuneData = deliverySelected ? COMUNI_CONSEGNA.find((c) => c.nome === comune) : null;
+    const deliverySurcharge = comuneData?.sovrapprezzo ?? 0;
+    const grandTotal = subtotal + deliverySurcharge;
+
+    let text = "🍕 *ORDINE LA TEGLIA*\n";
+    text += "━━━━━━━━━━━━━━━━━━━━\n\n";
+
     items.forEach((item) => {
       const price = typeof item.prezzo === "number" ? item.prezzo : parseFloat(String(item.prezzo)) || 0;
-      text += `${item.quantita}x ${item.nome} - €${(price * item.quantita).toFixed(2)}`;
+      const lineTotal = price * item.quantita;
+      text += `▸ *${item.quantita}x ${item.nome}*`;
+      if (item.quantita > 1) {
+        text += ` (€${price.toFixed(2)} cad.)`;
+      }
+      text += ` — €${lineTotal.toFixed(2)}`;
       text += formatCustomizationText(item);
       text += "\n";
     });
-    text += `Totale: €${calculateTotal().toFixed(2)}\n\n`;
-    if (deliverySelected) {
-      const comuneData = COMUNI_CONSEGNA.find((c) => c.nome === comune);
-      text += "--- CONSEGNA A DOMICILIO ---\n";
-      text += `Indirizzo: ${address}, ${civicNumber}\n`;
-      text += `Citofono: ${intercom}\n`;
-      text += `Comune: ${comune}\n`;
-      if (comuneData) {
-        text += `Sovrapprezzo consegna: €${comuneData.sovrapprezzo},00\n`;
-      }
-      text += preferredTime
-        ? `Orario preferito consegna: ${preferredTime.format("HH:mm")}\n`
-        : "";
-    } else {
-      text += "--- RITIRO IN NEGOZIO ---\n";
-      text += preferredTime
-        ? `Orario preferito ritiro: ${preferredTime.format("HH:mm")}\n`
-        : "";
+
+    text += "\n━━━━━━━━━━━━━━━━━━━━\n";
+    text += `Subtotale prodotti: €${subtotal.toFixed(2)}\n`;
+
+    if (deliverySelected && deliverySurcharge > 0) {
+      text += `Consegna (${comune}): €${deliverySurcharge.toFixed(2)}\n`;
     }
-    text +=
-      "\nL'ordine si intende accettato solo con messaggio di risposta via WhatsApp.\n";
-    text +=
-      "**Il prezzo definitivo, inclusi eventuali extra, verrà confermato via WhatsApp.**\n";
+
+    text += `\n💰 *TOTALE: €${grandTotal.toFixed(2)}*\n`;
+    text += "━━━━━━━━━━━━━━━━━━━━\n\n";
+
+    if (deliverySelected) {
+      text += "📍 *Consegna a domicilio*\n";
+      text += `${address}, ${civicNumber} — ${comune}\n`;
+      text += `Citofono: ${intercom}\n`;
+    } else {
+      text += "🏪 *Ritiro in negozio*\n";
+    }
+
+    if (preferredTime) {
+      text += `⏰ Orario preferito: ${preferredTime.format("HH:mm")}\n`;
+    }
+
+    text += "\n_L'ordine è confermato solo dopo risposta su WhatsApp._\n";
+    text += "_Il prezzo finale potrebbe variare in base a modifiche o aggiunte._\n";
     return text;
   };
 
@@ -339,7 +354,7 @@ export const OrderPanel = ({
                               <span>- Senza: {item.customization.removedIngredients.join(", ")}</span>
                             )}
                             {item.customization.opzioniSpeciali?.length > 0 && (
-                              <span>⭐ {item.customization.opzioniSpeciali.join(", ")}</span>
+                              <span>&#11088; {item.customization.opzioniSpeciali.join(", ")}</span>
                             )}
                           </div>
                         )}
@@ -485,21 +500,18 @@ export const OrderPanel = ({
         )}
 
         <Modal
-          zIndex={5000}
-          title="Condividi via WhatsApp"
           open={modalVisible}
-          onCancel={() => setModalVisible(false)}
-          footer={[
-            <Button key="back" onClick={() => setModalVisible(false)}>
-              Annulla
-            </Button>,
-            <Button key="submit" type="primary" onClick={handleConfirmShare}>
-              Invia su WhatsApp
-            </Button>,
-          ]}
+          onClose={() => setModalVisible(false)}
+          title={<span style={{ color: "var(--color-text)", fontWeight: 600, fontSize: 18 }}>Condividi via WhatsApp</span>}
+          footer={
+            <div style={{ display: "flex", gap: 12, justifyContent: "flex-end" }}>
+              <Button label="Annulla" variant="secondary" onClick={() => setModalVisible(false)} />
+              <Button label="Invia su WhatsApp" variant="primaryAlt" onClick={handleConfirmShare} />
+            </div>
+          }
         >
-          <p>
-            Vuoi la consegna a domicilio?{" "}
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+            <span style={{ color: "var(--color-text)" }}>Vuoi la consegna a domicilio?</span>
             <Switch
               checked={deliverySelected}
               onChange={(checked) => {
@@ -511,81 +523,76 @@ export const OrderPanel = ({
                   setComuneError("");
                 }
               }}
-              style={{ marginLeft: 8 }}
             />
-          </p>
+          </div>
 
           {deliverySelected && (
-            <>
+            <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
               <Input
                 placeholder="Indirizzo di consegna"
                 value={address}
-                status={addressError ? "error" : undefined}
+                error={!!addressError}
                 onChange={(e) => {
                   setAddress(e.target.value);
                   if (e.target.value.trim() !== "") setAddressError("");
                 }}
-                style={{ marginBottom: 4 }}
               />
               {addressError && (
-                <div style={{ color: "red", marginBottom: 8, fontSize: "0.85rem" }}>
+                <div style={{ color: "var(--color-red)", marginBottom: 8, fontSize: "0.85rem" }}>
                   {addressError}
                 </div>
               )}
               <Input
                 placeholder="Numero civico"
                 value={civicNumber}
-                status={civicError ? "error" : undefined}
+                error={!!civicError}
                 onChange={(e) => {
                   setCivicNumber(e.target.value);
                   if (e.target.value.trim() !== "") setCivicError("");
                 }}
-                style={{ marginBottom: 4 }}
               />
               {civicError && (
-                <div style={{ color: "red", marginBottom: 8, fontSize: "0.85rem" }}>
+                <div style={{ color: "var(--color-red)", marginBottom: 8, fontSize: "0.85rem" }}>
                   {civicError}
                 </div>
               )}
               <Input
                 placeholder="Nome sul citofono"
                 value={intercom}
-                status={intercomError ? "error" : undefined}
+                error={!!intercomError}
                 onChange={(e) => {
                   setIntercom(e.target.value);
                   if (e.target.value.trim() !== "") setIntercomError("");
                 }}
-                style={{ marginBottom: 4 }}
               />
               {intercomError && (
-                <div style={{ color: "red", marginBottom: 8, fontSize: "0.85rem" }}>
+                <div style={{ color: "var(--color-red)", marginBottom: 8, fontSize: "0.85rem" }}>
                   {intercomError}
                 </div>
               )}
               <Select
                 placeholder="Seleziona il comune"
                 value={comune}
-                status={comuneError ? "error" : undefined}
+                error={!!comuneError}
                 onChange={(value) => {
                   setComune(value);
                   if (value) setComuneError("");
                 }}
-                style={{ width: "100%", marginBottom: 4 }}
                 options={COMUNI_CONSEGNA.map((c) => ({
                   value: c.nome,
                   label: `${c.nome} (+€${c.sovrapprezzo},00)`,
                 }))}
               />
               {comuneError && (
-                <div style={{ color: "red", marginBottom: 8, fontSize: "0.85rem" }}>
+                <div style={{ color: "var(--color-red)", marginBottom: 8, fontSize: "0.85rem" }}>
                   {comuneError}
                 </div>
               )}
-            </>
+            </div>
           )}
 
           <div>
-            <p>Puoi suggerire un orario preferito di ritiro o ricezione ordine:</p>
+            <p style={{ color: "var(--color-text)" }}>Puoi suggerire un orario preferito di ritiro o ricezione ordine:</p>
             <div className={styles.timeSlotsWrapper}>
               <div className={styles.timeSlotsContainer}>
                 {slotsTimes.map((slot) => {
@@ -614,7 +621,7 @@ export const OrderPanel = ({
             )}
           </div>
 
-          <p style={{ fontStyle: "italic", fontSize: "small" }}>
+          <p style={{ fontStyle: "italic", fontSize: "small", color: "var(--color-text-secondary)" }}>
             L&apos;ordine si può definire accettato solo quando si riceve un messaggio di
             risposta su WhatsApp. <br /> Il prezzo finale, in base ad eventuali modifiche o
             aggiunte, verrà confermato tramite WhatsApp.

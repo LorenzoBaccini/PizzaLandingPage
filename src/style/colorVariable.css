@@ -1,18 +1,20 @@
 :root {
-  --color-primary: #D2691E;
-  --color-primary-dark: #b15b22;
-  --color-alternative-primary: #B04030;
-  --color-alternative-primary-dark: #8B2F25;
-  --color-secondary: #FFFFFF;
-  --color-secondary-dark: #f5f4f4;
-  --color-text-primary: #5C3A21;
-  --color-text-secondary: #FFFFFF;
+  /* === Dark Theme Palette === */
+  --color-bg: #0F0F0F;
+  --color-surface: #1A1A1A;
+  --color-elevated: #242424;
 
-  --color-primary-background: #F5F1E7;
-  --color-secondary-background: #FFFFFF;
+  --color-amber: #E8A838;
+  --color-amber-dark: #C48A20;
+  --color-amber-glow: rgba(232, 168, 56, 0.25);
 
-  --color-accent: #457B9D;
-  --color-accent-dark: #2A5274;
-  --color-danger: #E63946;
-  --color-danger-dark: #B22234;
+  --color-red: #C0392B;
+  --color-red-dark: #962D22;
+
+  --color-text: #F5F0E8;
+  --color-text-secondary: #9A958C;
+  --color-text-muted: #6B6660;
+
+  --color-border: rgba(232, 168, 56, 0.15);
+  --color-border-strong: rgba(232, 168, 56, 0.35);
 }

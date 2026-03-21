@@ -43,7 +43,7 @@ export const PizzaList = ({
 }: PizzaListProps) => {
   if (itemsSelezionati.length === 0) {
     return (
-      <p style={{ textAlign: "center", padding: "40px", color: "var(--color-text-primary)" }}>
+      <p style={{ textAlign: "center", padding: "40px", color: "var(--color-text)" }}>
         Contenuto in aggiornamento...
       </p>
     );
@@ -58,12 +58,6 @@ export const PizzaList = ({
         const hasFormats = hasMultipleFormats(item);
         const formats = getAvailableFormats(item);
         const selectedFormat = getSelectedFormat(item);
-
-        const formatRows = formats.reduce<string[][]>((rows, formato, idx) => {
-          if (idx % 2 === 0) rows.push([formato]);
-          else rows[rows.length - 1].push(formato);
-          return rows;
-        }, []);
 
         return (
           <li key={`${baseId}_${index}`} className={styles.pizzaCard}>
@@ -107,45 +101,41 @@ export const PizzaList = ({
               <p className={genericStyles.ingredienti}>{item.ingredienti}</p>
             )}
 
-            <div className={styles.prezzoBottomRight}>
-              {hasFormats && formats.length > 0 && (
-                <div className={styles.formatSelector}>
-                  <label className={styles.formatLabel}>Formato:</label>
-                  <div className={styles.formatButtons}>
-                    {formatRows.map((row, i) => (
-                      <div className={styles.formatRow} key={i}>
-                        {row.map((formato) => (
-                          <Button
-                            key={formato}
-                            role="button"
-                            label={
-                              <>
-                                <span>{formato}</span>
-                                <span className={styles.formatPrice}>
-                                  {item.prezzi && item.prezzi[formato]
-                                    ? `${parseFloat(String(item.prezzi[formato])).toFixed(2)}`
-                                    : ""}
-                                </span>
-                              </>
-                            }
-                            variant={selectedFormat === formato ? "primaryAlt" : "secondary"}
-                            isActive={selectedFormat === formato}
-                            aria-selected={selectedFormat === formato}
-                            onClick={() => setSelectedFormat(item, formato)}
-                            size="small"
-                          />
-                        ))}
-                      </div>
-                    ))}
-                  </div>
+            {hasFormats && formats.length > 0 && (
+              <div className={styles.formatSelector}>
+                <label className={styles.formatLabel}>Formato:</label>
+                <div className={styles.formatButtons}>
+                  {formats.map((formato) => (
+                    <button
+                      key={formato}
+                      className={`${styles.formatChip} ${selectedFormat === formato ? styles.formatChipActive : ""}`}
+                      onClick={() => setSelectedFormat(item, formato)}
+                      aria-selected={selectedFormat === formato}
+                    >
+                      {formato}
+                    </button>
+                  ))}
                 </div>
-              )}
+              </div>
+            )}
 
-              {!hasFormats && item.prezzo && (
-                <div>
-                  <strong>Prezzo</strong> <em>{item.prezzo}&euro;</em>
-                </div>
-              )}
+            <div className={styles.orderRow}>
+              <div className={styles.priceDisplay}>
+                {hasFormats && selectedFormat && item.prezzi?.[selectedFormat] != null ? (
+                  <>
+                    <span className={styles.priceAmount}>
+                      {parseFloat(String(item.prezzi[selectedFormat])).toFixed(2)}&euro;
+                    </span>
+                    <span className={styles.priceFormat}>{selectedFormat}</span>
+                  </>
+                ) : !hasFormats && item.prezzo != null ? (
+                  <span className={styles.priceAmount}>
+                    {parseFloat(String(item.prezzo)).toFixed(2)}&euro;
+                  </span>
+                ) : hasFormats ? (
+                  <span className={styles.priceHint}>Scegli un formato</span>
+                ) : null}
+              </div>
 
               <div className={styles.orderControls}>
                 {!item.personalizzabile && (

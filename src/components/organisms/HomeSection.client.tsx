@@ -1,9 +1,5 @@
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-
 import styles from "../../style/HomeSection.module.css";
 import { Button } from "../atoms/Button";
-import { MyCarousel } from "../molecules/MyCarousel.client";
 
 interface HomeSectionProps {
   id: string;
@@ -11,60 +7,34 @@ interface HomeSectionProps {
 
 const BASE_URL = import.meta.env.BASE_URL;
 
-const images = [
-  `${BASE_URL}assets/pizza.png`,
-  `${BASE_URL}assets/piadinaKebab.jpg`,
-  `${BASE_URL}assets/pizze.jpg`,
-];
-
 export const HomeSection = ({ id }: HomeSectionProps) => {
   return (
-    <section id={id} className={styles.homeSection}>
-      <Carousel
-        transitionTime={1000}
-        showArrows={false}
-        showIndicators={false}
-        showThumbs={false}
-        infiniteLoop={true}
-        autoPlay={true}
-        interval={4000}
-        useKeyboardArrows={true}
-        stopOnHover={true}
-        swipeable={false}
-        dynamicHeight={false}
-        emulateTouch={false}
-        statusFormatter={() => ""}
-      >
-        {images.map((src, index) => (
-          <div key={index} className={styles.slide}>
-            <img
-              src={src}
-              alt={`Immagine pizzeria ${index + 1}`}
-              className={styles.coverImage}
-            />
-          </div>
-        ))}
-      </Carousel>
-      <p className={styles.description}>
-        Scopri La nostra deliziosa pizza in teglia, preparate con ingredienti freschi
-      </p>
-      <Button
-        size="large"
-        role="navigation"
-        label="Scopri il menù"
-        variant="primary"
-        onClick={() => {
-          const menuSection = document.getElementById("menu-section");
-          if (menuSection) menuSection.scrollIntoView({ behavior: "smooth" });
-        }}
-      />
-      <p className={styles.description} style={{ marginBottom: "0", fontSize: "0.9rem" }}>
-        Pagamento anche con Satispay e carte di credito, anche a domicilio!
-      </p>
-      <p className={styles.description} style={{ marginTop: "0", fontSize: "0.9rem" }}>
-        Consegna effettuata al citofono e non al piano
-      </p>
-      <MyCarousel />
+    <section
+      id={id}
+      className={styles.homeSection}
+      style={{ backgroundImage: `url(${BASE_URL}assets/home-section-image.png)` }}
+    >
+      <div className={styles.overlay} />
+      <div className={styles.content}>
+        <h1 className={styles.title}>LA TEGLIA</h1>
+        <p className={styles.description}>
+          Scopri la nostra deliziosa pizza in teglia, preparata con ingredienti freschi
+        </p>
+        <Button
+          size="large"
+          role="navigation"
+          label="Scopri il menù"
+          variant="primaryAlt"
+          onClick={() => {
+            const menuSection = document.getElementById("menu-section");
+            if (menuSection) menuSection.scrollIntoView({ behavior: "smooth" });
+          }}
+        />
+        <div className={styles.infoTexts}>
+          <p>Pagamento anche con Satispay e carte di credito, anche a domicilio!</p>
+          <p>Consegna effettuata al citofono e non al piano</p>
+        </div>
+      </div>
     </section>
   );
 };

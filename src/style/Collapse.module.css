@@ -1,0 +1,53 @@
+.collapse {
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  background: var(--color-elevated);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  cursor: pointer;
+  user-select: none;
+  background: transparent;
+  border: none;
+  width: 100%;
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: inherit;
+  text-align: left;
+}
+
+.header:hover {
+  background: rgba(232, 168, 56, 0.05);
+}
+
+.chevron {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+  color: var(--color-amber);
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+
+.chevron.open {
+  transform: rotate(180deg);
+}
+
+.content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.content.open {
+  max-height: 2000px;
+}
+
+.contentInner {
+  padding: 0 16px 16px;
+}

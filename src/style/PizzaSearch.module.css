@@ -2,35 +2,24 @@
   position: sticky;
   top: 62px;
   z-index: 10;
-  min-width: 280px;
-  max-width: 480px;
+  background-color: var(--color-bg);
+  padding: 15px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 6px;
-  margin: 0 auto;
-  padding: 15px 15px;
-  background-color: var(--color-background-primary);
+  border-bottom: 1px solid var(--color-border);
+  max-width: 480px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .searchLabel {
   font-weight: 700;
-  color: #8B2F25;
+  color: var(--color-amber);
   font-size: 1.5rem;
-}
-
-.searchInput {
-  padding: 10px 16px;
-  font-size: 16px;
-  border: 2px solid #B04030;
-  border-radius: 8px;
-  font-family: 'Open Sans', sans-serif;
-  transition: border-color 0.3s ease;
-}
-
-.searchInput:focus {
-  outline: none;
-  border-color: #D2691E;
-  box-shadow: 0 0 8px rgba(210, 105, 30, 0.6);
+  font-family: "Oswald", sans-serif;
 }
 
 .searchWrapper {
@@ -45,18 +34,22 @@
   width: 100%;
   font-size: 16px;
   padding: 10px 40px 10px 14px;
-  /* spazio per X a destra */
-  border: 2px solid #b04030;
+  border: 1px solid var(--color-border-strong);
   border-radius: 8px;
-  background-color: #fff;
-  color: #5c3a21;
-  font-family: "Open Sans", sans-serif;
+  background-color: var(--color-elevated);
+  color: var(--color-text);
+  font-family: "Inter", sans-serif;
   transition: all 0.25s ease;
+  box-sizing: border-box;
+}
+
+.searchInput::placeholder {
+  color: var(--color-text-muted);
 }
 
 .searchInput:focus {
-  border-color: #d2691e;
-  box-shadow: 0 0 6px rgba(210, 105, 30, 0.5);
+  border-color: var(--color-amber);
+  box-shadow: 0 0 0 3px var(--color-amber-glow);
   outline: none;
 }
 
@@ -67,7 +60,7 @@
   transform: translateY(-50%);
   background: transparent;
   border: none;
-  color: #b04030;
+  color: var(--color-amber);
   font-size: 1.2rem;
   font-weight: bold;
   cursor: pointer;
@@ -76,23 +69,6 @@
 }
 
 .clearButton:hover {
-  color: #8b2f25;
+  color: var(--color-amber-dark);
   transform: translateY(-50%) scale(1.15);
-}
-
-.searchContainer {
-  position: sticky;
-  top: 62px;
-  z-index: 10;
-  background-color: #f5f1e7;
-  padding: 15px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  border-bottom: 1px solid #b04030;
-  max-width: 480px;
-  width: 100%;
-  box-sizing: border-box;
 }

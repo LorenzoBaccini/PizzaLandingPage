@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import styles from "../../style/ContactSection.module.css";
+import { useScrollAnimation } from "../../hooks/useScrollAnimation";
 import allergeniData from "../../data/allergeni.json";
 import { allergeniIcons } from "../../config/allergeniIcons";
 
@@ -15,20 +16,17 @@ interface ContactSectionProps {
 
 export const ContactSection = ({ id }: ContactSectionProps) => {
   const [showAllergens, setShowAllergens] = useState(false);
+  const sectionRef = useScrollAnimation<HTMLElement>();
 
   return (
-    <section id={id} className={styles.contactSection}>
+    <section ref={sectionRef} id={id} className={styles.contactSection}>
       <h2 className={styles.title}>Contatti</h2>
       <div className={styles.contactInfo}>
         <div className={styles.phone}>
           Numero di telefono: <br />
-          <a href="tel:0362 197 2430" style={{ color: "var(--color-alternative-primary)", textDecoration: "none" }}>
-            0362 197 2430
-          </a>
+          <a href="tel:0362 197 2430">0362 197 2430</a>
           <br />
-          <a href="tel:3464052750" style={{ color: "var(--color-alternative-primary)", textDecoration: "none" }}>
-            3464052750
-          </a>
+          <a href="tel:3464052750">3464052750</a>
         </div>
         <div className={styles.address}>
           Indirizzo: <br /> Via Monterosa 132, Desio (MB)

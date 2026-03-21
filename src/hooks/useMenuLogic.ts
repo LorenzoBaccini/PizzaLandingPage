@@ -236,9 +236,10 @@ export const useMenuLogic = (activeSection: string) => {
         }
       }
 
-      let productName = item.nome;
+      const isMenu = !!item.scelta || item.tipo === "menu_scelta";
+      let productName = isMenu ? `Menu - ${item.nome}` : item.nome;
       if (formato) {
-        productName = `${item.nome} (${formato})`;
+        productName = isMenu ? `Menu - ${item.nome} (${formato})` : `${item.nome} (${formato})`;
       }
 
       const sourceProduct: Partial<MenuItem> = {

@@ -8,14 +8,14 @@ interface PizzaSearchProps {
 export const PizzaSearch = ({ searchInput, setSearchInput }: PizzaSearchProps) => {
   return (
     <div className={styles.searchContainer}>
-      <label htmlFor="searchPizze" className={styles.searchLabel}>
-        Cerca pizze e ingredienti:
+      <label htmlFor="searchMenu" className={styles.searchLabel}>
+        Cerca nel menù:
       </label>
       <div className={styles.searchWrapper}>
         <input
-          id="searchPizze"
+          id="searchMenu"
           type="text"
-          placeholder="Cerca pizze e ingredienti"
+          placeholder="Cerca prodotti e ingredienti"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           autoComplete="off"

@@ -4,111 +4,116 @@
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
   font-weight: 600;
-  box-shadow: 0 2px 6px #d2691e99;
   text-align: center;
+  border: none;
+  font-family: "Inter", sans-serif;
 }
 
-/* Effetto hover base */
 .buttonBase:hover {
   transform: translateY(-2px);
 }
 
-/* Stato attivo comune */
 .buttonActive {
-  box-shadow: 0 2px 8px rgba(176, 64, 48, 0.3);
   transform: none;
-  /* disabilita translate hover se attivo */
 }
 
-/* Dimensioni Button */
-
-/* small */
+/* Sizes */
 .buttonSmall {
   padding: 2px 6px;
   font-size: 0.75rem;
   border-radius: 6px;
 }
 
-/* medium */
 .buttonMedium {
-  padding: 8px 14px;
-  font-size: 1rem;
-  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  border-radius: 20px;
+  white-space: nowrap;
 }
 
-/* large */
 .buttonLarge {
   padding: 12px 25px;
   font-size: 1.2rem;
   border-radius: 10px;
 }
 
-/* Primary */
+/* Primary = Amber */
 .buttonPrimary {
-  background: var(--color-primary);
-  border: 2px solid var(--color-primary);
-  color: var(--color-text-secondary);
+  background: var(--color-amber);
+  border: 1px solid var(--color-amber);
+  color: var(--color-bg);
+  box-shadow: 0 2px 6px var(--color-amber-glow);
 }
 
 .buttonPrimary:hover {
-  background: var(--color-primary-dark);
-  border-color: var(--color-primary-dark);
+  background: var(--color-amber-dark);
+  border-color: var(--color-amber-dark);
+  box-shadow: 0 4px 12px var(--color-amber-glow);
 }
 
 .buttonPrimary.buttonActive {
-  background: var(--color-alternative-primary);
-  border-color: var(--color-alternative-primary-dark);
+  background: var(--color-red);
+  border-color: var(--color-red-dark);
+  color: var(--color-text);
+  box-shadow: 0 2px 8px rgba(192, 57, 43, 0.3);
 }
 
-/* Primary Alternative */
+/* Primary Alt = Red */
 .buttonPrimaryAlt {
-  background: var(--color-alternative-primary);
-  border: 2px solid var(--color-alternative-primary);
-  color: var(--color-text-secondary);
+  background: var(--color-red);
+  border: 1px solid var(--color-red);
+  color: var(--color-text);
 }
 
 .buttonPrimaryAlt:hover {
-  background: var(--color-alternative-primary-dark);
-  border-color: var(--color-alternative-primary-dark);
+  background: var(--color-red-dark);
+  border-color: var(--color-red-dark);
 }
 
 .buttonPrimaryAlt.buttonActive {
-  background: var(--color-alternative-primary-dark);
-  border-color: var(--color-alternative-primary-dark);
+  background: var(--color-red-dark);
+  border-color: var(--color-red-dark);
 }
 
-/* Secondary */
+/* Secondary = Elevated */
 .buttonSecondary {
-  background: var(--color-secondary);
-  border: 2px solid var(--color-alternative-primary);
-  color: var(--color-text-primary);
+  background: var(--color-elevated);
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text);
 }
 
 .buttonSecondary:hover {
-  background: var(--color-secondary-dark);
-  border-color: var(--color-alternative-primary);
+  background: var(--color-surface);
+  border-color: var(--color-amber);
 }
 
 .buttonSecondary.buttonActive {
-  background: var(--color-secondary-dark);
-  border-color: var(--color-secondary-dark);
+  background: var(--color-surface);
+  border-color: var(--color-amber);
 }
 
-/* Esempio futura classe danger (annulla) */
+/* Danger */
 .buttonDanger {
-  background: var(--color-danger);
-  border: 2px solid var(--color-danger);
-  color: var(--color-text-secondary);
+  background: var(--color-red);
+  border: 1px solid var(--color-red);
+  color: var(--color-text);
 }
 
 .buttonDanger:hover {
-  background: var(--color-danger-dark);
-  border-color: var(--color-danger-dark);
+  background: var(--color-red-dark);
+  border-color: var(--color-red-dark);
 }
 
 .buttonDanger.buttonActive {
-  background: var(--color-danger-dark);
-  border-color: var(--color-danger-dark);
+  background: var(--color-red-dark);
+  border-color: var(--color-red-dark);
+}
+
+/* Disabled */
+.buttonBase:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
 }

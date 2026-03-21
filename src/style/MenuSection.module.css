@@ -3,93 +3,36 @@
   max-width: 100vw;
   padding: 30px 20px;
   box-sizing: border-box;
-  /* overflow-x: hidden; */
-  background-color: var(--color-primary-background);
-  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   width: 100%;
   min-height: calc(100vh - 80px);
 }
 
 .title {
   font-size: 3.6rem;
-  color: var(--color-alternative-primary);
+  color: var(--color-amber);
   text-align: center;
   margin-bottom: 30px;
   padding-top: 70px;
+  font-family: "Oswald", sans-serif;
 }
 
 .filterContainer {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  background: var(--color-primary-background);
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  gap: 8px;
+  background: var(--color-bg);
   z-index: 15;
-  padding: 20px 6px;
-  border-bottom: 1px solid var(--color-alternative-primary);
+  padding: 10px 6px;
+  border-bottom: 1px solid var(--color-border);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
 
-.filterButton {
-  background-color: var(--color-primary);
-  border: none;
-  color: var(--color-secondary);
-  padding: 10px 25px;
-  cursor: pointer;
-  border-radius: 12px;
-  font-size: 1.2rem;
-  font-weight: 700;
-  transition: all 0.3s ease;
-  letter-spacing: 0.8px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
-  font-style: italic;
-}
-
-.filterButton:hover,
-.filterButton:focus-visible {
-  background-color: var(--color-alternative-primary);
-  transform: scale(1.05);
-  outline: none;
-}
-
-.activeFilter {
-  background-color: var(--color-alternative-primary);
-  border: 3px solid var(--color-alternative-primary-dark);
-  transform: scale(1.08);
-}
-
-.searchContainer {
-  position: sticky;
-  top: 62px;
-  z-index: 10;
-  min-width: 280px;
-  max-width: 480px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin: 0 auto;
-  padding: 15px 15px;
-  background-color: var(--color-background-primary);
-}
-
-.searchLabel {
-  font-weight: 700;
-  color: var(--color-alternative-primary-dark);
-  font-size: 1.5rem;
-}
-
-.searchInput {
-  padding: 10px 16px;
-  font-size: 16px;
-  border: 2px solid var(--color-alternative-primary);
-  border-radius: 8px;
-  font-family: 'Open Sans', sans-serif;
-  transition: border-color 0.3s ease;
-}
-
-.searchInput:focus {
-  outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 8px rgba(210, 105, 30, 0.6);
+.filterContainer::-webkit-scrollbar {
+  display: none;
 }
 
 .pizzaList {
@@ -102,36 +45,17 @@
 }
 
 .pizzaCard {
-  background-color: #fff;
+  background-color: var(--color-surface);
   padding: 20px 12px;
-  border-bottom: 1px solid var(--color-alternative-primary);
+  border-bottom: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
   position: relative;
+  transition: box-shadow 0.3s ease;
 }
 
-.prezzoBottomRight {
-  position: absolute;
-  bottom: 20px;
-  right: 28px;
-  font-weight: 900;
-  font-size: 1rem;
-  color: var(--color-primary);
-  white-space: nowrap;
-  display: flex;
-  align-items: flex-end;
-  gap: 50px;
-}
-
-.prezzoBottomRight strong {
-  color: var(--color-text-primary);
-  font-size: 1rem;
-}
-
-.prezzoBottomRight em {
-  font-style: normal;
-  font-size: 1rem;
-  margin-top: 3px;
+.pizzaCard:hover {
+  box-shadow: 0 0 20px var(--color-amber-glow);
 }
 
 @media (max-width: 650px) {
@@ -144,29 +68,7 @@
     margin-bottom: 10px;
     margin-top: 10px;
   }
-
-  .filterButton {
-    font-size: 1rem;
-    padding: 10px 20px;
-  }
-
-  .ingredienti {
-    font-size: 1rem;
-  }
-
-  .prezzoBottomRight {
-    position: static;
-    text-align: right;
-    margin-top: 10px;
-    gap: 6px;
-    flex-direction: column;
-  }
-
-  .searchLabel {
-    font-size: 1rem;
-  }
 }
-
 
 .orderControls {
   display: flex;
@@ -179,7 +81,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: var(--color-primary-background);
+  background: var(--color-elevated);
   border-radius: 8px;
   padding: 7px;
 }
@@ -188,8 +90,8 @@
   width: 32px;
   height: 32px;
   border: none;
-  background: white;
-  color: var(--color-text-primary);
+  background: var(--color-surface);
+  color: var(--color-text);
   border-radius: 6px;
   font-size: 1.2rem;
   cursor: pointer;
@@ -201,8 +103,8 @@
 }
 
 .quantityBtn:hover:not(:disabled) {
-  background: var(--color-alternative-primary);
-  color: var(--color-secondary);
+  background: var(--color-amber);
+  color: var(--color-bg);
 }
 
 .quantityBtn:disabled {
@@ -215,25 +117,24 @@
   text-align: center;
   font-weight: bold;
   font-size: 1rem;
-  color: var(--color-text-primary);
+  color: var(--color-text);
 }
 
 .btnAddToOrder {
   flex: 1;
   padding: 10px 20px;
-  background: var(--color-alternative-primary);
-  color: var(--color-secondary);
+  background: var(--color-red);
+  color: var(--color-text);
   border: none;
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .btnAddToOrder:hover {
-  background: var(--color-alternative-primary-dark);
+  background: var(--color-red-dark);
   transform: scale(1.02);
 }
 
@@ -259,205 +160,127 @@
   }
 }
 
-
+/* Format selector — chip-style buttons */
 .formatSelector {
-  margin-bottom: 16px;
-  padding: 12px;
-  background: rgba(176, 64, 48, 0.05);
-  border-radius: 8px;
-  border: 1px solid rgba(176, 64, 48, 0.15);
+  margin-top: 12px;
 }
 
 .formatLabel {
   display: block;
   font-weight: 700;
-  font-size: 0.9rem;
-  color: var(--color-text-primary);
-  margin-bottom: 8px;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 6px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .formatButtons {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
-.formatRow {
-  display: flex;
-  gap: 8px;
-  justify-content: end;
-}
-
-.formatButton {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 14px;
-  background: white;
-  border: 2px solid var(--color-primary);
-  border-radius: 8px;
+.formatChip {
+  padding: 5px 12px;
+  background: var(--color-elevated);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 20px;
   cursor: pointer;
   transition: all 0.2s ease;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  color: var(--color-text-primary);
-  text-align: left;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
 }
 
-.formatButton:hover {
-  border-color: var(--color-alternative-primary);
-  background: var(--color-primary-background);
-  transform: translateX(2px);
+.formatChip:hover {
+  border-color: var(--color-amber);
+  color: var(--color-text);
 }
 
-.formatButtonActive {
-  background: var(--color-alternative-primary);
-  border-color: var(--color-alternative-primary);
-  color: var(--color-secondary);
-  box-shadow: 0 2px 8px rgba(176, 64, 48, 0.3);
+.formatChipActive {
+  background: var(--color-amber);
+  border-color: var(--color-amber);
+  color: var(--color-bg);
+  box-shadow: 0 2px 8px var(--color-amber-glow);
 }
 
-.formatButtonActive:hover {
-  background: var(--color-alternative-primary-dark);
-  border-color: var(--color-alternative-primary-dark);
+.formatChipActive:hover {
+  background: var(--color-amber-dark);
+  border-color: var(--color-amber-dark);
 }
 
-.formatPrice {
-  margin-left: 5px;
+/* Order row — price + controls on same line */
+.orderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.priceDisplay {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+}
+
+.priceAmount {
+  font-size: 1.4rem;
   font-weight: 900;
-  font-size: 1rem;
-  padding: 4px 10px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 6px;
+  color: var(--color-amber);
+  white-space: nowrap;
 }
 
-.formatButtonActive .formatPrice {
-  background: rgba(255, 255, 255, 0.25);
-  color: var(--color-secondary);
+.priceFormat {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.priceHint {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  font-style: italic;
 }
 
 .totalBadge {
   display: inline-block;
-  background: var(--color-alternative-primary);
-  color: var(--color-secondary);
+  background: var(--color-amber);
+  color: var(--color-bg);
   padding: 2px 10px;
   border-radius: 12px;
   font-size: 0.85rem;
   margin-left: 8px;
   font-weight: 700;
-}
-
-.btnFormatHint {
-  font-size: 0.75rem;
-  opacity: 0.85;
-  font-weight: 500;
-  margin-left: 4px;
-}
-
-/* Responsive per formati */
-@media (min-width: 500px) {
-  .formatButtons {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-
-  .formatButton {
-    flex: 1;
-    min-width: 140px;
-  }
+  line-height: 1;
 }
 
 @media (max-width: 650px) {
-  .formatSelector {
-    padding: 10px;
-    margin-bottom: 12px;
-  }
-
-  .formatLabel {
-    font-size: 0.85rem;
-    margin-bottom: 6px;
-  }
-
-  .formatButton {
+  .formatChip {
     padding: 4px 10px;
     font-size: 0.75rem;
   }
 
-  .formatPrice {
-    font-size: 0.75rem;
-    padding: 2px 7px;
+  .orderRow {
+    gap: 8px;
+  }
+
+  .priceAmount {
+    font-size: 1.2rem;
   }
 
   .totalBadge {
     padding: 1px 8px;
     font-size: 0.8rem;
   }
-}
 
-.searchWrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.searchInput {
-  flex: 1;
-  width: 100%;
-  font-size: 16px;
-  padding: 10px 40px 10px 14px;
-  /* spazio per X a destra */
-  border: 2px solid var(--color-alternative-primary);
-  border-radius: 8px;
-  background-color: var(--color-secondary);
-  color: var(--color-text-primary);
-  font-family: "Open Sans", sans-serif;
-  transition: all 0.25s ease;
-}
-
-.searchInput:focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 6px rgba(210, 105, 30, 0.5);
-  outline: none;
-}
-
-.clearButton {
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
-  border: none;
-  color: var(--color-alternative-primary);
-  font-size: 1.2rem;
-  font-weight: bold;
-  cursor: pointer;
-  line-height: 1;
-  transition: all 0.2s ease;
-}
-
-.clearButton:hover {
-  color: var(--color-alternative-primary-dark);
-  transform: translateY(-50%) scale(1.15);
-}
-
-.searchContainer {
-  position: sticky;
-  top: 62px;
-  z-index: 10;
-  background-color: var(--color-primary-background);
-  padding: 15px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  border-bottom: 1px solid var(--color-alternative-primary);
-  max-width: 480px;
-  width: 100%;
-  box-sizing: border-box;
+  .searchLabel {
+    font-size: 1rem;
+  }
 }
 
 .cardHeader {
@@ -466,7 +289,6 @@
   align-items: center;
   gap: 12px;
   margin-bottom: 10px;
-  /* o quello che usi */
 }
 
 .allergeniContainer {
@@ -479,14 +301,14 @@
 .allergeneIcon svg {
   width: 20px;
   height: 20px;
-  fill: var(--color-alternative-primary);
+  fill: var(--color-amber);
   transition: transform 0.2s ease, fill 0.2s ease;
   cursor: help;
 }
 
 .allergeneIcon:hover svg {
   transform: scale(1.15);
-  fill: var(--color-alternative-primary-dark);
+  fill: var(--color-amber-dark);
 }
 
 .allergeneIcon {
@@ -501,13 +323,11 @@
   left: 50%;
   transform: translateX(calc(-50% - 5px));
   max-width: 200px;
-  /* Limita la larghezza massima */
-  background-color: rgba(0, 0, 0, 0.75);
-  color: #fff;
+  background-color: var(--color-elevated);
+  color: var(--color-text);
   padding: 4px 8px;
   border-radius: 4px;
   white-space: normal;
-  /* Permette al testo di andare a capo */
   font-size: 12px;
   pointer-events: none;
   opacity: 0;
@@ -515,104 +335,62 @@
   transition: opacity 0.2s ease-in-out;
   z-index: 10;
   word-wrap: break-word;
-  /* Abilita la rottura delle parole lunghissime */
+  border: 1px solid var(--color-border);
 }
 
-/* Quando il tooltip è visibile */
 .allergeneIcon .tooltip {
   opacity: 1;
   visibility: visible;
 }
 
-/* Aggiungi una piccola freccia sotto il tooltip */
 .tooltip::after {
   content: '';
   position: absolute;
   top: 100%;
-  /* sotto il tooltip */
   left: calc(50% + 5px);
-  /* spostata a destra di 5px per compensare il tooltip */
   transform: translateX(-50%);
   border-width: 5px;
   border-style: solid;
-  border-color: rgba(0, 0, 0, 0.75) transparent transparent transparent;
+  border-color: var(--color-elevated) transparent transparent transparent;
 }
 
-/* Overlay copre tutta la finestra con trasparenza */
-.modalIngredientiOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5); /* overlay semitrasparente */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10000; /* sopra altri elementi */
+/* Tablet */
+@media (min-width: 768px) {
+  .menuSection {
+    padding: 30px 40px;
+  }
+
+  .filterContainer {
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 12px 20px;
+  }
+
+  .pizzaList {
+    max-width: 900px;
+  }
+
+  .pizzaCard {
+    padding: 24px 20px;
+  }
 }
 
-/* Box modale centrato */
-.modalIngredienti {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-  max-width: 400px;
-  width: 90%;
-  max-height: 80vh;
-  overflow-y: auto;
-  z-index: 1010;
-  font-family: Arial, sans-serif;
-}
+/* Desktop */
+@media (min-width: 1024px) {
+  .menuSection {
+    padding: 30px 60px;
+  }
 
-.modalIngredienti .ingredientiList {
-  padding: 0 20px;
-}
+  .pizzaList {
+    max-width: 1100px;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
 
-.modalIngredienti .modalHeader {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  border-bottom: 1px solid var(--color-alternative-primary);
-  background-color: var(--color-secondary);
-}
-
-/* Titolo */
-.modalHeader h2 {
-  margin-top: 0;
-  font-size: 1.5em;
-  margin-bottom: 15px;
-  text-align: center;
-}
-
-/* Lista ingredienti */
-.modalIngredienti ul {
-  list-style: none;
-  padding-left: 0;
-  margin-bottom: 20px;
-}
-
-.modalIngredienti ul li {
-  margin-bottom: 10px;
-}
-
-/* Label in linea con checkbox */
-.modalIngredienti label {
-  cursor: pointer;
-  font-size: 1em;
-  user-select: none;
-}
-
-.modalActions {
-  position: sticky;
-  bottom: 0;
-  display: flex;
-  justify-content: flex-end;
-  padding: 15px 20px;
-  border-top: 1px solid var(--color-alternative-primary);
-  background-color: #f9f9f9;
-  gap: 10px;
+  .pizzaCard {
+    border-bottom: none;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 24px;
+  }
 }
