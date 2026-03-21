@@ -118,7 +118,7 @@ export const OrderPanel = ({
       text += `Citofono: ${form.intercom}\n`;
       text += `💳 Pagamento: ${form.paymentMethod === "carta" ? "Carta" : "Contanti"}\n`;
     } else {
-      text += "🏪 *Ritiro in negozio*\n";
+      text += "🏪 *Ritiro in pizzeria*\n";
     }
 
     if (timeSlots.preferredTime) {
@@ -192,20 +192,20 @@ export const OrderPanel = ({
 
               <div className={styles.orderActions}>
                 <button
-                  className={styles.btnPrimary}
+                  className={`${styles.btnPrimary} ${styles.btnWhatsapp}`}
+                  onClick={() => setModalVisible(true)}
+                >
+                  Invia ordine su WhatsApp
+                </button>
+
+                <button
+                  className={`${styles.btnSecondary} ${styles.btnCall}`}
                   onClick={() => {
                     window.location.href = `tel:${CONFIG.phoneNumber}`;
                     toast("Tieni aperta questa lista mentre ordini", "success");
                   }}
                 >
                   Chiama per Ordinare
-                </button>
-
-                <button
-                  className={`${styles.btnSecondary} ${styles.btnWhatsapp}`}
-                  onClick={() => setModalVisible(true)}
-                >
-                  Condividi via WhatsApp
                 </button>
 
                 <button

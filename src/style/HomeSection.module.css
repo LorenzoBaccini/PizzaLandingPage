@@ -58,8 +58,19 @@
   color: var(--color-text);
   font-weight: 700;
   max-width: 500px;
-  margin-bottom: 28px;
+  margin-bottom: 12px;
   line-height: 1.6;
+}
+
+.whatsappCta {
+  color: #25D366;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 28px;
+  padding: 8px 20px;
+  border: 1px solid rgba(37, 211, 102, 0.4);
+  border-radius: 20px;
+  background: rgba(37, 211, 102, 0.1);
 }
 
 .infoTexts {

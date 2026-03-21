@@ -20,6 +20,9 @@ export const HomeSection = ({ id }: HomeSectionProps) => {
         <p className={styles.description}>
           Scopri la nostra deliziosa pizza in teglia, preparata con ingredienti freschi
         </p>
+        <p className={styles.whatsappCta}>
+          Componi il tuo ordine e invialo direttamente su WhatsApp!
+        </p>
         <Button
           size="large"
           role="navigation"

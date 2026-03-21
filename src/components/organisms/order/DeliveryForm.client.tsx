@@ -1,4 +1,4 @@
-import { Input, Switch, Select } from "../../atoms";
+import { Input, Select } from "../../atoms";
 import { COMUNI_CONSEGNA } from "../../../hooks/useOrderForm";
 import styles from "../../../style/OrderPanel.module.css";
 
@@ -18,9 +18,24 @@ const PAYMENT_OPTIONS: { value: PaymentMethod; label: string }[] = [
 export const DeliveryForm = ({ form }: DeliveryFormProps) => {
   return (
     <>
-      <div className={styles.deliveryToggle}>
-        <span className={styles.deliveryToggleLabel}>Vuoi la consegna a domicilio?</span>
-        <Switch checked={form.deliverySelected} onChange={form.handleDeliveryToggle} />
+      <div className={styles.deliveryModeSection}>
+        <span className={styles.deliveryModeLabel}>Come vuoi ricevere l&apos;ordine?</span>
+        <div className={styles.deliveryModeButtons}>
+          <button
+            type="button"
+            className={`${styles.deliveryModeBtn} ${!form.deliverySelected ? styles.deliveryModeBtnActive : ""}`}
+            onClick={() => form.handleDeliveryToggle(false)}
+          >
+            Ritiro in pizzeria
+          </button>
+          <button
+            type="button"
+            className={`${styles.deliveryModeBtn} ${form.deliverySelected ? styles.deliveryModeBtnActive : ""}`}
+            onClick={() => form.handleDeliveryToggle(true)}
+          >
+            Consegna a domicilio
+          </button>
+        </div>
       </div>
 
       {form.deliverySelected && (

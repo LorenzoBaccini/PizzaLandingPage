@@ -98,15 +98,17 @@ export const OrderSummary = ({
           </span>
         </div>
         <div className={styles.orderDeliveryInfo}>
-          <strong>Costo consegna a domicilio:</strong>
-          <br />
-          <span>
-            &bull; Desio: <span className={styles.orderDeliveryAmount}>&euro;1,00</span>
-          </span>
-          <br />
-          <span>
-            &bull; Comuni limitrofi (Seregno, Lissone, Cesano Maderno, Muggiò, Nova Milanese, Bovisio-Masciago, Varedo, Meda): <span className={styles.orderDeliveryAmount}>&euro;2,00</span>
-          </span>
+          <strong>Consegna a domicilio:</strong>
+          <div className={styles.deliveryPriceList}>
+            <div className={styles.deliveryPriceRow}>
+              <span className={styles.orderDeliveryAmount}>&euro;1,00</span>
+              <span>Desio</span>
+            </div>
+            <div className={styles.deliveryPriceRow}>
+              <span className={styles.orderDeliveryAmount}>&euro;2,00</span>
+              <span>Seregno, Lissone, Cesano Maderno, Muggiò, Nova Milanese, Bovisio-Masciago, Varedo, Meda</span>
+            </div>
+          </div>
         </div>
       </div>
     </>

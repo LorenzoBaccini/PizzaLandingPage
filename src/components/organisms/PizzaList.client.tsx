@@ -66,7 +66,7 @@ export const PizzaList = ({
                 {item.nome}
                 {item.quantita && ` - ${item.quantita}`}
                 {totalQuantity > 0 && (
-                  <span className={styles.totalBadge}> ({totalQuantity})</span>
+                  <span className={styles.totalBadge}>{totalQuantity}</span>
                 )}
               </h3>
               <div key={item.nome} className={styles.allergeniContainer}>
