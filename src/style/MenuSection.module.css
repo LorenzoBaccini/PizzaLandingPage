@@ -394,3 +394,26 @@
     padding: 24px;
   }
 }
+
+/* Add-to-cart toast */
+.addToast {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-amber);
+  color: var(--color-bg);
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  z-index: 4000;
+  box-shadow: 0 4px 16px var(--color-amber-glow);
+  animation: toastPop 0.25s ease;
+  white-space: nowrap;
+}
+
+@keyframes toastPop {
+  from { transform: translateX(-50%) translateY(20px); opacity: 0; }
+  to { transform: translateX(-50%) translateY(0); opacity: 1; }
+}

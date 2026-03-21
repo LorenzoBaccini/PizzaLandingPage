@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback, useRef } from "react";
 
 import styles from "../../style/MenuSection.module.css";
 
@@ -59,6 +59,9 @@ export const MenuSection = ({ id }: MenuSectionProps) => {
   const [searchInput, setSearchInput] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [tooltipId, setTooltipId] = useState<string | null>(null);
+
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const toastTimer = useRef<ReturnType<typeof setTimeout>>();
 
   const { editRequest, setEditRequest } = useOrder();
 
@@ -128,6 +131,20 @@ export const MenuSection = ({ id }: MenuSectionProps) => {
     [getQuantities, itemsSelezionati]
   );
 
+  const showToast = useCallback((name: string) => {
+    clearTimeout(toastTimer.current);
+    setToastMessage(`${name} aggiunto!`);
+    toastTimer.current = setTimeout(() => setToastMessage(null), 2000);
+  }, []);
+
+  const handleAddWithToast = useCallback(
+    (item: MenuItem, customization?: import("../../types").OrderItemCustomization) => {
+      handleAddToOrder(item, customization);
+      showToast(item.nome);
+    },
+    [handleAddToOrder, showToast]
+  );
+
   const handleAllergeneTouch = (pizzaName: string, allergeneId: number) => {
     const touchId = `${pizzaName}-${allergeneId}`;
     setTooltipId(tooltipId === touchId ? null : touchId);
@@ -178,7 +195,7 @@ export const MenuSection = ({ id }: MenuSectionProps) => {
         handleDecreaseQuantity={handleDecreaseQuantity}
         handleIncreaseQuantity={handleIncreaseQuantity}
         handleOpenIngredientModal={handleOpenIngredientModal}
-        handleAddToOrder={handleAddToOrder}
+        handleAddToOrder={handleAddWithToast}
         generateProductBaseId={generateProductBaseId}
       />
 
@@ -190,11 +207,15 @@ export const MenuSection = ({ id }: MenuSectionProps) => {
           selectedProduct={selectedProduct}
           selectedExtras={selectedExtras}
           handleToggleExtra={handleToggleExtra}
-          handleAddToOrder={handleAddToOrder}
+          handleAddToOrder={handleAddWithToast}
           initialCustomization={initialCustomization}
           isEditMode={!!editingItemId}
           showSpecialOptions={["Pizze", "Calzoni", "Focacce Rotonde"].includes(activeSection)}
         />
+      )}
+
+      {toastMessage && (
+        <div className={styles.addToast}>{toastMessage}</div>
       )}
     </section>
   );

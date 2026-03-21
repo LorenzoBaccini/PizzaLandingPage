@@ -12,7 +12,7 @@ export const HomeSection = ({ id }: HomeSectionProps) => {
     <section
       id={id}
       className={styles.homeSection}
-      style={{ backgroundImage: `url(${BASE_URL}assets/home-section-image.png)` }}
+      style={{ backgroundImage: `url(${BASE_URL}assets/home-section-image.jpg)` }}
     >
       <div className={styles.overlay} />
       <div className={styles.content}>

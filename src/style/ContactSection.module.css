@@ -45,6 +45,38 @@
   border-radius: 8px;
 }
 
+.mapPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: var(--color-elevated);
+  text-decoration: none;
+  transition: background 0.2s ease;
+  gap: 8px;
+}
+
+.mapPlaceholder:hover {
+  background: var(--color-surface);
+}
+
+.mapPlaceholderIcon {
+  font-size: 2.5rem;
+}
+
+.mapPlaceholderText {
+  color: var(--color-amber);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.mapPlaceholderSub {
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+}
+
 .btnToggleLegend {
   background-color: var(--color-amber);
   color: var(--color-bg);
@@ -93,6 +125,46 @@
 .allergenName {
   font-size: 0.9rem;
   text-align: start;
+  color: var(--color-text-secondary);
+}
+
+.socialLinks {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.socialLink {
+  color: var(--color-amber);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 8px 20px;
+  border: 1px solid var(--color-amber);
+  border-radius: 20px;
+  transition: all 0.2s ease;
+}
+
+.socialLink:hover {
+  background: var(--color-amber);
+  color: var(--color-bg);
+}
+
+.cookieSettingsBtn {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 8px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.cookieSettingsBtn:hover {
   color: var(--color-text-secondary);
 }
 

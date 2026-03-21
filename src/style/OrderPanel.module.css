@@ -458,3 +458,50 @@
   margin-bottom: 10px;
   font-style: italic;
 }
+
+/* WhatsApp modal */
+.whatsappModalTitle {
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.whatsappModalFooter {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.whatsappDisclaimer {
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+.timeSlotsLabel {
+  color: var(--color-text);
+}
+
+/* Delivery form */
+.deliveryToggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.deliveryToggleLabel {
+  color: var(--color-text);
+}
+
+.deliveryFields {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fieldError {
+  color: var(--color-red);
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+}

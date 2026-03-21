@@ -81,9 +81,13 @@ export const PizzaList = ({
                     Icon && (
                       <span
                         onClick={() => handleAllergeneTouch(item.nome, allergeneId)}
+                        onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handleAllergeneTouch(item.nome, allergeneId); } }}
                         className={styles.allergeneIcon}
                         key={uniqueId}
                         title={allergeneInfo?.nome || "Allergene"}
+                        role="button"
+                        tabIndex={0}
+                        aria-label={allergeneInfo?.nome || "Allergene"}
                         style={{ position: "relative" }}
                       >
                         <Icon />

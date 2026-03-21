@@ -7,3 +7,4 @@ export { Collapse } from "./Collapse";
 export { Input } from "./Input";
 export { Select } from "./Select";
 export { Switch } from "./Switch";
+export { ErrorBoundary } from "./ErrorBoundary";
