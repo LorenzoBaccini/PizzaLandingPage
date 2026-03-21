@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useRef, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 
 import styles from "../../style/Modal.module.css";
@@ -17,10 +17,15 @@ const FOCUSABLE_SELECTOR = 'button, [href], input, select, textarea, [tabindex]:
 export const Modal = ({ open, onClose, title, footer, children, zIndex = 5000 }: ModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const handleKeyDown = useCallback(
-    (e: KeyboardEvent) => {
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
+
+  useEffect(() => {
+    if (!open) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        onClose();
+        onCloseRef.current();
         return;
       }
 
@@ -39,23 +44,19 @@ export const Modal = ({ open, onClose, title, footer, children, zIndex = 5000 }:
           first.focus();
         }
       }
-    },
-    [onClose]
-  );
+    };
 
-  useEffect(() => {
-    if (open) {
-      document.addEventListener("keydown", handleKeyDown);
-      const timer = setTimeout(() => {
-        const first = modalRef.current?.querySelector<HTMLElement>(FOCUSABLE_SELECTOR);
-        first?.focus();
-      }, 50);
-      return () => {
-        document.removeEventListener("keydown", handleKeyDown);
-        clearTimeout(timer);
-      };
-    }
-  }, [open, handleKeyDown]);
+    document.addEventListener("keydown", handleKeyDown);
+    const timer = setTimeout(() => {
+      const first = modalRef.current?.querySelector<HTMLElement>(FOCUSABLE_SELECTOR);
+      first?.focus();
+    }, 50);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      clearTimeout(timer);
+    };
+  }, [open]);
 
   if (!open) return null;
 
