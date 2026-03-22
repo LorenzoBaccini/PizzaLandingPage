@@ -138,6 +138,27 @@ export const OrderPanel = ({
     setTimeout(() => setShowToast(false), CONFIG.toastDuration);
   };
 
+  const scrollToFirstError = () => {
+    const checks: [boolean, string][] = form.deliverySelected
+      ? [
+          [form.address.trim() === "", "address"],
+          [form.civicNumber.trim() === "", "civic"],
+          [form.intercom.trim() === "", "intercom"],
+          [!form.comune, "comune"],
+          [!form.paymentMethod, "payment"],
+        ]
+      : [];
+
+    const firstFailing = checks.find(([failing]) => failing);
+    if (firstFailing) {
+      const el = document.querySelector(`[data-delivery-field="${firstFailing[1]}"]`) as HTMLElement | null;
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        if (el.tagName === "INPUT") el.focus();
+      }
+    }
+  };
+
   const handleValidateAndConfirm = () => {
     let hasError = false;
 
@@ -150,7 +171,10 @@ export const OrderPanel = ({
       hasError = true;
     }
 
-    if (hasError) return;
+    if (hasError) {
+      scrollToFirstError();
+      return;
+    }
 
     setShowWhatsappConfirm(true);
   };
@@ -199,7 +223,10 @@ export const OrderPanel = ({
               <div className={styles.orderActions}>
                 <button
                   className={`${styles.btnPrimary} ${styles.btnWhatsapp}`}
-                  onClick={() => setModalVisible(true)}
+                  onClick={() => {
+                    timeSlots.refreshDisabledSlots();
+                    setModalVisible(true);
+                  }}
                 >
                   Invia ordine su WhatsApp
                 </button>
@@ -309,25 +336,50 @@ export const OrderPanel = ({
           </p>
         </Modal>
 
-        {showWhatsappConfirm && (
-          <div className={styles.confirmModalOverlay} tabIndex={-1} role="dialog" aria-modal="true">
-            <div className={styles.confirmModal}>
-              <div className={styles.confirmModalContent}>
-                <h3>Confermi l&apos;invio dell&apos;ordine su WhatsApp?</h3>
-                <p style={{ fontSize: "0.9rem", color: "var(--color-text-secondary)", marginBottom: "16px" }}>
-                  {form.deliverySelected
-                    ? `Consegna a ${form.address}, ${form.civicNumber} — ${form.comune}`
-                    : "Ritiro in pizzeria"}
-                  {timeSlots.preferredTime && ` · Ore ${timeSlots.preferredTime.format("HH:mm")}`}
-                </p>
-                <div className={styles.confirmModalActions}>
-                  <Button label="Annulla" variant="secondary" onClick={() => setShowWhatsappConfirm(false)} />
-                  <Button label="Conferma e invia" variant="primaryAlt" onClick={handleSendWhatsapp} />
-                </div>
-              </div>
+        <Modal
+          open={showWhatsappConfirm}
+          onClose={() => setShowWhatsappConfirm(false)}
+          zIndex={6000}
+          title={<span className={styles.whatsappModalTitle}>Conferma invio ordine</span>}
+          footer={
+            <div className={styles.whatsappModalFooter}>
+              <Button label="Annulla" variant="secondary" onClick={() => setShowWhatsappConfirm(false)} />
+              <Button label="Conferma e invia" variant="primaryAlt" onClick={handleSendWhatsapp} />
             </div>
+          }
+        >
+          <div className={styles.confirmSummary}>
+            <p className={styles.confirmRow}>
+              {form.deliverySelected
+                ? `Consegna a ${form.address}, ${form.civicNumber} — ${form.comune}`
+                : "Ritiro in pizzeria"}
+            </p>
+            {timeSlots.preferredTime && (
+              <p className={styles.confirmRow}>Orario preferito: {timeSlots.preferredTime.format("HH:mm")}</p>
+            )}
+            {form.deliverySelected && (() => {
+              const comuneData = form.getComuneData();
+              const surcharge = comuneData?.sovrapprezzo ?? 0;
+              const subtotal = calculateTotal();
+              return (
+                <>
+                  <p className={styles.confirmRow}>Subtotale prodotti: &euro;{subtotal.toFixed(2)}</p>
+                  {surcharge > 0 && (
+                    <p className={styles.confirmRow}>Consegna ({form.comune}): &euro;{surcharge.toFixed(2)}</p>
+                  )}
+                  <p className={styles.confirmTotal}>
+                    Totale: &euro;{(subtotal + surcharge).toFixed(2)}
+                  </p>
+                </>
+              );
+            })()}
+            {!form.deliverySelected && (
+              <p className={styles.confirmTotal}>
+                Totale: &euro;{calculateTotal().toFixed(2)}
+              </p>
+            )}
           </div>
-        )}
+        </Modal>
 
         {showToast && (
           <div className={`${styles.toast} ${toastType === "success" ? styles.success : styles.error}`}>

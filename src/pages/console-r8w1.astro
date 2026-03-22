@@ -1,0 +1,27 @@
+---
+import { AdminPanel } from "../components/admin/AdminPanel.client";
+import "../style/colorVariable.css";
+---
+
+<html lang="it">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Oswald:wght@700&display=swap" rel="stylesheet" />
+    <title>Admin — La Teglia</title>
+    <style>
+      body {
+        margin: 0;
+        background: var(--color-bg);
+        color: var(--color-text);
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <AdminPanel client:load />
+  </body>
+</html>

@@ -612,3 +612,23 @@
   background: var(--color-amber-dark);
   border-color: var(--color-amber-dark);
 }
+
+/* Confirm summary */
+.confirmSummary {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.confirmRow {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.confirmTotal {
+  margin: 8px 0 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-amber);
+}

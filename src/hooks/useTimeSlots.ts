@@ -1,19 +1,22 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 
 import dayjs from "dayjs";
 import isBetween from "dayjs/plugin/isBetween";
 
 import { ORDER_SLOTS } from "../config/businessHours";
+import { supabase } from "../lib/supabase";
 
 dayjs.extend(isBetween);
 
 const PREP_BUFFER_MINUTES = 30;
 const DELIVERY_SKIP_SLOTS = 2;
+const SUPABASE_TIMEOUT_MS = 3000;
 
 export const useTimeSlots = (isDelivery = false) => {
   const [preferredTime, setPreferredTime] = useState<dayjs.Dayjs | null>(null);
   const [timeError, setTimeError] = useState("");
   const [infoMessage, setInfoMessage] = useState("");
+  const [disabledSlots, setDisabledSlots] = useState<Set<string>>(new Set());
 
   const now = useMemo(() => dayjs(), []);
   const day = now.day();
@@ -50,16 +53,49 @@ export const useTimeSlots = (isDelivery = false) => {
 
   useEffect(() => {
     const minSelectableTime = nowDate.hour(9);
-    if (day === 0 && now.isBefore(sundayOpenStart)) {
-      setInfoMessage("La domenica mattina la pizzeria è chiusa. Orari disponibili dalle 18:00");
-    } else if (now.isAfter(openEveningEnd) || now.isAfter(sundayOpenEnd)) {
-      setInfoMessage("La pizzeria è chiusa o è troppo tardi per consegnare a domicilio. Gli ordini saranno disponibili dal giorno successivo");
-    } else if (now.isBefore(minSelectableTime)) {
-      setInfoMessage("Attendi le 9.00 per poter effettuare un ordine");
+    if (now.isBefore(minSelectableTime)) {
+      setInfoMessage("Potrai ordinare a partire dalle ore 9:00");
+    } else if (day === 0 && now.isBefore(sundayOpenStart)) {
+      setInfoMessage("La domenica la pizzeria apre alle 18:00. Puoi già prenotare per stasera!");
+    } else if ((day === 0 && now.isAfter(sundayOpenEnd)) || (day !== 0 && now.isAfter(openEveningEnd))) {
+      setInfoMessage("È troppo tardi per ordinare oggi. Gli ordini saranno disponibili domani dalle 9:00");
     } else {
       setInfoMessage("");
     }
   }, [now, day, nowDate, sundayOpenStart, openEveningEnd, sundayOpenEnd]);
+
+  const refreshDisabledSlots = useCallback(() => {
+    const today = nowDate.format("YYYY-MM-DD");
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), SUPABASE_TIMEOUT_MS);
+
+    supabase
+      .from("disabled_slots")
+      .select("date, time_slot")
+      .gte("date", today)
+      .abortSignal(controller.signal)
+      .then(({ data }) => {
+        clearTimeout(timeout);
+        if (data) {
+          const selected = preferredTime
+            ? `${preferredTime.format("YYYY-MM-DD")}_${preferredTime.format("HH:mm")}`
+            : null;
+          const newSet = new Set(data.map((row) => `${row.date}_${row.time_slot}`));
+          setDisabledSlots(newSet);
+          if (selected && newSet.has(selected)) {
+            setPreferredTime(null);
+            setTimeError("L'orario selezionato non è più disponibile. Scegline un altro.");
+          }
+        }
+      })
+      .catch(() => {
+        clearTimeout(timeout);
+      });
+  }, [nowDate, preferredTime]);
+
+  useEffect(() => {
+    refreshDisabledSlots();
+  }, []);
 
   const isSlotDisabled = (slot: dayjs.Dayjs) => {
     const minSelectableTime = nowDate.hour(9);
@@ -73,6 +109,9 @@ export const useTimeSlots = (isDelivery = false) => {
       const inEveningRange = slot.isBetween(openEveningStart, openEveningEnd, null, "[)");
       if (!inMorningRange && !inEveningRange) return true;
     }
+
+    const slotKey = `${slot.format("YYYY-MM-DD")}_${slot.format("HH:mm")}`;
+    if (disabledSlots.has(slotKey)) return true;
 
     return false;
   };
@@ -90,5 +129,6 @@ export const useTimeSlots = (isDelivery = false) => {
     infoMessage,
     isSlotDisabled,
     handleSelectTime,
+    refreshDisabledSlots,
   };
 };

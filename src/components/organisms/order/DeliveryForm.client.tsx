@@ -44,6 +44,7 @@ export const DeliveryForm = ({ form }: DeliveryFormProps) => {
             placeholder="Indirizzo di consegna"
             value={form.address}
             error={!!form.addressError}
+            data-delivery-field="address"
             onChange={(e) => {
               form.setAddress(e.target.value);
               if (e.target.value.trim() !== "") form.setAddressError("");
@@ -55,6 +56,7 @@ export const DeliveryForm = ({ form }: DeliveryFormProps) => {
             placeholder="Numero civico"
             value={form.civicNumber}
             error={!!form.civicError}
+            data-delivery-field="civic"
             onChange={(e) => {
               form.setCivicNumber(e.target.value);
               if (e.target.value.trim() !== "") form.setCivicError("");
@@ -66,6 +68,7 @@ export const DeliveryForm = ({ form }: DeliveryFormProps) => {
             placeholder="Nome sul citofono"
             value={form.intercom}
             error={!!form.intercomError}
+            data-delivery-field="intercom"
             onChange={(e) => {
               form.setIntercom(e.target.value);
               if (e.target.value.trim() !== "") form.setIntercomError("");
@@ -73,22 +76,24 @@ export const DeliveryForm = ({ form }: DeliveryFormProps) => {
           />
           {form.intercomError && <div className={styles.fieldError}>{form.intercomError}</div>}
 
-          <Select
-            placeholder="Seleziona il comune"
-            value={form.comune}
-            error={!!form.comuneError}
-            onChange={(value) => {
-              form.setComune(value);
-              if (value) form.setComuneError("");
-            }}
-            options={COMUNI_CONSEGNA.map((c) => ({
-              value: c.nome,
-              label: `${c.nome} (+€${c.sovrapprezzo},00)`,
-            }))}
-          />
+          <div data-delivery-field="comune">
+            <Select
+              placeholder="Seleziona il comune"
+              value={form.comune}
+              error={!!form.comuneError}
+              onChange={(value) => {
+                form.setComune(value);
+                if (value) form.setComuneError("");
+              }}
+              options={COMUNI_CONSEGNA.map((c) => ({
+                value: c.nome,
+                label: `${c.nome} (+€${c.sovrapprezzo},00)`,
+              }))}
+            />
+          </div>
           {form.comuneError && <div className={styles.fieldError}>{form.comuneError}</div>}
 
-          <div className={styles.paymentMethodSection}>
+          <div className={styles.paymentMethodSection} data-delivery-field="payment">
             <span className={styles.paymentMethodLabel}>Metodo di pagamento:</span>
             <div className={styles.paymentMethodButtons}>
               {PAYMENT_OPTIONS.map(({ value, label }) => (
