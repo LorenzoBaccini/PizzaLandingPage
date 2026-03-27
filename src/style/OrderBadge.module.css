@@ -37,6 +37,24 @@
   box-shadow: 0 6px 30px var(--color-amber-glow);
 }
 
+.pizzaIcon {
+  flex-shrink: 0;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.pizzaWobble {
+  animation: pizzaSpin 0.6s ease;
+}
+
+@keyframes pizzaSpin {
+  0% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(-15deg) scale(1.2); }
+  50% { transform: rotate(10deg) scale(1.15); }
+  75% { transform: rotate(-5deg) scale(1.05); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
 .badgeCounter {
   background: var(--color-bg);
   color: var(--color-amber);
