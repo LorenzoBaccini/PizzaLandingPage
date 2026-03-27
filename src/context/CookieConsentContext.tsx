@@ -40,12 +40,14 @@ const loadGoogleFonts = () => {
 };
 
 export const CookieConsentProvider = ({ children }: { children: ReactNode }) => {
-  const [consent, setConsent] = useState<ConsentStatus>(() => {
-    if (typeof window === "undefined") return "pending";
+  const [consent, setConsent] = useState<ConsentStatus>("pending");
+
+  useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored === "accepted" || stored === "rejected") return stored;
-    return "pending";
-  });
+    if (stored === "accepted" || stored === "rejected") {
+      setConsent(stored);
+    }
+  }, []);
 
   useEffect(() => {
     if (consent === "accepted") {

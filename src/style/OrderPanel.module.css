@@ -212,19 +212,18 @@
 }
 
 .orderTotalRow {
-  flex-wrap: wrap;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  width: 100%;
   font-size: 1.3rem;
   font-weight: bold;
   color: var(--color-text);
-  flex: 1 1 48%;
 }
 
 .orderTotalAmount {
   color: var(--color-amber);
   font-size: 1.3rem;
-  flex: 1 1 48%;
 }
 
 .orderActions {

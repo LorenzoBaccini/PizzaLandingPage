@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 import { Modal } from "../../atoms";
 import { Button } from "../../atoms/Button";
@@ -7,6 +7,7 @@ import { useTimeSlots } from "../../../hooks/useTimeSlots";
 import { useOrderForm } from "../../../hooks/useOrderForm";
 import { OrderSummary } from "./OrderSummary.client";
 import { DeliveryForm } from "./DeliveryForm.client";
+import { ConfettiCanvas } from "../../canvas/ConfettiCanvas.client";
 
 import type { OrderItem } from "../../../types";
 
@@ -42,6 +43,7 @@ export const OrderPanel = ({
   const [showConfirm, setShowConfirm] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [showWhatsappConfirm, setShowWhatsappConfirm] = useState(false);
+  const [confettiTrigger, setConfettiTrigger] = useState(false);
   const wasOpen = useRef(false);
 
   const form = useOrderForm();
@@ -179,11 +181,16 @@ export const OrderPanel = ({
     setShowWhatsappConfirm(true);
   };
 
+  const handleConfettiComplete = useCallback(() => {
+    setConfettiTrigger(false);
+  }, []);
+
   const handleSendWhatsapp = () => {
     const message = encodeURIComponent(formatOrderText());
     window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${message}`, "_blank");
     setShowWhatsappConfirm(false);
     setModalVisible(false);
+    setConfettiTrigger(true);
   };
 
   if (!isOpen) return null;
@@ -387,6 +394,7 @@ export const OrderPanel = ({
           </div>
         )}
       </div>
+      <ConfettiCanvas trigger={confettiTrigger} onComplete={handleConfettiComplete} />
     </div>
   );
 };

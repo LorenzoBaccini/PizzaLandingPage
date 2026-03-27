@@ -8,10 +8,12 @@ import { HoursSection } from "./organisms/HoursSection.client";
 import { ContactSection } from "./organisms/ContactSection.client";
 import { OrderManager } from "./organisms/order/OrderManager.client";
 import { CookieBanner } from "./organisms/CookieBanner.client";
+import { FloatingParticles } from "./canvas/FloatingParticles.client";
 
 export const App = () => {
   return (
     <ErrorBoundary>
+      <FloatingParticles />
       <CookieConsentProvider>
         <OrderProvider>
           <Header />

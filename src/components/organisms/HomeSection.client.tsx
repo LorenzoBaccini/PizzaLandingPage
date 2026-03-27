@@ -33,6 +33,18 @@ export const HomeSection = ({ id }: HomeSectionProps) => {
             if (menuSection) menuSection.scrollIntoView({ behavior: "smooth" });
           }}
         />
+        <div className={styles.tickerWrapper}>
+          <div className={styles.tickerTrack}>
+            {[0, 1].map((i) => (
+              <span key={i} className={styles.tickerContent}>
+                <span className={styles.tickerPromo}>
+                  PROMO: Ordina dal sito oltre 10€ e ricevi una Coca-Cola 33cl IN OMAGGIO!
+                </span>
+                <span className={styles.tickerSeparator}>★</span>
+              </span>
+            ))}
+          </div>
+        </div>
         <div className={styles.infoTexts}>
           <p>Pagamento anche con carte di credito, anche a domicilio!</p>
           <p>Consegna effettuata al citofono e non al piano</p>
