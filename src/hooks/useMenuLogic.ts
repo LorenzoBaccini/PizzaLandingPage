@@ -236,10 +236,10 @@ export const useMenuLogic = (activeSection: string) => {
         }
       }
 
-      const isMenu = !!item.scelta || item.tipo === "menu_scelta";
-      let productName = isMenu ? `Menu - ${item.nome}` : item.nome;
+      const isMenu = !!item.tipo?.startsWith("menu");
+      let productName = isMenu ? `Menu ${item.nome}` : item.nome;
       if (formato) {
-        productName = isMenu ? `Menu - ${item.nome} (${formato})` : `${item.nome} (${formato})`;
+        productName = isMenu ? `Menu ${item.nome} (${formato})` : `${item.nome} (${formato})`;
       }
 
       const sourceProduct: Partial<MenuItem> = {
@@ -251,6 +251,7 @@ export const useMenuLogic = (activeSection: string) => {
         ingredienti_removibili: item.ingredienti_removibili,
         tipo: item.tipo,
         scelta: item.scelta,
+        bevandaFissa: item.bevandaFissa,
         varianti: item.varianti,
         formato: item.formato,
       };

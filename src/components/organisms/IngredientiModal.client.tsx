@@ -12,14 +12,14 @@ const SPECIAL_OPTIONS = [
 ];
 
 const MENU_BEVANDE = [
-  { nome: "Acqua naturale" },
-  { nome: "Acqua frizzante" },
-  { nome: "Coca Cola" },
-  { nome: "Coca Zero" },
-  { nome: "Sprite" },
-  { nome: "Fanta" },
-  { nome: "Tè pesca" },
-  { nome: "Tè limone" },
+  { nome: "Acqua naturale 33cl" },
+  { nome: "Acqua frizzante 33cl" },
+  { nome: "Coca Cola 33cl" },
+  { nome: "Coca Zero 33cl" },
+  { nome: "Sprite 33cl" },
+  { nome: "Fanta 33cl" },
+  { nome: "Tè pesca 33cl" },
+  { nome: "Tè limone 33cl" },
 ];
 
 interface IngredientiModalProps {

@@ -278,7 +278,7 @@ export const OrdersPanel = () => {
                         {order.items.map((item, idx) => {
                           const c = item.customization;
                           const label = c?.menuScelta
-                            ? `Menu - ${c.menuScelta}`
+                            ? `Menu ${c.menuScelta}`
                             : item.nome;
                           return (
                             <div key={idx} className={styles.itemBlock}>
