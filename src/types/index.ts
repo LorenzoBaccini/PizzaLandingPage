@@ -48,6 +48,7 @@ export interface MenuItem {
   ingredienti_removibili?: string[];
   tipo?: string;
   scelta?: MenuItem[];
+  bevandaFissa?: string;
   varianti?: MenuItemVariante[];
   quantita?: string;
   formato?: string;

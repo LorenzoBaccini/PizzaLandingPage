@@ -58,6 +58,7 @@ export const PizzaList = ({
         const hasFormats = hasMultipleFormats(item);
         const formats = getAvailableFormats(item);
         const selectedFormat = getSelectedFormat(item);
+        const needsModal = item.personalizzabile || !!item.tipo?.startsWith("menu");
 
         return (
           <li key={`${baseId}_${index}`} className={styles.pizzaCard}>
@@ -142,7 +143,7 @@ export const PizzaList = ({
               </div>
 
               <div className={styles.orderControls}>
-                {!item.personalizzabile && (
+                {!needsModal && (
                   <div className={styles.quantitySelector}>
                     <button
                       onClick={() => handleDecreaseQuantity(item)}
@@ -163,7 +164,7 @@ export const PizzaList = ({
                     </button>
                   </div>
                 )}
-                {item.personalizzabile ? (
+                {needsModal ? (
                   <Button
                     role="button"
                     label="Aggiungi"

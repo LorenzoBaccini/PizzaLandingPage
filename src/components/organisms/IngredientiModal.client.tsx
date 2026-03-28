@@ -67,6 +67,10 @@ export const IngredientiModal = ({
       return;
     }
 
+    if (selectedProduct?.bevandaFissa) {
+      setSelectedBevanda({ nome: selectedProduct.bevandaFissa });
+    }
+
     if (initialCustomization) {
       setRemovedIngredients(initialCustomization.removedIngredients || []);
       setSelectedSpecialOptions(initialCustomization.opzioniSpeciali || []);
@@ -86,7 +90,7 @@ export const IngredientiModal = ({
         if (b) setSelectedBevanda(b);
       }
     }
-  }, [open, initialCustomization, selectedProduct?.varianti, selectedProduct?.scelta]);
+  }, [open, initialCustomization, selectedProduct?.varianti, selectedProduct?.scelta, selectedProduct?.bevandaFissa]);
 
   const handleToggleRemove = useCallback((nomeIngrediente: string) => {
     setRemovedIngredients((prev) =>
@@ -133,6 +137,8 @@ export const IngredientiModal = ({
   const menuOptions = selectedProduct?.scelta || [];
   const removableIngredients = selectedProduct?.ingredienti_removibili || [];
   const varianti = selectedProduct?.varianti || [];
+  const isMenu = !!selectedProduct?.tipo?.startsWith("menu");
+  const showExtras = selectedProduct?.personalizzabile !== false;
 
   const menuPaninoHaRemovibili =
     (selectedMenuItem as MenuItem | null)?.ingredienti_removibili &&
@@ -142,7 +148,7 @@ export const IngredientiModal = ({
     : removableIngredients;
 
   const isMenuPaninoComplete = !menuOptions.length || !!selectedMenuItem;
-  const isMenuBevandaComplete = !menuOptions.length || !!selectedBevanda;
+  const isMenuBevandaComplete = !isMenu || !!selectedBevanda;
   const isMenuComplete = isMenuPaninoComplete && isMenuBevandaComplete;
   const isVarianteComplete = !varianti.length || !!selectedVariante;
   const isReadyToOrder = isMenuComplete && isVarianteComplete;
@@ -164,7 +170,7 @@ export const IngredientiModal = ({
 
   const getButtonLabel = () => {
     if (!isReadyToOrder) {
-      return menuOptions.length > 0 ? "Completa menu" : "Completa la selezione";
+      return isMenu ? "Completa menu" : "Completa la selezione";
     }
     if (isEditMode) {
       return totalModifiche > 0
@@ -190,13 +196,13 @@ export const IngredientiModal = ({
             </p>
           )}
           <p className={`${genericStyle.ingredienti} ${styles.titleBorder}`}>
-            {selectedProduct?.tipo !== "menu_scelta" && (
+            {!isMenu && (
               <span className={styles.formatLabel}> Ingredienti: </span>
             )}
             {selectedProduct?.ingredienti}
           </p>
           <p style={{ margin: "10px 0 0 0", fontSize: 18, fontWeight: 600, color: "var(--color-text)" }}>
-            {menuOptions.length > 0
+            {isMenu
               ? "Menu completo"
               : currentRemovableIngredients.length > 0
                 ? "Personalizza"
@@ -219,67 +225,67 @@ export const IngredientiModal = ({
     >
       <div className={styles.scrollBody}>
         {menuOptions.length > 0 && (
-          <>
-            <Collapse
-              isOpen={menuOpen}
-              onToggle={() => setMenuOpen(!menuOpen)}
-              header={
-                <div className={styles.collapseHeader}>
-                  <div className={styles.collapseHeaderText}>
-                    <span className={`${styles.collapseHeaderLabel} ${selectedMenuItem ? styles.selected : styles.unselected}`}>
-                      {selectedMenuItem
-                        ? selectedMenuItem.nome
-                        : `Seleziona ${selectedProduct?.nome?.toLowerCase().includes("piadina") ? "piadina" : "panino"} del menu`}
-                    </span>
-                  </div>
-                  <span className={selectedMenuItem ? styles.badgeSelected : styles.badgeRequired}>
-                    {selectedMenuItem ? "Selezionato" : "Obbligatorio"}
+          <Collapse
+            isOpen={menuOpen}
+            onToggle={() => setMenuOpen(!menuOpen)}
+            header={
+              <div className={styles.collapseHeader}>
+                <div className={styles.collapseHeaderText}>
+                  <span className={`${styles.collapseHeaderLabel} ${selectedMenuItem ? styles.selected : styles.unselected}`}>
+                    {selectedMenuItem
+                      ? selectedMenuItem.nome
+                      : `Seleziona ${selectedProduct?.nome?.toLowerCase().includes("piadina") ? "piadina" : "panino"} del menu`}
                   </span>
                 </div>
-              }
-            >
-              {menuOptions.map((item: MenuItem) => (
-                <div
-                  key={item.nome}
-                  className={selectedMenuItem?.nome === item.nome ? styles.menuItemSelected : styles.menuItem}
-                  onClick={() => setSelectedMenuItem(item)}
-                >
-                  <div className={styles.menuItemName}>{item.nome}</div>
-                  {item.ingredienti && (
-                    <div className={styles.menuItemIngredients}>{item.ingredienti}</div>
-                  )}
-                </div>
-              ))}
-            </Collapse>
+                <span className={selectedMenuItem ? styles.badgeSelected : styles.badgeRequired}>
+                  {selectedMenuItem ? "Selezionato" : "Obbligatorio"}
+                </span>
+              </div>
+            }
+          >
+            {menuOptions.map((item: MenuItem) => (
+              <div
+                key={item.nome}
+                className={selectedMenuItem?.nome === item.nome ? styles.menuItemSelected : styles.menuItem}
+                onClick={() => setSelectedMenuItem(item)}
+              >
+                <div className={styles.menuItemName}>{item.nome}</div>
+                {item.ingredienti && (
+                  <div className={styles.menuItemIngredients}>{item.ingredienti}</div>
+                )}
+              </div>
+            ))}
+          </Collapse>
+        )}
 
-            <Collapse
-              isOpen={bevandeOpen}
-              onToggle={() => setBevandeOpen(!bevandeOpen)}
-              header={
-                <div className={styles.collapseHeader}>
-                  <div className={styles.collapseHeaderText}>
-                    <span className={`${styles.collapseHeaderLabel} ${selectedBevanda ? styles.selected : styles.unselected}`}>
-                      {selectedBevanda ? selectedBevanda.nome : "Seleziona bevanda"}
-                    </span>
-                  </div>
-                  <span className={selectedBevanda ? styles.badgeSelected : styles.badgeRequired}>
-                    {selectedBevanda ? "Selezionata" : "Obbligatoria"}
+        {isMenu && !selectedProduct?.bevandaFissa && (
+          <Collapse
+            isOpen={bevandeOpen}
+            onToggle={() => setBevandeOpen(!bevandeOpen)}
+            header={
+              <div className={styles.collapseHeader}>
+                <div className={styles.collapseHeaderText}>
+                  <span className={`${styles.collapseHeaderLabel} ${selectedBevanda ? styles.selected : styles.unselected}`}>
+                    {selectedBevanda ? selectedBevanda.nome : "Seleziona bevanda"}
                   </span>
                 </div>
-              }
-            >
-              {MENU_BEVANDE.map((bevanda) => (
-                <div
-                  key={bevanda.nome}
-                  className={selectedBevanda?.nome === bevanda.nome ? styles.bevandaItemSelected : styles.bevandaItem}
-                  onClick={() => setSelectedBevanda(bevanda)}
-                >
-                  <span className={styles.bevandaName}>{bevanda.nome}</span>
-                  <span className={styles.bevandaBadge}>Inclusa</span>
-                </div>
-              ))}
-            </Collapse>
-          </>
+                <span className={selectedBevanda ? styles.badgeSelected : styles.badgeRequired}>
+                  {selectedBevanda ? "Selezionata" : "Obbligatoria"}
+                </span>
+              </div>
+            }
+          >
+            {MENU_BEVANDE.map((bevanda) => (
+              <div
+                key={bevanda.nome}
+                className={selectedBevanda?.nome === bevanda.nome ? styles.bevandaItemSelected : styles.bevandaItem}
+                onClick={() => setSelectedBevanda(bevanda)}
+              >
+                <span className={styles.bevandaName}>{bevanda.nome}</span>
+                <span className={styles.bevandaBadge}>Inclusa</span>
+              </div>
+            ))}
+          </Collapse>
         )}
 
         {varianti.length > 0 && (
@@ -310,7 +316,7 @@ export const IngredientiModal = ({
           </div>
         )}
 
-        {(currentRemovableIngredients.length > 0 || removedIngredients.length > 0) && (
+        {showExtras && (currentRemovableIngredients.length > 0 || removedIngredients.length > 0) && (
           <div style={{ marginBottom: 20 }}>
             <h4 className={styles.sectionTitleRemove}>
               Rimuovi ingredienti
@@ -333,7 +339,7 @@ export const IngredientiModal = ({
           </div>
         )}
 
-        {ingredienti?.length > 0 && (
+        {showExtras && ingredienti?.length > 0 && (
           <div>
             <h4 className={styles.sectionTitleExtra}>Aggiungi extra</h4>
             {ingredienti.map(({ ingrediente, prezzo }: Ingrediente) => {
@@ -356,7 +362,7 @@ export const IngredientiModal = ({
           </div>
         )}
 
-        {showSpecialOptions && (
+        {showExtras && showSpecialOptions && (
           <div style={{ marginBottom: 20 }}>
             <h4 className={styles.sectionTitleSpecial}>Opzioni speciali</h4>
             {SPECIAL_OPTIONS.map(({ nome, prezzo }) => {

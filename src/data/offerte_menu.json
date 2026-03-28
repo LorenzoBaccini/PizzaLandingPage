@@ -182,25 +182,29 @@
       "nome": "SUPER KEBAB",
       "ingredienti": "Panino super kebab, patatine e bibita 33cl",
       "prezzo": 12.00,
-      "personalizzabile": true
+      "personalizzabile": true,
+      "tipo": "menu"
     },
     {
       "nome": "PIATTO KEBAB",
       "ingredienti": "Piatto kebab, patatine e bibita 33cl",
       "prezzo": 11.00,
-      "personalizzabile": true
+      "personalizzabile": true,
+      "tipo": "menu"
     },
     {
       "nome": "MARGHERITA",
       "ingredienti": "Pizza margherita, patatine e bibita 33cl",
       "prezzo": 9.00,
-      "personalizzabile": true
+      "personalizzabile": true,
+      "tipo": "menu"
     },
     {
       "nome": "TRANCIO MARGHERITA",
       "ingredienti": "Trancio margherita, patatine e bibita 33cl",
       "prezzo": 9.00,
-      "personalizzabile": true
+      "personalizzabile": true,
+      "tipo": "menu"
     },
     {
       "nome": "PANINO CON BIRRA",
@@ -208,6 +212,7 @@
       "prezzo": 10.00,
       "personalizzabile": true,
       "tipo": "menu_scelta",
+      "bevandaFissa": "Birra 33cl",
       "scelta": [
         {
           "nome": "Panino kebab 1",
@@ -295,7 +300,8 @@
       "nome": "PIATTO COTOLETTA",
       "ingredienti": "Piatto cotoletta, patatine e bibita 33cl",
       "prezzo": 10.00,
-      "personalizzabile": true
+      "personalizzabile": false,
+      "tipo": "menu"
     }
   ]
 }
