@@ -16,6 +16,8 @@ export type PaymentMethod = "contanti" | "carta" | null;
 
 export const useOrderForm = () => {
   const [deliverySelected, setDeliverySelected] = useState(false);
+  const [phone, setPhone] = useState("");
+  const [phoneError, setPhoneError] = useState("");
   const [address, setAddress] = useState("");
   const [addressError, setAddressError] = useState("");
   const [civicNumber, setCivicNumber] = useState("");
@@ -37,6 +39,15 @@ export const useOrderForm = () => {
       setPaymentMethod(null);
       setPaymentError("");
     }
+  };
+
+  const validatePhone = (): boolean => {
+    if (phone.trim() === "") {
+      setPhoneError("Inserisci il numero di telefono");
+      return false;
+    }
+    setPhoneError("");
+    return true;
   };
 
   const validateDelivery = (): boolean => {
@@ -82,6 +93,11 @@ export const useOrderForm = () => {
   return {
     deliverySelected,
     handleDeliveryToggle,
+    phone,
+    setPhone,
+    phoneError,
+    setPhoneError,
+    validatePhone,
     address,
     setAddress,
     addressError,

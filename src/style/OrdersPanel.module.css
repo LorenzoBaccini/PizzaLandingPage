@@ -1,0 +1,500 @@
+/* Toolbar */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.orderCount {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.toolbarActions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.btnRefresh {
+  padding: 8px 14px;
+  background: var(--color-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btnRefresh:hover {
+  border-color: var(--color-amber);
+  color: var(--color-amber);
+}
+
+.btnGear {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text-secondary);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btnGear:hover {
+  border-color: var(--color-amber);
+  color: var(--color-amber);
+}
+
+/* Settings modal */
+.settingsOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 5000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.settingsModal {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 24px;
+  width: 90%;
+  max-width: 360px;
+}
+
+.settingsTitle {
+  font-family: "Oswald", sans-serif;
+  font-size: 1.2rem;
+  color: var(--color-amber);
+  margin: 0 0 16px;
+}
+
+.settingsLabel {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 6px;
+}
+
+.settingsInput {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--color-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+  transition: border-color 0.2s ease;
+}
+
+.settingsInput::placeholder {
+  color: var(--color-text-muted);
+}
+
+.settingsInput:focus {
+  outline: none;
+  border-color: var(--color-amber);
+}
+
+.settingsClose {
+  width: 100%;
+  padding: 12px;
+  background: var(--color-amber);
+  color: var(--color-bg);
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.settingsClose:hover {
+  background: var(--color-amber-dark);
+}
+
+/* Date filter */
+.dateFilter {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.dateChip {
+  padding: 6px 14px;
+  background: var(--color-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  text-transform: capitalize;
+}
+
+.dateChip:hover {
+  border-color: var(--color-amber);
+  color: var(--color-amber);
+}
+
+.dateChipActive {
+  background: var(--color-amber);
+  border-color: var(--color-amber);
+  color: var(--color-bg);
+}
+
+.dateChipActive:hover {
+  background: var(--color-amber-dark);
+  border-color: var(--color-amber-dark);
+  color: var(--color-bg);
+}
+
+/* Day groups */
+.dayGroup {
+  margin-bottom: 24px;
+}
+
+.dayGroupTitle {
+  font-family: "Oswald", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  text-transform: capitalize;
+  margin: 0 0 10px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.dayGroupCount {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+/* Order list */
+.orderList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.orderCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Accordion header */
+.accordionHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: "Inter", sans-serif;
+  transition: background 0.15s ease;
+}
+
+.accordionHeader:hover {
+  background: var(--color-elevated);
+}
+
+.accordionSummary {
+  flex: 1;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.accordionArrow {
+  font-size: 0.6rem;
+  color: var(--color-text-secondary);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.accordionArrowOpen {
+  transform: rotate(180deg);
+}
+
+/* Accordion body */
+.accordionBody {
+  padding: 0 16px 16px;
+}
+
+.orderSlotTime {
+  font-family: "Oswald", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-amber);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.orderCreatedAt {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 10px;
+}
+
+.badge {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.badgePending {
+  background: rgba(232, 168, 56, 0.15);
+  color: var(--color-amber);
+}
+
+.badgePrinted {
+  background: rgba(52, 152, 219, 0.15);
+  color: #3498db;
+}
+
+.badgeDone {
+  background: rgba(39, 174, 96, 0.15);
+  color: #27ae60;
+}
+
+/* Indirizzo */
+.orderAddress {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  background: var(--color-elevated);
+  border-radius: 8px;
+  border-left: 3px solid var(--color-amber);
+}
+
+.addressRow {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.addressInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.addressLine {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.addressComune {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-amber);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.addressDetail {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+.qrLink {
+  flex-shrink: 0;
+  display: block;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.qrCode {
+  display: block;
+  border-radius: 6px;
+}
+
+/* Prodotti */
+.orderItems {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 8px;
+}
+
+.itemBlock {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.itemBlock:last-child {
+  border-bottom: none;
+}
+
+.itemRow {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.itemQty {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--color-amber);
+  min-width: 24px;
+}
+
+.itemName {
+  flex: 1;
+  font-size: 0.85rem;
+  color: var(--color-text);
+}
+
+.itemPrice {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+.itemDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding-left: 30px;
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+.detailAdd {
+  color: #27ae60;
+}
+
+.detailRemove {
+  color: var(--color-red);
+}
+
+/* Totale */
+.orderTotalRow {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  padding-top: 4px;
+}
+
+.orderTotal {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-amber);
+}
+
+/* Actions */
+.orderActions {
+  display: flex;
+  gap: 8px;
+}
+
+.btnPrint {
+  flex: 1;
+  padding: 10px;
+  background: var(--color-amber);
+  color: var(--color-bg);
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btnPrint:hover {
+  background: var(--color-amber-dark);
+}
+
+.btnPrint:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btnDone {
+  padding: 10px 16px;
+  background: var(--color-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btnDone:hover {
+  border-color: #27ae60;
+  color: #27ae60;
+}
+
+/* Status message */
+.printStatus {
+  font-size: 0.75rem;
+  margin-top: 6px;
+}
+
+.statusSuccess {
+  color: #27ae60;
+}
+
+.statusError {
+  color: var(--color-red);
+}
+
+/* Empty state */
+.emptyState {
+  text-align: center;
+  padding: 40px 16px;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+}
+
+/* Loading */
+.loadingText {
+  text-align: center;
+  color: var(--color-text-secondary);
+  padding: 24px;
+}

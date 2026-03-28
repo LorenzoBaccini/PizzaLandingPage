@@ -110,10 +110,45 @@
   color: var(--color-red);
 }
 
+/* Tabs */
+.tabBar {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+  background: var(--color-surface);
+  border-radius: 10px;
+  padding: 4px;
+  border: 1px solid var(--color-border);
+}
+
+.tabBtn {
+  flex: 1;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tabBtn:hover {
+  color: var(--color-text);
+}
+
+.tabActive {
+  background: var(--color-elevated);
+  color: var(--color-amber);
+}
+
 .hint {
   color: var(--color-text-secondary);
   font-size: 0.85rem;
   margin: 0 0 20px;
+  text-align: center;
 }
 
 /* Day sections */
@@ -127,12 +162,14 @@
   color: var(--color-text);
   margin: 0 0 10px;
   text-transform: capitalize;
+  text-align: center;
 }
 
 .slotsGrid {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  justify-content: center;
 }
 
 .slotBtn {

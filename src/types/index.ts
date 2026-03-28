@@ -72,3 +72,23 @@ export interface Ingrediente {
 }
 
 export type AllergeniIconsMap = Record<number, ComponentType<SVGProps<SVGSVGElement>>>;
+
+export type OrderStatus = "pending" | "printed" | "done";
+
+export interface Order {
+  id: string;
+  created_at: string;
+  items: OrderItem[];
+  is_delivery: boolean;
+  phone: string;
+  address: string | null;
+  civic_number: string | null;
+  intercom: string | null;
+  comune: string | null;
+  payment: string | null;
+  subtotal: number;
+  delivery_fee: number;
+  total: number;
+  time_slot: string;
+  status: OrderStatus;
+}

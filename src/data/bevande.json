@@ -6,8 +6,33 @@
       "prezzo": 1.00
     },
     {
-      "nome": "Bibite in lattina",
-      "quantita": "0,33 lt (Coca Cola, Fanta, Sprite, thè limone/pesca)",
+      "nome": "Coca Cola",
+      "quantita": "Lattina 0,33 lt",
+      "prezzo": 2.00
+    },
+    {
+      "nome": "Coca Cola Zero",
+      "quantita": "Lattina 0,33 lt",
+      "prezzo": 2.00
+    },
+    {
+      "nome": "Fanta",
+      "quantita": "Lattina 0,33 lt",
+      "prezzo": 2.00
+    },
+    {
+      "nome": "Sprite",
+      "quantita": "Lattina 0,33 lt",
+      "prezzo": 2.00
+    },
+    {
+      "nome": "Thè Limone",
+      "quantita": "Lattina 0,33 lt",
+      "prezzo": 2.00
+    },
+    {
+      "nome": "Thè Pesca",
+      "quantita": "Lattina 0,33 lt",
       "prezzo": 2.00
     },
     {

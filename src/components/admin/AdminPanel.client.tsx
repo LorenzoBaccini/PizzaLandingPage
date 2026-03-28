@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, lazy, Suspense } from "react";
 
 import dayjs from "dayjs";
 import "dayjs/locale/it";
@@ -7,7 +7,13 @@ import { supabase } from "../../lib/supabase";
 import { ORDER_SLOTS } from "../../config/businessHours";
 import styles from "../../style/AdminPanel.module.css";
 
+const OrdersPanel = lazy(() =>
+  import("./OrdersPanel.client").then((m) => ({ default: m.OrdersPanel })),
+);
+
 import type { Session } from "@supabase/supabase-js";
+
+type AdminTab = "slots" | "orders";
 
 dayjs.locale("it");
 
@@ -47,6 +53,7 @@ export const AdminPanel = () => {
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
   const [disabledSlots, setDisabledSlots] = useState<Set<string>>(new Set());
+  const [activeTab, setActiveTab] = useState<AdminTab>("orders");
 
   const today = dayjs().startOf("day");
   const days = Array.from({ length: DAYS_AHEAD }, (_, i) => today.add(i, "day"));
@@ -153,41 +160,66 @@ export const AdminPanel = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1 className={styles.title}>Gestione Orari</h1>
+        <h1 className={styles.title}>La Teglia — Admin</h1>
         <button onClick={handleLogout} className={styles.btnLogout}>Esci</button>
       </div>
 
-      <p className={styles.hint}>
-        Tocca uno slot per disabilitarlo. Toccalo di nuovo per riabilitarlo.
-      </p>
+      <div className={styles.tabBar}>
+        <button
+          className={`${styles.tabBtn} ${activeTab === "orders" ? styles.tabActive : ""}`}
+          onClick={() => setActiveTab("orders")}
+        >
+          Ordini
+        </button>
+        <button
+          className={`${styles.tabBtn} ${activeTab === "slots" ? styles.tabActive : ""}`}
+          onClick={() => setActiveTab("slots")}
+        >
+          Orari
+        </button>
+      </div>
 
-      {days.map((day) => {
-        const dateStr = day.format("YYYY-MM-DD");
-        const slots = generateDaySlots(day);
-        const dayLabel = day.format("dddd D MMMM");
+      {activeTab === "slots" && (
+        <>
+          <p className={styles.hint}>
+            Tocca uno slot per disabilitarlo. Toccalo di nuovo per riabilitarlo.
+          </p>
 
-        return (
-          <div key={dateStr} className={styles.daySection}>
-            <h2 className={styles.dayTitle}>{dayLabel}</h2>
-            <div className={styles.slotsGrid}>
-              {slots.map((slot) => {
-                const key = `${dateStr}_${slot}`;
-                const isDisabled = disabledSlots.has(key);
+          {days.map((day) => {
+            const dateStr = day.format("YYYY-MM-DD");
+            const slots = generateDaySlots(day);
+            const dayLabel = day.format("dddd D MMMM");
 
-                return (
-                  <button
-                    key={key}
-                    className={`${styles.slotBtn} ${isDisabled ? styles.slotDisabled : styles.slotEnabled}`}
-                    onClick={() => toggleSlot(dateStr, slot)}
-                  >
-                    {slot}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        );
-      })}
+            return (
+              <div key={dateStr} className={styles.daySection}>
+                <h2 className={styles.dayTitle}>{dayLabel}</h2>
+                <div className={styles.slotsGrid}>
+                  {slots.map((slot) => {
+                    const key = `${dateStr}_${slot}`;
+                    const isDisabled = disabledSlots.has(key);
+
+                    return (
+                      <button
+                        key={key}
+                        className={`${styles.slotBtn} ${isDisabled ? styles.slotDisabled : styles.slotEnabled}`}
+                        onClick={() => toggleSlot(dateStr, slot)}
+                      >
+                        {slot}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+        </>
+      )}
+
+      {activeTab === "orders" && (
+        <Suspense fallback={<p className={styles.loadingText}>Caricamento ordini...</p>}>
+          <OrdersPanel />
+        </Suspense>
+      )}
     </div>
   );
 };

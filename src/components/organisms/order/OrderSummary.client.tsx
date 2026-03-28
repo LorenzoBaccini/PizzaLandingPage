@@ -43,12 +43,12 @@ export const OrderSummary = ({
                     {item.customization.variante && (
                       <span>Formato: {item.customization.variante}</span>
                     )}
-                    {item.customization.extras.length > 0 && (
-                      <span>+ {item.customization.extras.map((e) => e.ingrediente).join(", ")}</span>
-                    )}
-                    {item.customization.removedIngredients.length > 0 && (
-                      <span>- Senza: {item.customization.removedIngredients.join(", ")}</span>
-                    )}
+                    {item.customization.extras.map((e) => (
+                      <span key={e.ingrediente}>+ {e.ingrediente}</span>
+                    ))}
+                    {item.customization.removedIngredients.map((r) => (
+                      <span key={r}>- {r}</span>
+                    ))}
                     {item.customization.opzioniSpeciali?.length > 0 && (
                       <span>&#11088; {item.customization.opzioniSpeciali.join(", ")}</span>
                     )}

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 
-import { Modal } from "../../atoms";
+import { Modal, Input } from "../../atoms";
 import { Button } from "../../atoms/Button";
 import styles from "../../../style/OrderPanel.module.css";
 import { useTimeSlots } from "../../../hooks/useTimeSlots";
@@ -8,6 +8,7 @@ import { useOrderForm } from "../../../hooks/useOrderForm";
 import { OrderSummary } from "./OrderSummary.client";
 import { DeliveryForm } from "./DeliveryForm.client";
 import { ConfettiCanvas } from "../../canvas/ConfettiCanvas.client";
+import { saveOrder } from "../../../lib/orders";
 
 import type { OrderItem } from "../../../types";
 
@@ -115,6 +116,8 @@ export const OrderPanel = ({
     text += `\n💰 *TOTALE: €${grandTotal.toFixed(2)}*\n`;
     text += "━━━━━━━━━━━━━━━━━━━━\n\n";
 
+    text += `📞 Telefono: ${form.phone}\n`;
+
     if (form.deliverySelected) {
       text += "📍 *Consegna a domicilio*\n";
       text += `${form.address}, ${form.civicNumber} — ${form.comune}\n`;
@@ -141,15 +144,18 @@ export const OrderPanel = ({
   };
 
   const scrollToFirstError = () => {
-    const checks: [boolean, string][] = form.deliverySelected
-      ? [
-          [form.address.trim() === "", "address"],
-          [form.civicNumber.trim() === "", "civic"],
-          [form.intercom.trim() === "", "intercom"],
-          [!form.comune, "comune"],
-          [!form.paymentMethod, "payment"],
-        ]
-      : [];
+    const checks: [boolean, string][] = [
+      [form.phone.trim() === "", "phone"],
+      ...(form.deliverySelected
+        ? ([
+            [form.address.trim() === "", "address"],
+            [form.civicNumber.trim() === "", "civic"],
+            [form.intercom.trim() === "", "intercom"],
+            [!form.comune, "comune"],
+            [!form.paymentMethod, "payment"],
+          ] as [boolean, string][])
+        : []),
+    ];
 
     const firstFailing = checks.find(([failing]) => failing);
     if (firstFailing) {
@@ -163,6 +169,10 @@ export const OrderPanel = ({
 
   const handleValidateAndConfirm = () => {
     let hasError = false;
+
+    if (!form.validatePhone()) {
+      hasError = true;
+    }
 
     if (form.deliverySelected && !form.validateDelivery()) {
       hasError = true;
@@ -186,6 +196,25 @@ export const OrderPanel = ({
   }, []);
 
   const handleSendWhatsapp = () => {
+    const subtotal = calculateTotal();
+    const comuneData = form.deliverySelected ? form.getComuneData() : null;
+    const deliveryFee = comuneData?.sovrapprezzo ?? 0;
+
+    saveOrder({
+      items,
+      isDelivery: form.deliverySelected,
+      phone: form.phone,
+      address: form.address || undefined,
+      civicNumber: form.civicNumber || undefined,
+      intercom: form.intercom || undefined,
+      comune: form.comune ?? undefined,
+      payment: form.paymentMethod,
+      subtotal,
+      deliveryFee,
+      total: subtotal + deliveryFee,
+      timeSlot: timeSlots.preferredTime?.format("HH:mm") ?? "",
+    });
+
     const message = encodeURIComponent(formatOrderText());
     window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${message}`, "_blank");
     setShowWhatsappConfirm(false);
@@ -305,6 +334,21 @@ export const OrderPanel = ({
           }
         >
           <DeliveryForm form={form} />
+
+          <div className={styles.deliveryFields} style={{ marginTop: 12 }}>
+            <Input
+              placeholder="Numero di telefono"
+              type="tel"
+              value={form.phone}
+              error={!!form.phoneError}
+              data-delivery-field="phone"
+              onChange={(e) => {
+                form.setPhone(e.target.value);
+                if (e.target.value.trim() !== "") form.setPhoneError("");
+              }}
+            />
+            {form.phoneError && <div className={styles.fieldError}>{form.phoneError}</div>}
+          </div>
 
           <div>
             <p className={styles.timeSlotsLabel}>

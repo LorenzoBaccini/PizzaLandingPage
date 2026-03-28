@@ -1,6 +1,8 @@
 ---
 import { AdminPanel } from "../components/admin/AdminPanel.client";
 import "../style/colorVariable.css";
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <html lang="it">
@@ -23,5 +25,12 @@ import "../style/colorVariable.css";
   </head>
   <body>
     <AdminPanel client:load />
+    <script is:inline define:vars={{ base }}>
+      (function() {
+        var s = document.createElement('script');
+        s.src = base + 'vendor/epos-2.27.0.js';
+        document.head.appendChild(s);
+      })();
+    </script>
   </body>
 </html>
