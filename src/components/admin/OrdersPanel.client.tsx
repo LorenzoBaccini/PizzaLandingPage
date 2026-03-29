@@ -64,7 +64,8 @@ export const OrdersPanel = () => {
   };
 
   const handlePrint = async (order: Order) => {
-    printer.print(order);
+    const success = await printer.print(order);
+    if (!success) return;
 
     await supabase
       .from("orders")
