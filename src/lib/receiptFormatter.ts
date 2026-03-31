@@ -14,7 +14,7 @@ const eur = (n: number): string => `EUR ${n.toFixed(2)}`;
 const formatItemLabel = (item: OrderItem): string => {
   const c = item.customization;
   if (c?.menuScelta) {
-    return `${item.quantita}x Menu ${c.menuScelta}`;
+    return `${item.quantita}x Menu - ${c.menuScelta}`;
   }
   return `${item.quantita}x ${item.nome}`;
 };

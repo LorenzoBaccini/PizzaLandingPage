@@ -21,69 +21,63 @@ export const usePrinter = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [printingOrderId, setPrintingOrderId] = useState<string | null>(null);
 
-  const print = useCallback((order: Order): Promise<boolean> => {
+  const print = useCallback((order: Order) => {
     setPrintingOrderId(order.id);
     const ip = getPrinterIp();
     if (!ip) {
       setStatus("error");
       setErrorMessage("IP stampante non configurato");
-      return Promise.resolve(false);
+      return;
     }
 
     if (typeof epson === "undefined") {
       setStatus("error");
       setErrorMessage("SDK Epson non caricato (epos-print.js mancante)");
-      return Promise.resolve(false);
+      return;
     }
 
     setStatus("connecting");
     setErrorMessage("");
 
-    return new Promise<boolean>((resolve) => {
-      const device = new epson.ePOSDevice();
+    const device = new epson.ePOSDevice();
 
-      device.connect(ip, PRINTER_PORT, (resultConnect: string) => {
-        if (resultConnect !== "OK" && resultConnect !== "SSL_CONNECT_OK") {
-          setStatus("error");
-          setErrorMessage(`Connessione fallita: ${resultConnect}`);
-          resolve(false);
-          return;
-        }
+    device.connect(ip, PRINTER_PORT, (resultConnect: string) => {
+      if (resultConnect !== "OK" && resultConnect !== "SSL_CONNECT_OK") {
+        setStatus("error");
+        setErrorMessage(`Connessione fallita: ${resultConnect}`);
+        return;
+      }
 
-        device.createDevice(
-          DEVICE_ID,
-          device.DEVICE_TYPE_PRINTER,
-          { crypto: false, buffer: false },
-          (printer: epson.ePOSPrint, retcode: string) => {
-            if (retcode !== "OK") {
-              setStatus("error");
-              setErrorMessage(`Errore creazione device: ${retcode}`);
-              device.disconnect();
-              resolve(false);
-              return;
-            }
+      device.createDevice(
+        DEVICE_ID,
+        device.DEVICE_TYPE_PRINTER,
+        { crypto: false, buffer: false },
+        (printer: epson.ePOSPrint, retcode: string) => {
+          if (retcode !== "OK") {
+            setStatus("error");
+            setErrorMessage(`Errore creazione device: ${retcode}`);
+            device.disconnect();
+            return;
+          }
 
-            setStatus("printing");
+          setStatus("printing");
 
-            printer.onreceive = (res) => {
-              setStatus(res.success ? "success" : "error");
-              if (!res.success) setErrorMessage(`Errore stampa: ${res.code}`);
-              device.disconnect();
-              resolve(res.success);
-            };
+          printer.onreceive = (res) => {
+            setStatus(res.success ? "success" : "error");
+            if (!res.success) setErrorMessage(`Errore stampa: ${res.code}`);
+            device.disconnect();
+          };
 
-            printer.onerror = (err) => {
-              setStatus("error");
-              setErrorMessage(`Errore: ${err.responseText}`);
-              device.disconnect();
-              resolve(false);
-            };
+          printer.onerror = (err) => {
+            setStatus("error");
+            setErrorMessage(`Errore: ${err.responseText}`);
+            device.disconnect();
+          };
 
-            formatReceipt(printer, order);
-            printer.send();
-          },
-        );
-      });
+          formatReceipt(printer, order);
+          printer.send();
+        },
+      );
     });
   }, []);
 
