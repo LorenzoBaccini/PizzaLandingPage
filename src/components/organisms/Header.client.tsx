@@ -22,7 +22,7 @@ export const Header = () => {
 
   return (
     <header className={styles.header}>
-      <div className={styles.logo}>LA TEGLIA</div>
+      <div className={styles.logo}>IL TEGLIO</div>
 
       <nav className={styles.desktopNav}>
         {menuItems.map(({ label, targetId }) => (
